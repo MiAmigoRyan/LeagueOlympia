@@ -8,7 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class OlympaidCategory {
+public class OlympiadCategory {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,7 +18,7 @@ public class OlympaidCategory {
 	
 	private String description;
 
-	public OlympaidCategory() {
+	public OlympiadCategory() {
 		super();
 	}
 
@@ -59,14 +59,14 @@ public class OlympaidCategory {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		OlympaidCategory other = (OlympaidCategory) obj;
+		OlympiadCategory other = (OlympiadCategory) obj;
 		return Objects.equals(description, other.description) && id == other.id && Objects.equals(name, other.name);
 	}
 
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("OlympaidCategory [id=").append(id).append(", name=").append(name).append(", description=")
+		builder.append("OlympiadCategory [id=").append(id).append(", name=").append(name).append(", description=")
 				.append(description).append("]");
 		return builder.toString();
 	}

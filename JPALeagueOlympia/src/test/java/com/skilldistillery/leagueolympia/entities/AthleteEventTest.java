@@ -38,7 +38,7 @@ class AthleteEventTest {
 		}
 		
 		@Test
-		void test_LeagueComment() {
+		void test_AthleteEvent() {
 			assertNotNull(athleteEvent);
 //			assertEquals("admin", user.getUsername());
 		}

@@ -12,10 +12,10 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class OlympaidCategoryTest {
+class OlympiadCategoryTest {
 	private static EntityManagerFactory emf;
 	private EntityManager em;
-	private OlympaidCategory olympaidCategory;
+	private OlympiadCategory olympaidCategory;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -30,7 +30,7 @@ class OlympaidCategoryTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		olympaidCategory = em.find(OlympaidCategory.class, 1);
+		olympaidCategory = em.find(OlympiadCategory.class, 1);
 	}
 
 	@AfterEach
