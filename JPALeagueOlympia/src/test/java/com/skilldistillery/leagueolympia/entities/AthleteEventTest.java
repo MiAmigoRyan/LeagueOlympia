@@ -1,7 +1,7 @@
 package com.skilldistillery.leagueolympia.entities;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -12,10 +12,10 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class UserTest {
+class AthleteEventTest {
 	   private  static EntityManagerFactory emf;
 	   private EntityManager em;
-	   private User user;
+	   private AthleteEvent athleteEvent;
 		
 		@BeforeAll
 		static void setUpBeforeClass() throws Exception {
@@ -30,7 +30,7 @@ class UserTest {
 		@BeforeEach
 		void setUp() throws Exception {
 			em = emf.createEntityManager();
-			user = em.find(User.class,1);
+			athleteEvent = em.find(AthleteEvent.class,1);
 		}
 
 		@AfterEach
@@ -38,9 +38,9 @@ class UserTest {
 		}
 		
 		@Test
-		void test_User() {
-			assertNotNull(user);
-			assertEquals("admin", user.getUsername());
+		void test_AthleteEvent() {
+			assertNotNull(athleteEvent);
+//			assertEquals("admin", user.getUsername());
 		}
 
-	}
+}

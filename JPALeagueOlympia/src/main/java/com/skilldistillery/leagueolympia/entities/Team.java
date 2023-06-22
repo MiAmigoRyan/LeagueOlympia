@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 
 import javax.persistence.Column;
-import javax.persistence.Entity;
+import javax.persistence.Embeddable;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -12,12 +12,10 @@ import javax.persistence.Id;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
-@Entity
+@Embeddable
 public class Team {
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private static final long serialVersionUID = 1L;
 	
 	@Column(name ="user_id")
 	private int userId;
@@ -42,13 +40,9 @@ public class Team {
 	 private LocalDateTime updatedAt;
 	
 	 private boolean enabled;
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
+	 
+	public Team() {
+		super();
 	}
 
 	public int getUserId() {
@@ -117,7 +111,7 @@ public class Team {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(createdAt, description, enabled, id, leagueId, photoURL, teamName, updatedAt, userId);
+		return Objects.hash(leagueId, userId);
 	}
 
 	@Override
@@ -129,21 +123,31 @@ public class Team {
 		if (getClass() != obj.getClass())
 			return false;
 		Team other = (Team) obj;
-		return Objects.equals(createdAt, other.createdAt) && Objects.equals(description, other.description)
-				&& enabled == other.enabled && id == other.id && leagueId == other.leagueId
-				&& Objects.equals(photoURL, other.photoURL) && Objects.equals(teamName, other.teamName)
-				&& Objects.equals(updatedAt, other.updatedAt) && userId == other.userId;
+		return leagueId == other.leagueId && userId == other.userId;
 	}
 
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("Team [id=").append(id).append(", userId=").append(userId).append(", leagueId=").append(leagueId)
-				.append(", teamName=").append(teamName).append(", photoURL=").append(photoURL).append(", description=")
-				.append(description).append(", createdAt=").append(createdAt).append(", updatedAt=").append(updatedAt)
-				.append(", enabled=").append(enabled).append("]");
+		builder.append("Team [userId=");
+		builder.append(userId);
+		builder.append(", leagueId=");
+		builder.append(leagueId);
+		builder.append(", teamName=");
+		builder.append(teamName);
+		builder.append(", photoURL=");
+		builder.append(photoURL);
+		builder.append(", description=");
+		builder.append(description);
+		builder.append(", createdAt=");
+		builder.append(createdAt);
+		builder.append(", updatedAt=");
+		builder.append(updatedAt);
+		builder.append(", enabled=");
+		builder.append(enabled);
+		builder.append("]");
 		return builder.toString();
 	}
-	 
-	 
+	
+
 }

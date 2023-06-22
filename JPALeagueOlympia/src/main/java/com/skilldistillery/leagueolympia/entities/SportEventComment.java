@@ -11,8 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "league_comment")
-public class LeagueComment {
+@Table(name = "sport_event_comment")
+public class SportEventComment {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
@@ -26,13 +26,13 @@ public class LeagueComment {
 	@Column(name = "date_posted")
 	private LocalDateTime datePosted;
 	
-	@Column(name = "league_id")
-	private int leagueId;
-	
 	@Column(name = "reply_to_id")
 	private int replyToId;
+	
+	@Column(name = "sport_event_id")
+	private int sportEventId;
 
-	public LeagueComment() {
+	public SportEventComment() {
 		super();
 	}
 
@@ -68,20 +68,20 @@ public class LeagueComment {
 		this.datePosted = datePosted;
 	}
 
-	public int getLeagueId() {
-		return leagueId;
-	}
-
-	public void setLeagueId(int leagueId) {
-		this.leagueId = leagueId;
-	}
-
 	public int getReplyToId() {
 		return replyToId;
 	}
 
 	public void setReplyToId(int replyToId) {
 		this.replyToId = replyToId;
+	}
+
+	public int getSportEventId() {
+		return sportEventId;
+	}
+
+	public void setSportEventId(int sportEventId) {
+		this.sportEventId = sportEventId;
 	}
 
 	@Override
@@ -97,25 +97,23 @@ public class LeagueComment {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		LeagueComment other = (LeagueComment) obj;
+		SportEventComment other = (SportEventComment) obj;
 		return id == other.id;
 	}
 
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("LeagueComment [id=");
+		builder.append("SportEventComment [id=");
 		builder.append(id);
 		builder.append(", userId=");
 		builder.append(userId);
 		builder.append(", commentText=");
 		builder.append(commentText);
-		builder.append(", datePosted=");
-		builder.append(datePosted);
-		builder.append(", leagueId=");
-		builder.append(leagueId);
 		builder.append(", replyToId=");
 		builder.append(replyToId);
+		builder.append(", sportEventId=");
+		builder.append(sportEventId);
 		builder.append("]");
 		return builder.toString();
 	}
