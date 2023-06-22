@@ -42,6 +42,10 @@ public class Team {
 	 private LocalDateTime updatedAt;
 	
 	 private boolean enabled;
+	 
+	public Team() {
+		super();
+	}
 
 	public int getId() {
 		return id;

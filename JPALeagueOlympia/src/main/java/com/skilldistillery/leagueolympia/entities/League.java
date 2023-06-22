@@ -47,6 +47,12 @@ public class League {
 	 private LocalDateTime updatedAt;
 	 
 	 private boolean enabled;
+	 
+	 
+
+	public League() {
+		super();
+	}
 
 	public int getId() {
 		return id;
