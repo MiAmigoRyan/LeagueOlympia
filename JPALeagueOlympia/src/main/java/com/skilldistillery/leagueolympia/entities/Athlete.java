@@ -33,8 +33,6 @@ public class Athlete {
 	
 	@Column(name="social_media_url")
 	private String socialMediaURL;
-	
-	
 
 	public Athlete() {
 		super();
