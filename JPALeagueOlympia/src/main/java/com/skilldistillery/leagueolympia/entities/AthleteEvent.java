@@ -56,10 +56,6 @@ public class AthleteEvent {
 		this.athleteEventId = athleteEventId;
 	}
 
-
-
-
-
 	@Override
 	public int hashCode() {
 		return Objects.hash(athleteEventId);
