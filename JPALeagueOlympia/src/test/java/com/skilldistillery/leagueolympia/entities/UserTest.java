@@ -13,7 +13,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class UserTest {
-	  private  static EntityManagerFactory emf;
+	   private  static EntityManagerFactory emf;
 	   private EntityManager em;
 	   private User user;
 		
@@ -36,8 +36,9 @@ class UserTest {
 		@AfterEach
 		void tearDown() throws Exception {
 		}
+		
 		@Test
-		void testUsername() {
+		void test_Username() {
 			assertNotNull(user);
 			assertEquals("admin", user.getUsername());
 		}
