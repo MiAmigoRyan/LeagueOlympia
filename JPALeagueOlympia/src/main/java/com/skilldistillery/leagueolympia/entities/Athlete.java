@@ -9,12 +9,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 @Entity
 public class Athlete {
-
-	
-	//*** fix me add hash code and to string
-	// WHAT IS athlete_id ROW IN DB? COMMENT?
-	
-	
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,9 +27,6 @@ public class Athlete {
 	
 	@Column(name="date_of_birty")
 	private Date dateOfBirth;
-	
-//	@Column(name="athlete_id")
-//	private int athleteCommentId;
 	
 	@Column(name="country_id")
 	private int countryid;
