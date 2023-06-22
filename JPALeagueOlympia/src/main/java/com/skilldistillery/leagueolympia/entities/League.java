@@ -1,5 +1,8 @@
 package com.skilldistillery.leagueolympia.entities;
 
+
+public class League {
+
 import java.time.LocalDateTime;
 import java.util.Objects;
 
@@ -163,5 +166,5 @@ public class League {
 	 
 	 
 	 
-	 
+
 }
