@@ -1,6 +1,7 @@
 package com.skilldistillery.leagueolympia.entities;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -8,15 +9,37 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "sport_event")
 public class SportEvent {
+	
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String venue;
+	
+	@JsonIgnore
+	@ManyToMany
+	@JoinTable(
+			name="league_has_sport_event",
+			joinColumns = @JoinColumn(name="sport_event_id"),
+			inverseJoinColumns = @JoinColumn(name="league_id")
+			)
+	private List<League> leagues;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy="sportEvent")
+	private List<AthleteEvent> athleteEvents;
+	
 	
 	@Column(name = "location_latitude")
 	private String locationLatitude;
@@ -38,6 +61,24 @@ public class SportEvent {
 	public SportEvent() {
 		super();
 	}
+
+	public List<League> getLeagues() {
+		return leagues;
+	}
+	
+	public void setLeagues(List<League> leagues) {
+		leagues = leagues;
+	}
+
+	public List<AthleteEvent> getAthleteEvents() {
+		return athleteEvents;
+	}
+
+
+	public void setAthleteEvents(List<AthleteEvent> athleteEvents) {
+		this.athleteEvents = athleteEvents;
+	}
+
 
 	public int getId() {
 		return id;

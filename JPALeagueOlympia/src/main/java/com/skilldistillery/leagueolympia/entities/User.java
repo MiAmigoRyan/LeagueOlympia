@@ -1,6 +1,7 @@
 package com.skilldistillery.leagueolympia.entities;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -8,9 +9,15 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class User {
@@ -22,6 +29,18 @@ public class User {
 	private String enabled;
 	private String role;
 	private String photo;
+	
+	@OneToMany(mappedBy="user")
+	private List<Team> teams;
+	
+	@JsonIgnore
+	@ManyToMany
+	@JoinTable(
+			name = "user_has_bought_in",
+			joinColumns = @JoinColumn (name="user_id"),
+			inverseJoinColumns = @JoinColumn(name="league_id")
+			)
+	private List<League> boughtInLeagues;
 	
 	@Column(name = "about_me")
 	private String aboutMe;
@@ -44,6 +63,23 @@ public class User {
 		super();
 	}
 
+	
+	public List<League> getBoughtInLeagues() {
+		return boughtInLeagues;
+	}
+
+
+	public void setBoughtInLeagues(List<League> boughtInLeagues) {
+		this.boughtInLeagues = boughtInLeagues;
+	}
+
+
+	public List<Team> getTeams() {
+		return teams;
+	}
+	public void setTeams(List<Team> teams) {
+		this.teams = teams;
+	}
 	public int getId() {
 		return id;
 	}

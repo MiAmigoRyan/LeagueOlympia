@@ -40,6 +40,17 @@ class SportEventTest {
 		@Test
 		void test_SportEvent() {
 			assertNotNull(sportEvent);
-//			assertEquals("admin", user.getUsername());
 		}
+		@Test
+		void test_SportEvent_AthelteEvent_OTM() {
+			assertNotNull(sportEvent);
+			assertNotNull(sportEvent.getAthleteEvents());
+			assertTrue(sportEvent.getAthleteEvents().size()>0);
+		}
+		@Test
+		void test_SportEvent_League_MTM() {
+			assertNotNull(sportEvent);
+			assertNotNull(sportEvent.getLeagues());
+			assertTrue(sportEvent.getLeagues().size()>0);
+		}	
 }

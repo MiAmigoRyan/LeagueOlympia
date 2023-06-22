@@ -1,10 +1,18 @@
 package com.skilldistillery.leagueolympia.entities;
 
+import java.util.List;
 import java.util.Objects;
 
+import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "athlete_event")
@@ -13,7 +21,26 @@ public class AthleteEvent {
 	@EmbeddedId
 	private AthleteEventId athleteEventId;
 	
-	private int place;
+	@JsonIgnore
+	@ManyToMany(
+			mappedBy="athleteEvents"
+			)
+	private List<Team> teams;
+	
+	@ManyToOne
+	@JoinColumn(name="sport_event_id")
+	@MapsId(value="sportEventId")
+	private SportEvent sportEvent;
+	
+	@ManyToOne
+	@JoinColumn(name="athlete_id")
+	@MapsId(value="athleteId")
+	private Athlete athlete;
+	
+	
+	
+	@Column(name="finish_result")
+	private int finishResult;
 	private String remarks;
 	private boolean enabled;
 	
@@ -22,12 +49,42 @@ public class AthleteEvent {
 	}
 
 
-	public int getPlace() {
-		return place;
+	public List<Team> getTeams() {
+		return teams;
+	}
+
+
+	public void setTeams(List<Team> teams) {
+		this.teams = teams;
+	}
+
+
+	public SportEvent getSportEvent() {
+		return sportEvent;
+	}
+
+
+	public void setSportEvent(SportEvent sportEvent) {
+		this.sportEvent = sportEvent;
+	}
+
+
+	public Athlete getAthlete() {
+		return athlete;
+	}
+
+
+	public void setAthlete(Athlete athlete) {
+		this.athlete = athlete;
+	}
+
+
+	public int getFinishResult() {
+		return finishResult;
 	}
 	
-	public void setPlace(int place) {
-		this.place = place;
+	public void setFinishResult(int place) {
+		this.finishResult = place;
 	}
 	
 	public String getRemarks() {
@@ -78,10 +135,14 @@ public class AthleteEvent {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("AthleteEvent [athleteEventId=").append(athleteEventId).append(", place=").append(place)
+		builder.append("AthleteEvent [athleteEventId=").append(athleteEventId).append(", sportEvent=")
+				.append(sportEvent).append(", athlete=").append(athlete).append(", finishResult=").append(finishResult)
 				.append(", remarks=").append(remarks).append(", enabled=").append(enabled).append("]");
 		return builder.toString();
 	}
+
+
+
 
 	
 }

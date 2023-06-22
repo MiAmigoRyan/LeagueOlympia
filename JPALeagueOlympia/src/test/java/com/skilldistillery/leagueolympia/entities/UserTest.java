@@ -2,6 +2,8 @@ package com.skilldistillery.leagueolympia.entities;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -42,5 +44,18 @@ class UserTest {
 			assertNotNull(user);
 			assertEquals("admin", user.getUsername());
 		}
+		
+		@Test
+		void test_User_to_Team_OTM() {
+			assertNotNull(user);
+			assertTrue(user.getTeams().size()>0);
+		}
+		@Test
+		void test_User_to_League_MTM() {
+			assertNotNull(user);
+			assertTrue(user.getBoughtInLeagues().size()>0);
+		}
+		
+		
 
 	}

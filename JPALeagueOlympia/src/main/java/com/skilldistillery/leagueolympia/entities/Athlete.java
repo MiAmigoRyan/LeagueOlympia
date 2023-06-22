@@ -1,18 +1,26 @@
 package com.skilldistillery.leagueolympia.entities;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 public class Athlete {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy="athlete")
+	private List<AthleteEvent> athleteEvents; 
 	
 	@Column(name = "first_name")
 	private String fname;
@@ -25,7 +33,7 @@ public class Athlete {
 	@Column(name ="photo")
 	private String photoURL;
 	
-	@Column(name="date_of_birty")
+	@Column(name="date_of_birth")
 	private Date dateOfBirth;
 	
 	@Column(name="country_id")
@@ -37,6 +45,17 @@ public class Athlete {
 	public Athlete() {
 		super();
 	}
+
+	
+	public List<AthleteEvent> getAthleteEvents() {
+		return athleteEvents;
+	}
+
+
+	public void setAthleteEvents(List<AthleteEvent> athleteEvents) {
+		this.athleteEvents = athleteEvents;
+	}
+
 
 	public int getId() {
 		return id;

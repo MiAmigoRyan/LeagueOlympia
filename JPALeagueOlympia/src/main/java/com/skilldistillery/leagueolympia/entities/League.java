@@ -1,6 +1,7 @@
 package com.skilldistillery.leagueolympia.entities;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -8,9 +9,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class League {
@@ -18,6 +23,20 @@ public class League {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	
+	@ManyToMany(
+			mappedBy="leagues"
+			)
+	private List<SportEvent> sportEvents;
+	
+	@ManyToMany(
+			mappedBy="boughtInLeagues"
+			)
+	private List<User> usersBoughtIn;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy="league")
+	private List<Team> teams;
 	
 	@Column(name="name")
 	private String leagueName;
@@ -37,21 +56,50 @@ public class League {
 	@Column(name="side_wager")
 	private String sideWager;
 	
-	@Column(name = "created_at")
+	@Column(name = "created_date")
 	 @CreationTimestamp
 	 private LocalDateTime createdAt;
 
-	 @Column(name = "updated_at")
+	 @Column(name = "updated_date")
 	 @UpdateTimestamp
 	 private LocalDateTime updatedAt;
 	 
 	 private boolean enabled;
-	 
-	 
-
+	
 	public League() {
 		super();
 	}
+
+	
+	public List<SportEvent> getSportEvents() {
+		return sportEvents;
+	}
+
+
+	public void setSportEvents(List<SportEvent> sportEvents) {
+		this.sportEvents = sportEvents;
+	}
+
+
+	public List<User> getUsersBoughtIn() {
+		return usersBoughtIn;
+	}
+
+
+	public void setUsersBoughtIn(List<User> usersBoughtIn) {
+		this.usersBoughtIn = usersBoughtIn;
+	}
+
+
+	public List<Team> getTeams() {
+		return teams;
+	}
+
+
+	public void setTeams(List<Team> teams) {
+		this.teams = teams;
+	}
+
 
 	public int getId() {
 		return id;

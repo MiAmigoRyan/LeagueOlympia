@@ -40,6 +40,20 @@ class LeagueTest {
 	@Test
 	void test_League() {
 		assertNotNull(league);
-//			assertEquals("admin", user.getUsername());
+	}
+	@Test
+	void test_League_to_Team_OTM() {
+		assertNotNull(league);
+		assertTrue(league.getTeams().size()>0);
+	}
+	@Test
+	void test_League_to_User_MTM() {
+		assertNotNull(league);
+		assertTrue(league.getUsersBoughtIn().size()>0);
+	}
+	@Test
+	void test_League_to_SportEvent_MTM() {
+		assertNotNull(league);
+		assertTrue(league.getSportEvents().size()>0);
 	}
 }

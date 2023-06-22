@@ -5,6 +5,20 @@
 	<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 
 	<!--BEGIN ENTITIES  -->
+<class>com.skilldistillery.leagueolympia.entities.Athlete</class>
+<class>com.skilldistillery.leagueolympia.entities.AthleteComment</class>
+<class>com.skilldistillery.leagueolympia.entities.AthleteEvent</class>
+<class>com.skilldistillery.leagueolympia.entities.AthleteEventId</class>
+<class>com.skilldistillery.leagueolympia.entities.Country</class>
+<class>com.skilldistillery.leagueolympia.entities.League</class>
+<class>com.skilldistillery.leagueolympia.entities.LeagueComment</class>
+<class>com.skilldistillery.leagueolympia.entities.Olympiad</class>
+<class>com.skilldistillery.leagueolympia.entities.OlympiadCategory</class>
+<class>com.skilldistillery.leagueolympia.entities.Sport</class>
+<class>com.skilldistillery.leagueolympia.entities.SportEvent</class>
+<class>com.skilldistillery.leagueolympia.entities.SportEventComment</class>
+<class>com.skilldistillery.leagueolympia.entities.TeamId</class>
+<class>com.skilldistillery.leagueolympia.entities.Team</class>
 <class>com.skilldistillery.leagueolympia.entities.User</class>
 	<!--END ENTITIES -->
 	

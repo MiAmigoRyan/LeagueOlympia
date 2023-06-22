@@ -40,6 +40,12 @@ class AthleteTest {
 	@Test
 	void test_Athlete() {
 		assertNotNull(athlete);
-//			assertEquals("admin", user.getUsername());
+
+	}
+	@Test
+	void test_Athlete_to_AthleteEvent_OTM() {
+		assertNotNull(athlete);
+		assertTrue(athlete.getAthleteEvents().size()>0);
+		
 	}
 }

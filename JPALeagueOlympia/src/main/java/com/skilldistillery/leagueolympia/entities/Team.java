@@ -1,28 +1,51 @@
 package com.skilldistillery.leagueolympia.entities;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
-import javax.persistence.Embeddable;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
-@Embeddable
+@Entity
 public class Team {
 	
-	private static final long serialVersionUID = 1L;
+	@EmbeddedId
+	private TeamId id;
 	
-	@Column(name ="user_id")
-	private int userId;
+	@ManyToMany
+	@JoinTable(
+			name="team_has_athlete_event",
+			joinColumns = {
+					@JoinColumn(name="team_user_id"),
+					@JoinColumn(name="team_league_id")
+					},
+			inverseJoinColumns = {
+					@JoinColumn(name="athlete_event_athlete_id"),
+					@JoinColumn(name="athlete_event_sport_id")
+			})
+	private List<AthleteEvent> athleteEvents;
 	
-	@Column(name = "league_id")
-	private int leagueId;
+	@ManyToOne
+	@JoinColumn(name="user_id")
+	@MapsId(value="userId")
+	private User user;
 	
+	@ManyToOne
+	@JoinColumn(name="league_id")
+	@MapsId(value="leagueId")
+	private League league;
+
+
 	@Column(name = "name")
 	private String teamName;
 	
@@ -44,21 +67,45 @@ public class Team {
 	public Team() {
 		super();
 	}
-
-	public int getUserId() {
-		return userId;
+	
+	
+	
+	public List<AthleteEvent> getAthleteEvents() {
+		return athleteEvents;
 	}
 
-	public void setUserId(int userId) {
-		this.userId = userId;
+
+
+	public void setAthleteEvents(List<AthleteEvent> athleteEvents) {
+		this.athleteEvents = athleteEvents;
 	}
 
-	public int getLeagueId() {
-		return leagueId;
-	}
 
-	public void setLeagueId(int leagueId) {
-		this.leagueId = leagueId;
+
+	public League getLeague() {
+		return league;
+	}
+	
+	
+	public void setLeague(League league) {
+		this.league = league;
+	}
+	
+	
+	public User getUser() {
+		return user;
+	}
+	
+	
+	public void setUser(User user) {
+		this.user = user;
+	}
+	public TeamId getId() {
+		return id;
+	}
+	
+	public void setId(TeamId id) {
+		this.id = id;
 	}
 
 	public String getTeamName() {
@@ -111,7 +158,7 @@ public class Team {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(leagueId, userId);
+		return Objects.hash(id);
 	}
 
 	@Override
@@ -123,31 +170,19 @@ public class Team {
 		if (getClass() != obj.getClass())
 			return false;
 		Team other = (Team) obj;
-		return leagueId == other.leagueId && userId == other.userId;
+		return Objects.equals(id, other.id);
 	}
 
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("Team [userId=");
-		builder.append(userId);
-		builder.append(", leagueId=");
-		builder.append(leagueId);
-		builder.append(", teamName=");
-		builder.append(teamName);
-		builder.append(", photoURL=");
-		builder.append(photoURL);
-		builder.append(", description=");
-		builder.append(description);
-		builder.append(", createdAt=");
-		builder.append(createdAt);
-		builder.append(", updatedAt=");
-		builder.append(updatedAt);
-		builder.append(", enabled=");
-		builder.append(enabled);
-		builder.append("]");
+		builder.append("Team [id=").append(id).append(", teamName=").append(teamName).append(", photoURL=")
+				.append(photoURL).append(", description=").append(description).append(", createdAt=").append(createdAt)
+				.append(", updatedAt=").append(updatedAt).append(", enabled=").append(enabled).append("]");
 		return builder.toString();
 	}
+
+	
 	
 
 }

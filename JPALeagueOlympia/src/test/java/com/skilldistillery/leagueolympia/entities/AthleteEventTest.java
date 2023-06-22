@@ -30,7 +30,9 @@ class AthleteEventTest {
 		@BeforeEach
 		void setUp() throws Exception {
 			em = emf.createEntityManager();
-			athleteEvent = em.find(AthleteEvent.class,1);
+			                                 //athleteid , eventid  
+			AthleteEventId i = new AthleteEventId(  1,        1);
+			athleteEvent = em.find(AthleteEvent.class, i );
 		}
 
 		@AfterEach
@@ -40,7 +42,25 @@ class AthleteEventTest {
 		@Test
 		void test_AthleteEvent() {
 			assertNotNull(athleteEvent);
-//			assertEquals("admin", user.getUsername());
 		}
+		
+		@Test
+		void test_AthleteEvent_Athlete_MTO() {
+			assertNotNull(athleteEvent);
+			assertNotNull(athleteEvent.getAthlete());
+		}
+		@Test
+		void test_AthleteEvent_SportEvent_MTO() {
+			assertNotNull(athleteEvent);
+			assertNotNull(athleteEvent.getSportEvent());
+		}
+		
+		@Test
+		void test_AthleteEvent_Teams_MTM() {
+			assertNotNull(athleteEvent);
+			assertTrue(athleteEvent.getTeams().size()>0);
+		}
+		
+
 
 }
