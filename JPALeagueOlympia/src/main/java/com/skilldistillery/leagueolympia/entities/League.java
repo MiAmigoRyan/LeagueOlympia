@@ -1,8 +1,5 @@
 package com.skilldistillery.leagueolympia.entities;
 
-
-public class League {
-
 import java.time.LocalDateTime;
 import java.util.Objects;
 
@@ -49,6 +46,12 @@ public class League {
 	 private LocalDateTime updatedAt;
 	 
 	 private boolean enabled;
+	 
+	 
+
+	public League() {
+		super();
+	}
 
 	public int getId() {
 		return id;
@@ -163,8 +166,4 @@ public class League {
 		return builder.toString();
 	}
 	 
-	 
-	 
-	 
-
 }
