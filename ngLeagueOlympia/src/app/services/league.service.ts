@@ -1,18 +1,18 @@
 import { AuthService } from './auth.service';
-import { DatePipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, throwError } from 'rxjs';
 import { League } from '../models/league';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LeagueService {
+  private url = environment.baseUrl + 'api/leagues';
 
   constructor(
     private http: HttpClient,
-    private datePipe: DatePipe,
     private auth: AuthService
     ) { }
 
@@ -27,7 +27,7 @@ export class LeagueService {
   }
 
   index(): Observable<League[]>{
-    return this.http.get<League>[](this.url, this.getHttpOptions()).pipe(
+    return this.http.get<League[]>(this.url).pipe(
       catchError((err: any) => {
         console.error("Error Fetching Leagues");
         return throwError(
@@ -36,4 +36,7 @@ export class LeagueService {
       })
     );
   }
+
+
+
 }

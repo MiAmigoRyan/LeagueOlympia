@@ -3,6 +3,7 @@ import { LeagueService } from '../../services/league.service';
 import { Component, OnInit } from '@angular/core';
 import { League } from 'src/app/models/league';
 
+
 @Component({
   selector: 'app-league-list',
   templateUrl: './league-list.component.html',
@@ -15,30 +16,11 @@ export class LeagueListComponent implements OnInit {
 
   constructor(
     private leagueService: LeagueService,
-    private route: Router,
-    private router: ActivatedRoute
+    private router: Router,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
-    let idString = this.route.snapshot.paramMap.get('id');
-    if (!this.selected && idString) {
-      console.log(idString);
-      let id: number = Number.parseInt(idString);
-      if(isNaN(id)){
-        this.router.navigateByUrl('invalidId');
-      }
-      else{
-        this.leagueService.showLeague(id).subscribe({
-          next: (league) => {
-            this.displayLeague(league);
-          },
-          error: (error)=>{
-            console.error("error in showLeague path" + error);
-            this.router.navigateByUrl('invalidId');
-          }
-        });
-      }
-    }
     this.reload();
   }
 
