@@ -18,6 +18,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 public class League {
@@ -25,59 +26,58 @@ public class League {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
+
+	@JsonIgnoreProperties({"sportEventComments", "leagueComments", "teams", "athleteComments", "leagues"})
 	@ManyToOne
-	@JoinColumn(name="user_id")
+	@JoinColumn(name = "user_id")
 	private User comissioner;
 	
-	@OneToMany(mappedBy="league")
-	private List<LeagueComment> comments; 
-	
-	@ManyToMany(
-			mappedBy="leagues"
-			)
-	private List<SportEvent> sportEvents;
-	
-	@ManyToMany(
-			mappedBy="boughtInLeagues"
-			)
-	private List<User> usersBoughtIn;
-	
 	@JsonIgnore
-	@OneToMany(mappedBy="league")
-	private List<Team> teams;
-	
-	@Column(name="name")
-	private String leagueName;
-	
-	@Column(name="photo")
-	private String photoUrl;
-	
-	@Column(name="bets_enabled")
-	private boolean betEnabled;
-	
-	@Column(name="buy_in")
-	private double buyIn;
-	
-	@Column(name="side_wager")
-	private String sideWager;
-	
-	@Column(name = "created_date")
-	 @CreationTimestamp
-	 private LocalDateTime createdAt;
+//	@JsonIgnoreProperties({"league"})
+	@OneToMany(mappedBy = "league")
+	private List<LeagueComment> comments;
 
-	 @Column(name = "updated_date")
-	 @UpdateTimestamp
-	 private LocalDateTime updatedAt;
-	 
-	 private boolean enabled;
-	
+	@JsonIgnore
+	@ManyToMany(mappedBy = "leagues")
+	private List<SportEvent> sportEvents;
+
+	@JsonIgnore
+	@ManyToMany(mappedBy = "boughtInLeagues")
+	private List<User> usersBoughtIn;
+
+	@JsonIgnore
+	@OneToMany(mappedBy = "league")
+	private List<Team> teams;
+
+	@Column(name = "name")
+	private String leagueName;
+
+	@Column(name = "photo")
+	private String photoUrl;
+
+	@Column(name = "bets_enabled")
+	private boolean betEnabled;
+
+	@Column(name = "buy_in")
+	private double buyIn;
+
+	@Column(name = "side_wager")
+	private String sideWager;
+
+	@Column(name = "created_date")
+	@CreationTimestamp
+	private LocalDateTime createdAt;
+
+	@Column(name = "updated_date")
+	@UpdateTimestamp
+	private LocalDateTime updatedAt;
+
+	private boolean enabled;
+
 	public League() {
 		super();
 	}
 
-	
-	
 	public User getComissioner() {
 		return comissioner;
 	}
@@ -98,31 +98,25 @@ public class League {
 		return sportEvents;
 	}
 
-
 	public void setSportEvents(List<SportEvent> sportEvents) {
 		this.sportEvents = sportEvents;
 	}
-
 
 	public List<User> getUsersBoughtIn() {
 		return usersBoughtIn;
 	}
 
-
 	public void setUsersBoughtIn(List<User> usersBoughtIn) {
 		this.usersBoughtIn = usersBoughtIn;
 	}
-
 
 	public List<Team> getTeams() {
 		return teams;
 	}
 
-
 	public void setTeams(List<Team> teams) {
 		this.teams = teams;
 	}
-
 
 	public int getId() {
 		return id;
@@ -198,8 +192,7 @@ public class League {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(betEnabled, buyIn, createdAt, enabled, id, leagueName, photoUrl, sideWager, updatedAt
-				);
+		return Objects.hash(betEnabled, buyIn, createdAt, enabled, id, leagueName, photoUrl, sideWager, updatedAt);
 	}
 
 	@Override
@@ -214,19 +207,17 @@ public class League {
 		return betEnabled == other.betEnabled && Double.doubleToLongBits(buyIn) == Double.doubleToLongBits(other.buyIn)
 				&& Objects.equals(createdAt, other.createdAt) && enabled == other.enabled && id == other.id
 				&& Objects.equals(leagueName, other.leagueName) && Objects.equals(photoUrl, other.photoUrl)
-				&& Objects.equals(sideWager, other.sideWager) && Objects.equals(updatedAt, other.updatedAt)
-				;
+				&& Objects.equals(sideWager, other.sideWager) && Objects.equals(updatedAt, other.updatedAt);
 	}
 
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
 		builder.append("League [id=").append(id).append(", leagueName=").append(leagueName).append(", photoUrl=")
-				.append(photoUrl).append(", betEnabled=").append(betEnabled)
-				.append(", buyIn=").append(buyIn).append(", sideWager=").append(sideWager).append(", createdAt=")
-				.append(createdAt).append(", updatedAt=").append(updatedAt).append(", enabled=").append(enabled)
-				.append("]");
+				.append(photoUrl).append(", betEnabled=").append(betEnabled).append(", buyIn=").append(buyIn)
+				.append(", sideWager=").append(sideWager).append(", createdAt=").append(createdAt)
+				.append(", updatedAt=").append(updatedAt).append(", enabled=").append(enabled).append("]");
 		return builder.toString();
 	}
-	 
+
 }
