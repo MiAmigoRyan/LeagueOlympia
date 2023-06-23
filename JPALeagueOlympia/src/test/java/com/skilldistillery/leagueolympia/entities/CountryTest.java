@@ -1,8 +1,6 @@
 package com.skilldistillery.leagueolympia.entities;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -14,10 +12,10 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class UserTest {
+class CountryTest {
 	   private  static EntityManagerFactory emf;
 	   private EntityManager em;
-	   private User user;
+	   private Country country;
 		
 		@BeforeAll
 		static void setUpBeforeClass() throws Exception {
@@ -32,7 +30,7 @@ class UserTest {
 		@BeforeEach
 		void setUp() throws Exception {
 			em = emf.createEntityManager();
-			user = em.find(User.class,1);
+			country = em.find(Country.class,1);
 		}
 
 		@AfterEach
@@ -40,27 +38,18 @@ class UserTest {
 		}
 		
 		@Test
-		void test_User() {
-			assertNotNull(user);
-			assertEquals("admin", user.getUsername());
-		}
-		
-		@Test
-		void test_User_to_Team_OTM() {
-			assertNotNull(user);
-			assertTrue(user.getTeams().size()>0);
-		}
-		@Test
-		void test_User_to_League_MTM() {
-			assertNotNull(user);
-			assertTrue(user.getBoughtInLeagues().size()>0);
-		}
-		@Test
-		void test_User_to_AthleteComment_MTO() {
-			assertNotNull(user);
-			assertTrue(user.getAthleteComments().size()>0);
-		}
-		
-		
+		void test_Country() {
+			assertNotNull(country);
 
-	}
+		}
+		@Test
+		void test_Country_Athlete_OTM() {
+			assertNotNull(country);
+			assertTrue(country.getAthletes().size()>0);
+		}
+		@Test
+		void test_Country_Olympiad_OTM() {
+			assertNotNull(country);
+			assertTrue(country.getOlympiads().size()>0);
+		}
+}

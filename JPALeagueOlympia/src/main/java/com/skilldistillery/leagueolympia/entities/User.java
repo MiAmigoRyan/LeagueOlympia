@@ -33,6 +33,10 @@ public class User {
 	@OneToMany(mappedBy="user")
 	private List<Team> teams;
 	
+	@OneToMany(mappedBy="user")
+	private List<AthleteComment> athleteComments;
+	
+	
 	@JsonIgnore
 	@ManyToMany
 	@JoinTable(
@@ -64,6 +68,16 @@ public class User {
 	}
 
 	
+	public List<AthleteComment> getAthleteComments() {
+		return athleteComments;
+	}
+
+
+	public void setAthleteComments(List<AthleteComment> athleteComments) {
+		this.athleteComments = athleteComments;
+	}
+
+
 	public List<League> getBoughtInLeagues() {
 		return boughtInLeagues;
 	}
