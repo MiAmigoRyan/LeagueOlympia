@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { log } from 'console';
 import { User } from 'src/app/models/user';
 import { AuthService } from 'src/app/services/auth.service';
 
