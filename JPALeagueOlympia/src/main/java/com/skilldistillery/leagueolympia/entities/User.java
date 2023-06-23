@@ -18,6 +18,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 public class User {
@@ -30,18 +31,23 @@ public class User {
 	private String role;
 	private String photo;
 	
+	@JsonIgnoreProperties({"comissioner", "usersBoughtIn", "comments"})
 	@OneToMany(mappedBy="comissioner")
 	private List<League> leagues;
 	
+	
+	@JsonIgnore
 	@OneToMany(mappedBy= "user")
 	private List<SportEventComment> sportEventComments;
 
+	@JsonIgnore
 	@OneToMany(mappedBy= "user")
 	private List<LeagueComment> leagueComments;
 	
 	@OneToMany(mappedBy="user")
 	private List<Team> teams;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy="user")
 	private List<AthleteComment> athleteComments;
 	
