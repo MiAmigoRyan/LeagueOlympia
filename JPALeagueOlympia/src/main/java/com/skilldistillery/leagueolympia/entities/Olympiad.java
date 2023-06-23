@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Olympiad {
@@ -17,8 +19,9 @@ public class Olympiad {
 	private String title;
 	private int year;
 	
-	@Column(name = "country_id")
-	private int countryId;
+	@ManyToOne
+	@JoinColumn(name="country_id")
+	private Country country;
 
 	@Column(name = "opening_date")
 	private LocalDate openingDate;
@@ -43,6 +46,16 @@ public class Olympiad {
 	public int getId() {
 		return id;
 	}
+	
+	
+
+	public Country getCountry() {
+		return country;
+	}
+
+	public void setCountry(Country country) {
+		this.country = country;
+	}
 
 	public void setId(int id) {
 		this.id = id;
@@ -62,14 +75,6 @@ public class Olympiad {
 
 	public void setYear(int year) {
 		this.year = year;
-	}
-
-	public int getCountryId() {
-		return countryId;
-	}
-
-	public void setCountryId(int countryId) {
-		this.countryId = countryId;
 	}
 
 	public LocalDate getOpeningDate() {
@@ -146,8 +151,6 @@ public class Olympiad {
 		builder.append(title);
 		builder.append(", year=");
 		builder.append(year);
-		builder.append(", countryId=");
-		builder.append(countryId);
 		builder.append(", openingDate=");
 		builder.append(openingDate);
 		builder.append(", closingDate=");

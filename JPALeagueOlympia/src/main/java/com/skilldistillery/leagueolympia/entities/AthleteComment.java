@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -20,8 +22,9 @@ public class AthleteComment {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@Column(name = "user_id")
-	private int userId;
+	@ManyToOne
+	@JoinColumn(name="user_id")
+	private User user;
 	
 	@Column(name ="comment_text")
 	private String comment;
@@ -39,6 +42,14 @@ public class AthleteComment {
 	public AthleteComment() {
 		super();
 	}
+	
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
 
 	public int getId() {
 		return id;
@@ -46,14 +57,6 @@ public class AthleteComment {
 
 	public void setId(int id) {
 		this.id = id;
-	}
-
-	public int getUserId() {
-		return userId;
-	}
-
-	public void setUserId(int userId) {
-		this.userId = userId;
 	}
 
 	public String getComment() {
@@ -90,7 +93,7 @@ public class AthleteComment {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(athleteId, comment, createdAt, id, replyId, userId);
+		return Objects.hash(id);
 	}
 
 	@Override
@@ -102,19 +105,21 @@ public class AthleteComment {
 		if (getClass() != obj.getClass())
 			return false;
 		AthleteComment other = (AthleteComment) obj;
-		return athleteId == other.athleteId && Objects.equals(comment, other.comment)
-				&& Objects.equals(createdAt, other.createdAt) && id == other.id && replyId == other.replyId
-				&& userId == other.userId;
+		return id == other.id;
 	}
 
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("AthleteComment [id=").append(id).append(", userId=").append(userId).append(", comment=")
+		builder.append("AthleteComment [id=").append(id).append(", user=").append(user).append(", comment=")
 				.append(comment).append(", createdAt=").append(createdAt).append(", replyId=").append(replyId)
 				.append(", athleteId=").append(athleteId).append("]");
 		return builder.toString();
 	}
+
+	
+
+
 	
 	
 	

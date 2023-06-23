@@ -2,12 +2,15 @@ package com.skilldistillery.leagueolympia.entities;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -17,6 +20,10 @@ public class Athlete {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	
+	@ManyToOne
+	@JoinColumn(name="country_id")
+	private Country country;
 	
 	@JsonIgnore
 	@OneToMany(mappedBy="athlete")
@@ -28,16 +35,12 @@ public class Athlete {
 	@Column(name = "last_name")
 	private String lname;
 	
-	private String country;
-	
 	@Column(name ="photo")
 	private String photoURL;
 	
 	@Column(name="date_of_birth")
 	private Date dateOfBirth;
-	
-	@Column(name="country_id")
-	private int countryid;
+
 	
 	@Column(name="social_media_url")
 	private String socialMediaURL;
@@ -81,13 +84,15 @@ public class Athlete {
 		this.lname = lname;
 	}
 
-	public String getCountry() {
+	public Country getCountry() {
 		return country;
 	}
 
-	public void setCountry(String country) {
+
+	public void setCountry(Country country) {
 		this.country = country;
 	}
+
 
 	public String getPhotoURL() {
 		return photoURL;
@@ -105,14 +110,6 @@ public class Athlete {
 		this.dateOfBirth = dateOfBirth;
 	}
 
-	public int getCountryid() {
-		return countryid;
-	}
-
-	public void setCountryid(int countryid) {
-		this.countryid = countryid;
-	}
-
 	public String getSocialMediaURL() {
 		return socialMediaURL;
 	}
@@ -120,4 +117,36 @@ public class Athlete {
 	public void setSocialMediaURL(String socialMediaURL) {
 		this.socialMediaURL = socialMediaURL;
 	}
+
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
+
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Athlete other = (Athlete) obj;
+		return id == other.id;
+	}
+
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Athlete [id=").append(id).append(", country=").append(country).append(", athleteEvents=")
+				.append(athleteEvents).append(", fname=").append(fname).append(", lname=").append(lname)
+				.append(", photoURL=").append(photoURL).append(", dateOfBirth=").append(dateOfBirth)
+				.append(", socialMediaURL=").append(socialMediaURL).append("]");
+		return builder.toString();
+	}
+	
+	
 }

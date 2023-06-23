@@ -67,7 +67,7 @@ public class SportEvent {
 	}
 	
 	public void setLeagues(List<League> leagues) {
-		leagues = leagues;
+		this.leagues = leagues;
 	}
 
 	public List<AthleteEvent> getAthleteEvents() {
