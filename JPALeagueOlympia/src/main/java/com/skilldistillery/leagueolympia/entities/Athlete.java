@@ -21,6 +21,10 @@ public class Athlete {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
+	@JsonIgnore
+	@OneToMany (mappedBy= "athlete")
+	private List<AthleteComment> athleteComments;
+	
 	@ManyToOne
 	@JoinColumn(name="country_id")
 	private Country country;
@@ -50,6 +54,17 @@ public class Athlete {
 	}
 
 	
+	
+	public List<AthleteComment> getAthleteComments() {
+		return athleteComments;
+	}
+
+	public void setAthleteComments(List<AthleteComment> athleteComments) {
+		this.athleteComments = athleteComments;
+	}
+
+
+
 	public List<AthleteEvent> getAthleteEvents() {
 		return athleteEvents;
 	}

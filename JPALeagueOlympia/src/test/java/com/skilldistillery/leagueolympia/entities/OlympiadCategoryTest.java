@@ -40,6 +40,11 @@ class OlympiadCategoryTest {
 	@Test
 	void test_OlympiadCategory() {
 		assertNotNull(olympaidCategory);
-//			assertEquals("admin", user.getUsername());
+	}
+	@Test
+	void test_OlympiadCategory_to_Olympiad() {
+		assertNotNull(olympaidCategory);
+		assertNotNull(olympaidCategory.getOlympiad());
+		
 	}
 }

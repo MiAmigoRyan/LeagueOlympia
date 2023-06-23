@@ -30,6 +30,15 @@ public class User {
 	private String role;
 	private String photo;
 	
+	@OneToMany(mappedBy="comissioner")
+	private List<League> leagues;
+	
+	@OneToMany(mappedBy= "user")
+	private List<SportEventComment> sportEventComments;
+
+	@OneToMany(mappedBy= "user")
+	private List<LeagueComment> leagueComments;
+	
 	@OneToMany(mappedBy="user")
 	private List<Team> teams;
 	
@@ -68,6 +77,36 @@ public class User {
 	}
 
 	
+	public List<League> getLeagues() {
+		return leagues;
+	}
+
+
+	public void setLeagues(List<League> leagues) {
+		this.leagues = leagues;
+	}
+
+
+	public List<SportEventComment> getSportEventComments() {
+		return sportEventComments;
+	}
+
+
+	public void setSportEventComments(List<SportEventComment> sportEventComments) {
+		this.sportEventComments = sportEventComments;
+	}
+
+
+	public List<LeagueComment> getLeagueComments() {
+		return leagueComments;
+	}
+
+
+	public void setLeagueComments(List<LeagueComment> leagueComments) {
+		this.leagueComments = leagueComments;
+	}
+
+
 	public List<AthleteComment> getAthleteComments() {
 		return athleteComments;
 	}

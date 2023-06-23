@@ -40,7 +40,23 @@ class OlympiadTest {
 		@Test
 		void test_Olympiad() {
 			assertNotNull(olympiad);
-//			assertEquals("admin", user.getUsername());
 		}
+		@Test
+		void test_Olympiad_to_OlympiadCategory() {
+			assertNotNull(olympiad);
+			assertNotNull(olympiad.getOlympiadCategory());
+		}
+		
+		@Test
+		void test_Olympiad_to_County() {
+			assertNotNull(olympiad);
+			assertNotNull(olympiad.getCountry());
+		}
+		@Test
+		void test_Olympiad_to_SportEvent() {
+			assertNotNull(olympiad);
+			assertNotNull(olympiad.getSportevents());
+		}
+		
 
 }

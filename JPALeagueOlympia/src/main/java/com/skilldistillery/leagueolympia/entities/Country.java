@@ -22,7 +22,6 @@ public class Country {
 	@OneToMany(mappedBy="country")
 	private List<Olympiad> olympiads;
 	
-	
 	private String name;
 	
 	private String flag;
@@ -33,29 +32,21 @@ public class Country {
 		super();
 	}
 	
-	
-	
 	public List<Olympiad> getOlympiads() {
 		return olympiads;
 	}
-
-
 
 	public void setOlympiads(List<Olympiad> olympiads) {
 		this.olympiads = olympiads;
 	}
 
-
-
 	public List<Athlete> getAthletes() {
 		return athletes;
 	}
 
-
 	public void setAthletes(List<Athlete> athletes) {
 		this.athletes = athletes;
 	}
-
 
 	public int getId() {
 		return id;

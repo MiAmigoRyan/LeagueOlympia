@@ -9,7 +9,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -23,6 +25,13 @@ public class League {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	
+	@ManyToOne
+	@JoinColumn(name="user_id")
+	private User comissioner;
+	
+	@OneToMany(mappedBy="league")
+	private List<LeagueComment> comments; 
 	
 	@ManyToMany(
 			mappedBy="leagues"
@@ -47,9 +56,6 @@ public class League {
 	@Column(name="bets_enabled")
 	private boolean betEnabled;
 	
-	@Column(name="user_id")
-	private int userId;
-	
 	@Column(name="buy_in")
 	private double buyIn;
 	
@@ -71,6 +77,23 @@ public class League {
 	}
 
 	
+	
+	public User getComissioner() {
+		return comissioner;
+	}
+
+	public void setComissioner(User comissioner) {
+		this.comissioner = comissioner;
+	}
+
+	public List<LeagueComment> getComments() {
+		return comments;
+	}
+
+	public void setComments(List<LeagueComment> comments) {
+		this.comments = comments;
+	}
+
 	public List<SportEvent> getSportEvents() {
 		return sportEvents;
 	}
@@ -133,14 +156,6 @@ public class League {
 		this.betEnabled = betEnabled;
 	}
 
-	public int getUserId() {
-		return userId;
-	}
-
-	public void setUserId(int userId) {
-		this.userId = userId;
-	}
-
 	public double getBuyIn() {
 		return buyIn;
 	}
@@ -183,8 +198,8 @@ public class League {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(betEnabled, buyIn, createdAt, enabled, id, leagueName, photoUrl, sideWager, updatedAt,
-				userId);
+		return Objects.hash(betEnabled, buyIn, createdAt, enabled, id, leagueName, photoUrl, sideWager, updatedAt
+				);
 	}
 
 	@Override
@@ -200,14 +215,14 @@ public class League {
 				&& Objects.equals(createdAt, other.createdAt) && enabled == other.enabled && id == other.id
 				&& Objects.equals(leagueName, other.leagueName) && Objects.equals(photoUrl, other.photoUrl)
 				&& Objects.equals(sideWager, other.sideWager) && Objects.equals(updatedAt, other.updatedAt)
-				&& userId == other.userId;
+				;
 	}
 
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
 		builder.append("League [id=").append(id).append(", leagueName=").append(leagueName).append(", photoUrl=")
-				.append(photoUrl).append(", betEnabled=").append(betEnabled).append(", userId=").append(userId)
+				.append(photoUrl).append(", betEnabled=").append(betEnabled)
 				.append(", buyIn=").append(buyIn).append(", sideWager=").append(sideWager).append(", createdAt=")
 				.append(createdAt).append(", updatedAt=").append(updatedAt).append(", enabled=").append(enabled)
 				.append("]");

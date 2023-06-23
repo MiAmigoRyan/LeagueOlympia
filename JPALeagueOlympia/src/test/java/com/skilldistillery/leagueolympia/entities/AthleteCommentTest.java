@@ -1,6 +1,9 @@
 package com.skilldistillery.leagueolympia.entities;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -46,6 +49,18 @@ class AthleteCommentTest {
 		assertNotNull(athleteComment);
 		assertNotNull(athleteComment.getUser());
 	}
-		
+	@Test
+	void test_AthleteComment_Athlete_MTO() {
+		assertNotNull(athleteComment);
+		assertNotNull(athleteComment.getAthlete());
+	}
+	@Test
+	void test_AthleteComment_AthleteComment_MTO() {
+		assertNotNull(athleteComment);
+		assertNotNull(athleteComment.getReply());
+		assertTrue(athleteComment.getReplies().size()>0);
+	}
+
+	
 }
 

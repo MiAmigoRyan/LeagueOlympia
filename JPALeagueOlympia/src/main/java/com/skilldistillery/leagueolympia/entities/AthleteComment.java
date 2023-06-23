@@ -1,6 +1,7 @@
 package com.skilldistillery.leagueolympia.entities;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -10,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -23,6 +25,17 @@ public class AthleteComment {
 	private int id;
 	
 	@ManyToOne
+	@JoinColumn(name = "reply_to_id")
+	private AthleteComment reply;
+
+	@OneToMany (mappedBy ="reply")
+	private List<AthleteComment> replies;
+	
+	@ManyToOne
+	@JoinColumn(name="athlete_id")
+	private Athlete athlete;
+	
+	@ManyToOne
 	@JoinColumn(name="user_id")
 	private User user;
 	
@@ -33,16 +46,36 @@ public class AthleteComment {
 	@CreationTimestamp
 	private LocalDateTime createdAt;
 	
-	@Column(name="reply_to_id")
-	private int replyId;
-	
-	@Column(name="athlete_id")
-	private int athleteId;
 
 	public AthleteComment() {
 		super();
 	}
 	
+
+	public AthleteComment getReply() {
+		return reply;
+	}
+
+
+
+	public void setReply(AthleteComment reply) {
+		this.reply = reply;
+	}
+
+
+
+	public List<AthleteComment> getReplies() {
+		return replies;
+	}
+
+
+
+	public void setReplies(List<AthleteComment> replies) {
+		this.replies = replies;
+	}
+
+
+
 	public User getUser() {
 		return user;
 	}
@@ -75,20 +108,14 @@ public class AthleteComment {
 		this.createdAt = createdAt;
 	}
 
-	public int getReplyId() {
-		return replyId;
+
+
+	public Athlete getAthlete() {
+		return athlete;
 	}
 
-	public void setReplyId(int replyId) {
-		this.replyId = replyId;
-	}
-
-	public int getAthleteId() {
-		return athleteId;
-	}
-
-	public void setAthleteId(int athleteId) {
-		this.athleteId = athleteId;
+	public void setAthlete(Athlete athlete) {
+		this.athlete = athlete;
 	}
 
 	@Override
@@ -112,8 +139,8 @@ public class AthleteComment {
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
 		builder.append("AthleteComment [id=").append(id).append(", user=").append(user).append(", comment=")
-				.append(comment).append(", createdAt=").append(createdAt).append(", replyId=").append(replyId)
-				.append(", athleteId=").append(athleteId).append("]");
+				.append(comment).append(", createdAt=").append(createdAt).append(", replyId=")
+				.append("]");
 		return builder.toString();
 	}
 
