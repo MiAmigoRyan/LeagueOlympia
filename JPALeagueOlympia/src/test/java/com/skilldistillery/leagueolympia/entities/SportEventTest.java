@@ -53,4 +53,11 @@ class SportEventTest {
 			assertNotNull(sportEvent.getLeagues());
 			assertTrue(sportEvent.getLeagues().size()>0);
 		}	
+		@Test
+		void test_SportEvent_SportEventComment_OTM() {
+			assertNotNull(sportEvent);
+			assertNotNull(sportEvent.getComments());
+			assertTrue(sportEvent.getComments().size()>0);
+		}	
+		
 }

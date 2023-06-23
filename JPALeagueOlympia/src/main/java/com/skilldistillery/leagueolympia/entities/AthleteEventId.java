@@ -6,6 +6,9 @@ import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
+//THIS CLASS IS A COMPOSITE KEY AKA VIRTUAL TABLE : IT 
+//ALLOWS FOR THE RELATIONSHIP 
+
 @Embeddable
 public class AthleteEventId implements Serializable{
 	

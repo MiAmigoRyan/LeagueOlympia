@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -26,6 +27,14 @@ public class SportEvent {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String venue;
+	
+	@OneToMany(mappedBy="sportEvent")
+	private List<SportEventComment> comments;
+	
+	@ManyToOne
+	@JoinColumn(name="olympiad_id")
+	private Olympiad olympiad;
+	
 	
 	@JsonIgnore
 	@ManyToMany
@@ -46,12 +55,10 @@ public class SportEvent {
 	
 	@Column(name = "location_longitude")
 	private String locationLongitude;
-	
-	@Column(name = "olympiad_id")
-	private int olympiadId;
 
-	@Column(name = "sport_id")
-	private int sportId;
+	@ManyToOne
+	@JoinColumn(name = "sport_id")
+	private Sport sport;
 
 	private boolean completed;
 	
@@ -60,6 +67,22 @@ public class SportEvent {
 	
 	public SportEvent() {
 		super();
+	}
+	
+	public List<SportEventComment> getComments() {
+		return comments;
+	}
+
+	public void setComments(List<SportEventComment> comment) {
+		this.comments = comment;
+	}
+
+	public Olympiad getOlympiad() {
+		return olympiad;
+	}
+
+	public void setOlympiad(Olympiad olympiad) {
+		this.olympiad = olympiad;
 	}
 
 	public List<League> getLeagues() {
@@ -112,20 +135,12 @@ public class SportEvent {
 		this.locationLongitude = locationLongitude;
 	}
 
-	public int getOlympiadId() {
-		return olympiadId;
+	public Sport getSport() {
+		return sport;
 	}
 
-	public void setOlympiadId(int olympiadId) {
-		this.olympiadId = olympiadId;
-	}
-
-	public int getSportId() {
-		return sportId;
-	}
-
-	public void setSportId(int sportId) {
-		this.sportId = sportId;
+	public void setSport(Sport sport) {
+		this.sport = sport;
 	}
 
 	public boolean isCompleted() {
@@ -172,10 +187,6 @@ public class SportEvent {
 		builder.append(locationLatitude);
 		builder.append(", locationLongitude=");
 		builder.append(locationLongitude);
-		builder.append(", olympiadId=");
-		builder.append(olympiadId);
-		builder.append(", sportId=");
-		builder.append(sportId);
 		builder.append(", completed=");
 		builder.append(completed);
 		builder.append(", eventCompletionDate=");

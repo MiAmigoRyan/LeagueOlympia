@@ -60,6 +60,21 @@ class UserTest {
 			assertNotNull(user);
 			assertTrue(user.getAthleteComments().size()>0);
 		}
+		@Test
+		void test_User_to_LeagueComment_OTM() {
+			assertNotNull(user);
+			assertTrue(user.getLeagueComments().size()>0);
+		}
+		@Test
+		void test_User_to_SportEventComment_OTM() {
+			assertNotNull(user);
+			assertTrue(user.getSportEventComments().size()>0);
+		}
+		@Test
+		void test_User_to_League_OTM() {
+			assertNotNull(user);
+			assertTrue(user.getLeagues().size()>0);
+		}
 		
 		
 

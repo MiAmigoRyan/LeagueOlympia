@@ -1,6 +1,7 @@
 package com.skilldistillery.leagueolympia.entities;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -8,6 +9,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -17,23 +21,53 @@ public class LeagueComment {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@Column(name = "user_id")
-	private int userId;
+	@ManyToOne
+	@JoinColumn(name="league_id")
+	private League league;
+	
+	@ManyToOne
+	@JoinColumn(name = "reply_to_id")
+	private LeagueComment reply;
+	
+	@OneToMany(mappedBy= "reply")
+	private List<LeagueComment> replies;
+	
+	@ManyToOne
+	@JoinColumn(name="user_id")
+	private User user;
 	
 	@Column(name = "comment_text")
 	private String commentText;
 	
 	@Column(name = "date_posted")
 	private LocalDateTime datePosted;
-	
-	@Column(name = "league_id")
-	private int leagueId;
-	
-	@Column(name = "reply_to_id")
-	private int replyToId;
 
 	public LeagueComment() {
 		super();
+	}
+	
+	public League getLeague() {
+		return league;
+	}
+
+	public void setLeague(League league) {
+		this.league = league;
+	}
+
+	public LeagueComment getReply() {
+		return reply;
+	}
+
+	public void setReply(LeagueComment reply) {
+		this.reply = reply;
+	}
+
+	public List<LeagueComment> getReplies() {
+		return replies;
+	}
+
+	public void setReplies(List<LeagueComment> replies) {
+		this.replies = replies;
 	}
 
 	public int getId() {
@@ -44,12 +78,12 @@ public class LeagueComment {
 		this.id = id;
 	}
 
-	public int getUserId() {
-		return userId;
+	public User getUser() {
+		return user;
 	}
 
-	public void setUserId(int userId) {
-		this.userId = userId;
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	public String getCommentText() {
@@ -66,22 +100,6 @@ public class LeagueComment {
 
 	public void setDatePosted(LocalDateTime datePosted) {
 		this.datePosted = datePosted;
-	}
-
-	public int getLeagueId() {
-		return leagueId;
-	}
-
-	public void setLeagueId(int leagueId) {
-		this.leagueId = leagueId;
-	}
-
-	public int getReplyToId() {
-		return replyToId;
-	}
-
-	public void setReplyToId(int replyToId) {
-		this.replyToId = replyToId;
 	}
 
 	@Override
@@ -106,16 +124,12 @@ public class LeagueComment {
 		StringBuilder builder = new StringBuilder();
 		builder.append("LeagueComment [id=");
 		builder.append(id);
-		builder.append(", userId=");
-		builder.append(userId);
+		builder.append(", user=");
+		builder.append(user);
 		builder.append(", commentText=");
 		builder.append(commentText);
 		builder.append(", datePosted=");
 		builder.append(datePosted);
-		builder.append(", leagueId=");
-		builder.append(leagueId);
-		builder.append(", replyToId=");
-		builder.append(replyToId);
 		builder.append("]");
 		return builder.toString();
 	}

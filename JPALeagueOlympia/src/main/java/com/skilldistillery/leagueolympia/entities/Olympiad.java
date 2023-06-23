@@ -1,6 +1,7 @@
 package com.skilldistillery.leagueolympia.entities;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -10,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Olympiad {
@@ -18,6 +20,9 @@ public class Olympiad {
 	private int id;
 	private String title;
 	private int year;
+	
+	@OneToMany(mappedBy="olympiad")
+	private List<SportEvent> sportevents;
 	
 	@ManyToOne
 	@JoinColumn(name="country_id")
@@ -33,8 +38,9 @@ public class Olympiad {
 	@Column(name = "host_city")
 	private String hostCity;
 	
-	@Column(name = "category_id")
-	private int categoryId;
+	@ManyToOne
+	@JoinColumn(name = "category_id")
+	private OlympiadCategory olympiadCategory;
 	
 	@Column(name = "website_url")
 	private String websiteUrl;
@@ -43,12 +49,24 @@ public class Olympiad {
 		super();
 	}
 
+	public List<SportEvent> getSportevents() {
+		return sportevents;
+	}
+
+	public void setSportevents(List<SportEvent> sportevents) {
+		this.sportevents = sportevents;
+	}
+
+	public void setOlympiadCategory(OlympiadCategory olympiadCategory) {
+		this.olympiadCategory = olympiadCategory;
+	}
+
+
+
 	public int getId() {
 		return id;
 	}
 	
-	
-
 	public Country getCountry() {
 		return country;
 	}
@@ -109,12 +127,12 @@ public class Olympiad {
 		this.hostCity = hostCity;
 	}
 
-	public int getCategoryId() {
-		return categoryId;
+	public OlympiadCategory getOlympiadCategory() {
+		return olympiadCategory;
 	}
 
-	public void setCategoryId(int categoryId) {
-		this.categoryId = categoryId;
+	public void setCategoryId(OlympiadCategory olympiadCategory) {
+		this.olympiadCategory = olympiadCategory;
 	}
 
 	public String getWebsiteUrl() {
@@ -159,8 +177,6 @@ public class Olympiad {
 		builder.append(logo);
 		builder.append(", hostCity=");
 		builder.append(hostCity);
-		builder.append(", categoryId=");
-		builder.append(categoryId);
 		builder.append(", websiteUrl=");
 		builder.append(websiteUrl);
 		builder.append("]");
