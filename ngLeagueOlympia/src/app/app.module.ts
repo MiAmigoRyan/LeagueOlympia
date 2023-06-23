@@ -7,12 +7,14 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { LeagueListComponent } from './components/league-list/league-list.component';
 import { SportEventListComponent } from './components/sport-event-list/sport-event-list.component';
+import { RegisterComponent } from './components/register/register.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LeagueListComponent,
-    SportEventListComponent
+    SportEventListComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
