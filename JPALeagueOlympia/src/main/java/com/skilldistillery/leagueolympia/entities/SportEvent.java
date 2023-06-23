@@ -26,11 +26,14 @@ public class SportEvent {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	
 	private String venue;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy="sportEvent")
 	private List<SportEventComment> comments;
 	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="olympiad_id")
 	private Olympiad olympiad;
@@ -49,13 +52,13 @@ public class SportEvent {
 	@OneToMany(mappedBy="sportEvent")
 	private List<AthleteEvent> athleteEvents;
 	
-	
 	@Column(name = "location_latitude")
 	private String locationLatitude;
 	
 	@Column(name = "location_longitude")
 	private String locationLongitude;
 
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "sport_id")
 	private Sport sport;
