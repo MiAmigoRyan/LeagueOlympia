@@ -1,15 +1,15 @@
-import { AuthService } from './auth.service';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, throwError } from 'rxjs';
-import { League } from '../models/league';
 import { environment } from 'src/environments/environment';
+import { AuthService } from './auth.service';
+import { SportEvent } from '../models/sport-event';
 
 @Injectable({
   providedIn: 'root'
 })
-export class LeagueService {
-  private url = environment.baseUrl + 'api/leagues';
+export class SportEventService {
+  private url = environment.baseUrl + 'api/events';
 
   constructor(
     private http: HttpClient,
@@ -26,17 +26,14 @@ export class LeagueService {
     return options;
   }
 
-  index(): Observable<League[]>{
-    return this.http.get<League[]>(this.url).pipe(
+  index(): Observable<SportEvent[]>{
+    return this.http.get<SportEvent[]>(this.url).pipe(
       catchError((err: any) => {
         console.error("Error Fetching Leagues");
         return throwError(
-          () => new Error('LeagueService.index(): error' + err)
+          () => new Error('SportEventService.index(): error' + err)
         );
       })
     );
   }
-
-
-
 }
