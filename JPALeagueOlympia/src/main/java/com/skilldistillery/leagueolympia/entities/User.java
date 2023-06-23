@@ -27,7 +27,7 @@ public class User {
 	private int id;
 	private String username;
 	private String password;
-	private String enabled;
+	private boolean enabled;
 	private String role;
 	private String photo;
 	
@@ -163,11 +163,11 @@ public class User {
 		this.password = password;
 	}
 
-	public String getEnabled() {
+	public boolean getEnabled() {
 		return enabled;
 	}
 
-	public void setEnabled(String enabled) {
+	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;
 	}
 

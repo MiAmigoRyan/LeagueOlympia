@@ -5,10 +5,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { LeagueListComponent } from './components/league-list/league-list.component';
+import { SportEventListComponent } from './components/sport-event-list/sport-event-list.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LeagueListComponent,
+    SportEventListComponent
   ],
   imports: [
     BrowserModule,

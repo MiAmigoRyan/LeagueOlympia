@@ -26,8 +26,9 @@ public class League {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-
-	@JsonIgnoreProperties({"sportEventComments", "leagueComments", "teams", "athleteComments", "leagues"})
+	
+	@JsonIgnoreProperties({"sportEventComments", "leagueComments", "teams", "athleteComments", "leagues", "id", 
+		"password", "enabled", "role", "photo", "aboutMe", "firstName", "lastName", "createdDate", "updatedDate"})
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	private User comissioner;

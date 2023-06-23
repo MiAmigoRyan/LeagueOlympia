@@ -14,8 +14,6 @@ public class LeagueServiceImpl implements LeagueService {
 	@Autowired
 	private LeagueRepository leagueRepo;
 	
-//	@Autowired
-//	private UserRepository userRepo;
 	
 	@Override
 	public List<League> index() {
