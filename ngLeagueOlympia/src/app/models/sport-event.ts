@@ -6,6 +6,7 @@ import { SportEventComment } from "./sport-event-comment";
 
 export class SportEvent {
   id: number;
+  venue: string;
   comments: SportEventComment[];
   olympiad: Olympiad | null;
   leagues: League[];
@@ -18,6 +19,7 @@ export class SportEvent {
 
   constructor(
     id: number = 0,
+    venue: string = '',
     comments: SportEventComment[] = [],
     olympiad: Olympiad | null = null,
     leagues: League[] = [],
@@ -29,6 +31,7 @@ export class SportEvent {
     eventCompletionDate: string = ''
   ){
     this.id = id;
+    this.venue = venue;
     this.comments = comments;
     this.olympiad = olympiad;
     this.leagues = leagues;
