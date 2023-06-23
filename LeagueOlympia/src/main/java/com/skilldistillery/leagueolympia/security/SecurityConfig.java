@@ -31,6 +31,7 @@ public class SecurityConfig {
         .antMatchers(HttpMethod.OPTIONS, "/api/**").permitAll() // For CORS, the preflight request
         .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()     // will hit the OPTIONS on the route
         .antMatchers(HttpMethod.GET, "/api/leagues").permitAll() // GET Requests for Unregistered Users to view Leagues permitted.
+        .antMatchers(HttpMethod.GET, "/api/events").permitAll() // GET Requests for Unregistered Users to view Events permitted.
         .antMatchers("/api/**").authenticated() // Requests for our REST API must be authorized.
         .anyRequest().permitAll()               // All other requests are allowed without authentication.
         .and()
