@@ -12,10 +12,10 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class OlympiadTest {
+class CountryTest {
 	   private  static EntityManagerFactory emf;
 	   private EntityManager em;
-	   private Olympiad olympiad;
+	   private Country country;
 		
 		@BeforeAll
 		static void setUpBeforeClass() throws Exception {
@@ -30,7 +30,7 @@ class OlympiadTest {
 		@BeforeEach
 		void setUp() throws Exception {
 			em = emf.createEntityManager();
-			olympiad = em.find(Olympiad.class,1);
+			country = em.find(Country.class,1);
 		}
 
 		@AfterEach
@@ -38,25 +38,18 @@ class OlympiadTest {
 		}
 		
 		@Test
-		void test_Olympiad() {
-			assertNotNull(olympiad);
-		}
-		@Test
-		void test_Olympiad_to_OlympiadCategory() {
-			assertNotNull(olympiad);
-			assertNotNull(olympiad.getOlympiadCategory());
-		}
-		
-		@Test
-		void test_Olympiad_to_County() {
-			assertNotNull(olympiad);
-			assertNotNull(olympiad.getCountry());
-		}
-		@Test
-		void test_Olympiad_to_SportEvent() {
-			assertNotNull(olympiad);
-			assertNotNull(olympiad.getSportevents());
-		}
-		
+		void test_Country() {
+			assertNotNull(country);
 
+		}
+		@Test
+		void test_Country_Athlete_OTM() {
+			assertNotNull(country);
+			assertTrue(country.getAthletes().size()>0);
+		}
+		@Test
+		void test_Country_Olympiad_OTM() {
+			assertNotNull(country);
+			assertTrue(country.getOlympiads().size()>0);
+		}
 }

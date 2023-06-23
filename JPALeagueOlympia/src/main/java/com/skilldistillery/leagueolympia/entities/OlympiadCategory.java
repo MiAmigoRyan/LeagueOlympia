@@ -1,11 +1,13 @@
 package com.skilldistillery.leagueolympia.entities;
 
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -16,12 +18,23 @@ public class OlympiadCategory {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
+	@OneToMany(mappedBy="olympiadCategory")
+	private List<Olympiad> olympiad;
+	
 	private String name;
 	
 	private String description;
 
 	public OlympiadCategory() {
 		super();
+	}
+	
+	public List<Olympiad> getOlympiad() {
+		return olympiad;
+	}
+
+	public void setOlympiad(List<Olympiad> olympiad) {
+		this.olympiad = olympiad;
 	}
 
 	public int getId() {

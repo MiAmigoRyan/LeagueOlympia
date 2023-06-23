@@ -56,4 +56,14 @@ class LeagueTest {
 		assertNotNull(league);
 		assertTrue(league.getSportEvents().size()>0);
 	}
+	@Test
+	void test_League_to_LeagueComment_OTM() {
+		assertNotNull(league);
+		assertTrue(league.getComments().size()>0);
+	}
+	@Test
+	void test_League_to_User_Comissioner_MTO() {
+		assertNotNull(league);
+		assertNotNull(league.getComissioner());
+	}
 }

@@ -40,6 +40,24 @@ class SportEventCommentTest {
 		@Test
 		void test_SportEventComment() {
 			assertNotNull(sportEventComment);
-//			assertEquals("admin", user.getUsername());
 		}
+		
+		@Test
+		void test_SportEventComment_User_MTO() {
+			assertNotNull(sportEventComment);
+			assertNotNull(sportEventComment.getUser());			
+		}
+		@Test
+		void test_SportEventComment_SportEvent_MTO() {
+			assertNotNull(sportEventComment);
+			assertNotNull(sportEventComment.getSportEvent());			
+		}
+		@Test
+		void test_SportEventComment_SportEventComment_MTO() {
+			assertNotNull(sportEventComment);
+			assertNotNull(sportEventComment.getReply());
+			assertTrue(sportEventComment.getReplies().size()>0);
+		}
+		
+	
 }

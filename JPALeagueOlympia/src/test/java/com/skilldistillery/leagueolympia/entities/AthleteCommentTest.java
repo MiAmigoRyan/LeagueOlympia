@@ -1,6 +1,9 @@
 package com.skilldistillery.leagueolympia.entities;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -12,7 +15,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class AthleteCommentCommentTest {
+class AthleteCommentTest {
 	private static EntityManagerFactory emf;
 	private EntityManager em;
 	private AthleteComment athleteComment;
@@ -40,6 +43,24 @@ class AthleteCommentCommentTest {
 	@Test
 	void test_AthleteComment() {
 		assertNotNull(athleteComment);
-//			assertEquals("admin", user.getUsername());
 	}
+	@Test
+	void test_AthleteComment_User_MTO() {
+		assertNotNull(athleteComment);
+		assertNotNull(athleteComment.getUser());
+	}
+	@Test
+	void test_AthleteComment_Athlete_MTO() {
+		assertNotNull(athleteComment);
+		assertNotNull(athleteComment.getAthlete());
+	}
+	@Test
+	void test_AthleteComment_AthleteComment_MTO() {
+		assertNotNull(athleteComment);
+		assertNotNull(athleteComment.getReply());
+		assertTrue(athleteComment.getReplies().size()>0);
+	}
+
+	
 }
+

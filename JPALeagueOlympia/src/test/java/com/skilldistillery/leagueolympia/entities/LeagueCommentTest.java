@@ -41,6 +41,12 @@ class LeagueCommentTest {
 		@Test
 		void test_LeagueComment() {
 			assertNotNull(leagueComment);
-//			assertEquals("admin", user.getUsername());
+		}
+		
+		@Test
+		void test_LeagueComment_LeagueComment_MTO() {
+			assertNotNull(leagueComment);
+			assertNotNull(leagueComment.getReply());
+			assertTrue(leagueComment.getReplies().size()>0);
 		}
 }

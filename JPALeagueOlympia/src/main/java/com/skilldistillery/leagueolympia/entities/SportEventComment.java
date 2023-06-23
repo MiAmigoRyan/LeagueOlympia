@@ -1,6 +1,7 @@
 package com.skilldistillery.leagueolympia.entities;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -8,6 +9,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -17,8 +21,13 @@ public class SportEventComment {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@Column(name = "user_id")
-	private int userId;
+	@ManyToOne
+	@JoinColumn(name="sport_event_id")
+	private SportEvent sportEvent;
+	
+	@ManyToOne
+	@JoinColumn(name = "user_id")
+	private User user;
 	
 	@Column(name = "comment_text")
 	private String commentText;
@@ -26,14 +35,31 @@ public class SportEventComment {
 	@Column(name = "date_posted")
 	private LocalDateTime datePosted;
 	
-	@Column(name = "reply_to_id")
-	private int replyToId;
+	@ManyToOne
+	@JoinColumn(name = "reply_to_id")
+	private SportEventComment reply;
 	
-	@Column(name = "sport_event_id")
-	private int sportEventId;
+	@OneToMany (mappedBy ="reply")
+	private List<SportEventComment> replies;
 
 	public SportEventComment() {
 		super();
+	}	
+	
+	public SportEvent getSportEvent() {
+		return sportEvent;
+	}
+
+	public void setSportEvent(SportEvent sportEvent) {
+		this.sportEvent = sportEvent;
+	}
+
+	public List<SportEventComment> getReplies() {
+		return replies;
+	}
+
+	public void setReplies(List<SportEventComment> replies) {
+		this.replies = replies;
 	}
 
 	public int getId() {
@@ -44,12 +70,12 @@ public class SportEventComment {
 		this.id = id;
 	}
 
-	public int getUserId() {
-		return userId;
+	public User getUser() {
+		return user;
 	}
 
-	public void setUserId(int userId) {
-		this.userId = userId;
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	public String getCommentText() {
@@ -68,20 +94,12 @@ public class SportEventComment {
 		this.datePosted = datePosted;
 	}
 
-	public int getReplyToId() {
-		return replyToId;
+	public SportEventComment getReply() {
+		return reply;
 	}
 
-	public void setReplyToId(int replyToId) {
-		this.replyToId = replyToId;
-	}
-
-	public int getSportEventId() {
-		return sportEventId;
-	}
-
-	public void setSportEventId(int sportEventId) {
-		this.sportEventId = sportEventId;
+	public void setReply(SportEventComment reply) {
+		this.reply = reply;
 	}
 
 	@Override
@@ -106,14 +124,13 @@ public class SportEventComment {
 		StringBuilder builder = new StringBuilder();
 		builder.append("SportEventComment [id=");
 		builder.append(id);
-		builder.append(", userId=");
-		builder.append(userId);
+		builder.append(", user=");
+		builder.append(user);
 		builder.append(", commentText=");
 		builder.append(commentText);
-		builder.append(", replyToId=");
-		builder.append(replyToId);
-		builder.append(", sportEventId=");
-		builder.append(sportEventId);
+		builder.append(", reply=");
+		builder.append(reply);
+
 		builder.append("]");
 		return builder.toString();
 	}

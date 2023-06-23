@@ -40,6 +40,10 @@ class SportTest {
 		@Test
 		void test_Sport() {
 			assertNotNull(sport);
-//			assertEquals("admin", user.getUsername());
+		}
+		@Test
+		void test_Sport_to_SportEvent() {
+			assertNotNull(sport);
+			assertTrue(sport.getSportevents().size()>0);
 		}
 }

@@ -48,4 +48,10 @@ class AthleteTest {
 		assertTrue(athlete.getAthleteEvents().size()>0);
 		
 	}
+	@Test
+	void test_Athlete_to_AthleteComment_OTM() {
+		assertNotNull(athlete);
+		assertTrue(athlete.getAthleteComments().size()>0);
+		
+	}
 }

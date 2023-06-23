@@ -1,5 +1,6 @@
 package com.skilldistillery.leagueolympia.entities;
 
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -7,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Sport {
@@ -16,11 +18,26 @@ public class Sport {
 	private String name;
 	private String description;
 	
+	@OneToMany(mappedBy="sport")
+	private List<SportEvent> sportevents;
+	
 	@Column(name = "picture_url")
 	private String pictureUrl;
 
 	public Sport() {
 		super();
+	}
+
+	public List<SportEvent> getSportevents() {
+		return sportevents;
+	}
+
+	public void setSportevents(List<SportEvent> sportevents) {
+		this.sportevents = sportevents;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public int getId() {

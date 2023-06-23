@@ -18,6 +18,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 public class User {
@@ -30,8 +31,26 @@ public class User {
 	private String role;
 	private String photo;
 	
+	@JsonIgnoreProperties({"comissioner", "usersBoughtIn", "comments"})
+	@OneToMany(mappedBy="comissioner")
+	private List<League> leagues;
+	
+	
+	@JsonIgnore
+	@OneToMany(mappedBy= "user")
+	private List<SportEventComment> sportEventComments;
+
+	@JsonIgnore
+	@OneToMany(mappedBy= "user")
+	private List<LeagueComment> leagueComments;
+	
 	@OneToMany(mappedBy="user")
 	private List<Team> teams;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy="user")
+	private List<AthleteComment> athleteComments;
+	
 	
 	@JsonIgnore
 	@ManyToMany
@@ -64,6 +83,46 @@ public class User {
 	}
 
 	
+	public List<League> getLeagues() {
+		return leagues;
+	}
+
+
+	public void setLeagues(List<League> leagues) {
+		this.leagues = leagues;
+	}
+
+
+	public List<SportEventComment> getSportEventComments() {
+		return sportEventComments;
+	}
+
+
+	public void setSportEventComments(List<SportEventComment> sportEventComments) {
+		this.sportEventComments = sportEventComments;
+	}
+
+
+	public List<LeagueComment> getLeagueComments() {
+		return leagueComments;
+	}
+
+
+	public void setLeagueComments(List<LeagueComment> leagueComments) {
+		this.leagueComments = leagueComments;
+	}
+
+
+	public List<AthleteComment> getAthleteComments() {
+		return athleteComments;
+	}
+
+
+	public void setAthleteComments(List<AthleteComment> athleteComments) {
+		this.athleteComments = athleteComments;
+	}
+
+
 	public List<League> getBoughtInLeagues() {
 		return boughtInLeagues;
 	}

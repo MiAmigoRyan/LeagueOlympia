@@ -1,6 +1,7 @@
 package com.skilldistillery.leagueolympia.entities;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -8,6 +9,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Olympiad {
@@ -17,8 +21,12 @@ public class Olympiad {
 	private String title;
 	private int year;
 	
-	@Column(name = "country_id")
-	private int countryId;
+	@OneToMany(mappedBy="olympiad")
+	private List<SportEvent> sportevents;
+	
+	@ManyToOne
+	@JoinColumn(name="country_id")
+	private Country country;
 
 	@Column(name = "opening_date")
 	private LocalDate openingDate;
@@ -30,8 +38,9 @@ public class Olympiad {
 	@Column(name = "host_city")
 	private String hostCity;
 	
-	@Column(name = "category_id")
-	private int categoryId;
+	@ManyToOne
+	@JoinColumn(name = "category_id")
+	private OlympiadCategory olympiadCategory;
 	
 	@Column(name = "website_url")
 	private String websiteUrl;
@@ -40,8 +49,30 @@ public class Olympiad {
 		super();
 	}
 
+	public List<SportEvent> getSportevents() {
+		return sportevents;
+	}
+
+	public void setSportevents(List<SportEvent> sportevents) {
+		this.sportevents = sportevents;
+	}
+
+	public void setOlympiadCategory(OlympiadCategory olympiadCategory) {
+		this.olympiadCategory = olympiadCategory;
+	}
+
+
+
 	public int getId() {
 		return id;
+	}
+	
+	public Country getCountry() {
+		return country;
+	}
+
+	public void setCountry(Country country) {
+		this.country = country;
 	}
 
 	public void setId(int id) {
@@ -62,14 +93,6 @@ public class Olympiad {
 
 	public void setYear(int year) {
 		this.year = year;
-	}
-
-	public int getCountryId() {
-		return countryId;
-	}
-
-	public void setCountryId(int countryId) {
-		this.countryId = countryId;
 	}
 
 	public LocalDate getOpeningDate() {
@@ -104,12 +127,12 @@ public class Olympiad {
 		this.hostCity = hostCity;
 	}
 
-	public int getCategoryId() {
-		return categoryId;
+	public OlympiadCategory getOlympiadCategory() {
+		return olympiadCategory;
 	}
 
-	public void setCategoryId(int categoryId) {
-		this.categoryId = categoryId;
+	public void setCategoryId(OlympiadCategory olympiadCategory) {
+		this.olympiadCategory = olympiadCategory;
 	}
 
 	public String getWebsiteUrl() {
@@ -146,8 +169,6 @@ public class Olympiad {
 		builder.append(title);
 		builder.append(", year=");
 		builder.append(year);
-		builder.append(", countryId=");
-		builder.append(countryId);
 		builder.append(", openingDate=");
 		builder.append(openingDate);
 		builder.append(", closingDate=");
@@ -156,8 +177,6 @@ public class Olympiad {
 		builder.append(logo);
 		builder.append(", hostCity=");
 		builder.append(hostCity);
-		builder.append(", categoryId=");
-		builder.append(categoryId);
 		builder.append(", websiteUrl=");
 		builder.append(websiteUrl);
 		builder.append("]");
