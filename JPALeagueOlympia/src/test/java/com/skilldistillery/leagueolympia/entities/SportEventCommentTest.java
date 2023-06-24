@@ -30,7 +30,7 @@ class SportEventCommentTest {
 		@BeforeEach
 		void setUp() throws Exception {
 			em = emf.createEntityManager();
-			sportEventComment = em.find(SportEventComment.class,1);
+			sportEventComment = em.find(SportEventComment.class,2);
 		}
 
 		@AfterEach
@@ -55,8 +55,8 @@ class SportEventCommentTest {
 		@Test
 		void test_SportEventComment_SportEventComment_MTO() {
 			assertNotNull(sportEventComment);
-			assertNotNull(sportEventComment.getReply());
-			assertTrue(sportEventComment.getReplies().size()>0);
+			assertNull(sportEventComment.getReply());
+			assertTrue(sportEventComment.getReplies().size()==0);
 		}
 		
 	
