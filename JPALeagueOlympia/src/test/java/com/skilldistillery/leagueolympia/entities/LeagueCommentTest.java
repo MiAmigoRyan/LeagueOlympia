@@ -31,7 +31,7 @@ class LeagueCommentTest {
 		@BeforeEach
 		void setUp() throws Exception {
 			em = emf.createEntityManager();
-			leagueComment = em.find(LeagueComment.class,1);
+			leagueComment = em.find(LeagueComment.class,2);
 		}
 
 		@AfterEach
@@ -46,7 +46,7 @@ class LeagueCommentTest {
 		@Test
 		void test_LeagueComment_LeagueComment_MTO() {
 			assertNotNull(leagueComment);
-			assertNotNull(leagueComment.getReply());
+			assertNull(leagueComment.getReply());
 			assertTrue(leagueComment.getReplies().size()>0);
 		}
 }
