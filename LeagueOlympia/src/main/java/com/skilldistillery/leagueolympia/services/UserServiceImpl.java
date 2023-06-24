@@ -21,6 +21,7 @@ public class UserServiceImpl implements UserService {
 			managedUser.setUsername(user.getUsername());
 			managedUser.setFirstName(user.getFirstName());
 			managedUser.setLastName(user.getLastName());
+			managedUser.setPassword(user.getPassword());
 
 			return userRepo.saveAndFlush(managedUser);
 
