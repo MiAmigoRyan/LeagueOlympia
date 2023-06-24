@@ -15,24 +15,24 @@ public class LeagueServiceImpl implements LeagueService {
 
 	@Autowired
 	private LeagueRepository leagueRepo;
-	@Autowired UserRepository userRepo;
-	
-	
+	@Autowired
+	UserRepository userRepo;
+
 	@Override
 	public List<League> index() {
-		return leagueRepo.findAll();	
+		return leagueRepo.findAll();
 	}
 
 	@Override
 	public List<League> index(String username) {
-		// TODO Auto-generated method stub
-		return null;
+		User user = userRepo.findByUsername(username);
+		return user.getLeagues();
 	}
 
 	@Override
 	public League create(String username, League newLeague) {
 		User user = userRepo.findByUsername(username);
-		if(user != null) {
+		if (user != null) {
 			newLeague.setComissioner(user);
 			return leagueRepo.saveAndFlush(newLeague);
 		}

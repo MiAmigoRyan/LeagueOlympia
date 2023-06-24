@@ -35,6 +35,18 @@ public class LeagueController {
 		return leagues;
 	}
 	
+	@GetMapping("leagues/{username}")
+	public List<League> index(
+			HttpServletRequest req,
+			HttpServletResponse res,
+			@PathVariable("username") String username ,
+			Principal principal){
+	List<League> usersLeagues = leagueService.index();
+	if(usersLeagues == null) {
+		res.setStatus(404);
+	}
+	return usersLeagues;
+}
 	@PostMapping("leagues/{username}")
 	public League create(HttpServletRequest req,
 			HttpServletResponse res,
