@@ -7,6 +7,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { AboutComponent } from './components/about/about.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { HomeComponent } from './components/home/home.component';
+import { UserComponent } from './components/user/user.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
@@ -16,7 +17,8 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
   { path: 'leagues', component: LeagueListComponent },
-  // { path: 'todo/:id', component: TodoListComponent },
+  { path: 'users', component: UserComponent },
+  { path: 'users/:username', component: UserComponent },
   { path: '**', component: NotFoundComponent }
 ];
 

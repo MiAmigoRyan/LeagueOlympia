@@ -18,12 +18,15 @@ public class UserServiceImpl implements UserService {
 		if (managedUser.getUsername().equals(username)) {
 			managedUser.setAboutMe(user.getAboutMe());
 			managedUser.setPhoto(user.getPhoto());
+			managedUser.setUsername(user.getUsername());
+			managedUser.setFirstName(user.getFirstName());
+			managedUser.setLastName(user.getLastName());
+			managedUser.setPassword(user.getPassword());
 
 			return userRepo.saveAndFlush(managedUser);
 
 		} else {
 			return null;
 		}
-
 	}
 }

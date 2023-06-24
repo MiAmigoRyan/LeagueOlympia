@@ -1,0 +1,48 @@
+
+<div *ngIf="editUser">
+  <br>
+  <img src="{{editUser.photo}}" alt="profile picture" width="10%" height="10%"/><br><br>
+  <p>{{editUser.username}}</p>
+  <p>{{editUser.firstName}} {{editUser.lastName}}</p>
+  <p>{{editUser.aboutMe}}</p>
+  <p>{{editUser.leagues[0]!.leagueName}}</p>
+  <p>{{editUser.leagues[1]!.leagueName}}</p>
+
+</div>
+
+
+
+<div *ngIf="editUser">
+  <hr>
+  <div class="col-md-6">
+    <form class="row g-3">
+      <div class="col-md-6">
+        <label class="form-label">Username: </label>
+        <input class="form-control" type="text" name="username" [(ngModel)]="editUser.username"/>
+      </div>
+      <div class="col-md-12">
+        <label class="form-label">Password: </label>
+        <input class="form-control" type="text" name="password" [(ngModel)]="editUser.password"/>
+      </div>
+      <div class="col-md-12">
+        <label class="form-label">First Name: </label>
+        <input class="form-control" type="text" name="firstName" [(ngModel)]="editUser.firstName"/>
+      </div>
+      <div class="col-md-12">
+        <label class="form-label">Last Name: </label>
+        <input class="form-control" type="text" name="lastName" [(ngModel)]="editUser.lastName"/>
+      </div>
+      <div class="col-md-12">
+        <label class="form-label">About Me: </label>
+        <input class="form-control" type="text" name="aboutMe" [(ngModel)]="editUser.aboutMe"/>
+      </div>
+      <div class="col-md-12">
+        <label class="form-label">Photo URL: </label>
+        <input class="form-control" type="text" name="photo" [(ngModel)]="editUser.photo"/>
+      </div>
+      <div class="col-12">
+        <button class="btn btn-success me-1" (click)="editUser = null">Cancel</button>
+        <button class="btn btn-success me-1" (click)="updateUser()">Save</button>
+      </div>
+    </form>
+  </div>

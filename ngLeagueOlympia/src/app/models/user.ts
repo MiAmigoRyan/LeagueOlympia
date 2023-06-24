@@ -22,6 +22,7 @@ export class User {
   lastName: string;
   createdDate: string | null;
   updatedDate: string | null;
+  photo: string;
 
 constructor(
   id: number = 0,
@@ -39,7 +40,8 @@ constructor(
   firstName: string = '',
   lastName: string = '',
   createdDate: string = '',
-  updatedDate: string = ''
+  updatedDate: string = '',
+  photo: string = ''
 ) {
   this.id = id;
   this.username = username;
@@ -57,5 +59,6 @@ constructor(
   this.lastName = lastName;
   this.createdDate = createdDate;
   this.updatedDate = updatedDate;
+  this.photo = photo;
 }
 }
