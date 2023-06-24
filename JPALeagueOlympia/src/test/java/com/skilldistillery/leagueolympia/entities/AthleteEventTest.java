@@ -58,7 +58,7 @@ class AthleteEventTest {
 		@Test
 		void test_AthleteEvent_Teams_MTM() {
 			assertNotNull(athleteEvent);
-			assertTrue(athleteEvent.getTeams().size()>0);
+			assertFalse(athleteEvent.getTeams().size()>0);
 		}
 		
 

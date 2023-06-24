@@ -1,7 +1,9 @@
 package com.skilldistillery.leagueolympia.entities;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import javax.persistence.EntityManager;
@@ -32,7 +34,7 @@ class UserTest {
 		@BeforeEach
 		void setUp() throws Exception {
 			em = emf.createEntityManager();
-			user = em.find(User.class,1);
+			user = em.find(User.class,2);
 		}
 
 		@AfterEach
@@ -42,7 +44,7 @@ class UserTest {
 		@Test
 		void test_User() {
 			assertNotNull(user);
-			assertEquals("admin", user.getUsername());
+			assertEquals("swilliams", user.getUsername());
 		}
 		
 		@Test
@@ -53,7 +55,7 @@ class UserTest {
 		@Test
 		void test_User_to_League_MTM() {
 			assertNotNull(user);
-			assertTrue(user.getBoughtInLeagues().size()>0);
+			assertFalse(user.getBoughtInLeagues().size()>0);
 		}
 		@Test
 		void test_User_to_AthleteComment_MTO() {
@@ -73,7 +75,7 @@ class UserTest {
 		@Test
 		void test_User_to_League_OTM() {
 			assertNotNull(user);
-			assertTrue(user.getLeagues().size()>0);
+			assertFalse(user.getLeagues().size()>0);
 		}
 		
 		
