@@ -1,1 +1,16 @@
-<p>register works!</p>
+<div><br>
+  <h1>Create Account</h1><br>
+  <form class="row g-3">
+    <div class="col-7">
+      <label class="form-label" for="username">Username</label>
+      <input class="form-control" type="text" name="username" placeholder="johnwick" [(ngModel)]="newUser.username" required/>
+    </div>
+    <div class="col-7">
+      <label class="form-label" for="password">Password</label>
+      <input class="form-control" type="password" name="password" placeholder="daisy1234" [(ngModel)]="newUser.password" required/>
+    </div>
+    <div class="col-6">
+      <button class="btn btn-success" (click)="register(newUser)">Register</button>
+    </div>
+  </form>
+</div>
