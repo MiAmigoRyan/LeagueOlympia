@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
+import { User } from 'src/app/models/user';
 import { AuthService } from 'src/app/services/auth.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-navigation',
@@ -10,7 +12,7 @@ export class NavigationComponent {
   isCollapsed: boolean = false;
 
   constructor (
-    private auth: AuthService
+    private auth: AuthService,
   ){}
 
   loggedIn(): boolean {
@@ -20,4 +22,5 @@ export class NavigationComponent {
       return false;
     }
   }
+
 }

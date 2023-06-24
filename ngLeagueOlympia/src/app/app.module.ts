@@ -19,6 +19,7 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { HomeComponent } from './components/home/home.component';
 import { AboutComponent } from './components/about/about.component';
 import { ContactComponent } from './components/contact/contact.component';
+import { UserComponent } from './components/user/user.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { ContactComponent } from './components/contact/contact.component';
     NotFoundComponent,
     HomeComponent,
     AboutComponent,
-    ContactComponent
+    ContactComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,
