@@ -23,8 +23,8 @@ export class LoginComponent {
 
       this.auth.login(user.username, user.password).subscribe( {
         next: (loggedInUser) => {
-          // this.router.navigateByUrl('/todo');
-          // this.reloadRoute('/todo');
+          this.router.navigateByUrl('/home');
+          this.reloadRoute('/home');
         },
         error: (loginFailure) => {
           console.error('LoginComponent.login(): login failed');
