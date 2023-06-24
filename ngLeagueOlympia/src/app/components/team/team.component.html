@@ -1,0 +1,21 @@
+<br>
+<div *ngFor="let team of teams">
+  <img src="{{team!.photoURL}}" alt="Team Picture" width="10%" height="10%"/><br><br>
+  <p>
+    Team: {{team!.teamName}}
+    <br>User: {{team!.user!.username}}
+    <br>League: {{team!.league!.leagueName}}
+    <br>Description: {{team!.description}}
+  </p>
+</div>
+  <!-- <br>
+  <p>{{selectedTeam!.user}}</p>
+  <p>{{selectedTeam!.league}}</p>
+  <p>{{selectedTeam!.teamName}}</p>
+  <p>{{selectedTeam!.description}}</p>
+  <p>{{selectedTeam!.athleteEvents}}</p>
+  <img src="{{selectedTeam!.photoURL}}" alt="Team Picture" width="10%" height="10%"/><br><br>
+  <p>{{editUser.leagues[0]!.leagueName}}</p> -->
+
+
+
