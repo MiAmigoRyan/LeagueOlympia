@@ -20,6 +20,7 @@ import { HomeComponent } from './components/home/home.component';
 import { AboutComponent } from './components/about/about.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { UserComponent } from './components/user/user.component';
+import { TeamComponent } from './components/team/team.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { UserComponent } from './components/user/user.component';
     HomeComponent,
     AboutComponent,
     ContactComponent,
-    UserComponent
+    UserComponent,
+    TeamComponent
   ],
   imports: [
     BrowserModule,
