@@ -19,9 +19,10 @@ public class TeamServiceImpl implements TeamService {
 	@Autowired
 	private TeamRepository teamRepo;
 	@Autowired
-	UserRepository userRepo;
+	private UserRepository userRepo;
 	@Autowired
 	private LeagueRepository leagueRepo;
+
 
 	@Override
 	public List<Team> index() {
@@ -35,9 +36,6 @@ public class TeamServiceImpl implements TeamService {
 		if (user != null && league != null) {			
 			newTeam.setId(new TeamId(user.getId(), league.getId()));
 			newTeam.setUser(user);
-			newTeam.setLeague(league);
-			System.out.println(newTeam);
-			System.out.println(newTeam.getId());
 			return teamRepo.saveAndFlush(newTeam);
 		}
 		return null;
