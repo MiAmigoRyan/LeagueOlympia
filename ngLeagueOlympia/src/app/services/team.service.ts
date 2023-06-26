@@ -59,4 +59,20 @@ export class TeamService {
       })
     );
   }
+
+  public show(teamId: number): Observable<Team> {
+    return this.http.get<Team>(this.url + '/' + teamId, this.getHttpOptions()).pipe(
+      catchError((err: any) => {
+        console.error('Error GETing single team');
+        return throwError(
+          () =>
+            new Error(
+              'TeamService.index(): error retrieving single team: ' + err
+            )
+        );
+      })
+    );
+  }
+
+
 }

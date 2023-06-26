@@ -1,7 +1,9 @@
+import { AthleteEvent } from './../../models/athlete-event';
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Team } from 'src/app/models/team';
 import { User } from 'src/app/models/user';
+import { AthleteEventService } from 'src/app/services/athlete-event.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { LeagueService } from 'src/app/services/league.service';
 import { TeamService } from 'src/app/services/team.service';
@@ -16,11 +18,13 @@ export class TeamComponent {
   selectedUser: User | null = null;
   selectedTeam: Team | null = null;
   teams: Team[] = [];
+  athleteEvents: AthleteEvent[] = [];
 
   constructor(
     private userService: UserService,
     private teamService: TeamService,
     private leagueService: LeagueService,
+    private athleteEventService: AthleteEventService,
     private route: ActivatedRoute,
     private router: Router,
     private auth: AuthService
@@ -52,15 +56,22 @@ export class TeamComponent {
     });
   }
 
-  // showTeam() {
-  //   this.selectedTeam =
-  // }
+  updateTeam(team: Team, goToDetails: boolean = true): void {
+      this.teamService.update(team).subscribe({
+        next: (updatedTeam) => {
+          if (goToDetails){
+            this.selectedTeam = updatedTeam;
+            this.reload();
+          }
+          this.selectedTeam = null;
+          this.reload();
+        },
+        error: (updateError) => {
+          console.error('TeamComponenet.updateTeam(): error on update');
+          console.error(updateError);
 
-  makeTeam(newTeam: Team) {
-
+        }
+      });
   }
-
-
-
 
 }
