@@ -14,6 +14,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "league_comment")
 public class LeagueComment {
@@ -21,14 +23,17 @@ public class LeagueComment {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="league_id")
 	private League league;
 	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "reply_to_id")
 	private LeagueComment reply;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy= "reply")
 	private List<LeagueComment> replies;
 	

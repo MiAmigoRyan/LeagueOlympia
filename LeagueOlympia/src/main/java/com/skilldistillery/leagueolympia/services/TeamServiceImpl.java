@@ -23,18 +23,12 @@ public class TeamServiceImpl implements TeamService {
 		return teamRepo.findAll();
 	}
 
-
-//	@Override
-//	public List<League> index(String username) {
-//		User user = userRepo.findByUsername(username);
-//		return user.getLeagues();
-//	}
-//
 	@Override
 	public Team create(String username, Team newTeam) {
 		User user = userRepo.findByUsername(username);
 		if (user != null) {
 			newTeam.setUser(user);
+			System.out.println("*****************"+username+":"+newTeam+"*****************");
 			return teamRepo.saveAndFlush(newTeam);
 		}
 		return null;

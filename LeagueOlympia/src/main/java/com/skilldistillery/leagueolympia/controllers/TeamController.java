@@ -51,28 +51,31 @@ public class TeamController {
 	}
 	return usersTeams;
 }
-//	@PostMapping("leagues/{username}")
-//	public League create(HttpServletRequest req,
-//			HttpServletResponse res,
-//			@PathVariable("username") String username, @RequestBody League newLeague,
-//			Principal principal) {
-//		
-//		try {
-//			newLeague = leagueService.create(principal.getName(), newLeague);
-//			if(newLeague == null) {
-//				res.setStatus(404);
-//			}else {
-//				res.setStatus(200);
-//				StringBuffer url = req.getRequestURL();
-//				url.append("/").append(newLeague.getId());
-//				res.setHeader("Location", url.toString());
-//			}
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//			res.setStatus(400);
-//			newLeague = null; 
-//		}
-//		return newLeague;
-//		
-//	}
+	
+ 	
+	@PostMapping("teams/{username}")
+	public Team create(HttpServletRequest req,
+			HttpServletResponse res,
+			//@PathVariable("username") String username,
+			@RequestBody Team newTeam,
+			Principal principal) {
+		
+		try {
+			newTeam = teamService.create(principal.getName(), newTeam);
+			if(newTeam == null) {
+				res.setStatus(404);
+			}else {
+				res.setStatus(200);
+				StringBuffer url = req.getRequestURL();
+				url.append("/").append(newTeam.getId());
+				res.setHeader("Location", url.toString());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			res.setStatus(400);
+			newTeam = null; 
+		}
+		return newTeam;
+		
+	}
 }
