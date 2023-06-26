@@ -16,6 +16,8 @@ import javax.persistence.MapsId;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 public class Team {
 	
@@ -40,6 +42,7 @@ public class Team {
 	@MapsId(value="userId")
 	private User user;
 	
+	@JsonIgnoreProperties({"teams"})
 	@ManyToOne
 	@JoinColumn(name="league_id")
 	@MapsId(value="leagueId")
@@ -66,10 +69,9 @@ public class Team {
 	 
 	public Team() {
 		super();
+		id= new TeamId();
 	}
-	
-	
-	
+		
 	public List<AthleteEvent> getAthleteEvents() {
 		return athleteEvents;
 	}
@@ -79,8 +81,6 @@ public class Team {
 	public void setAthleteEvents(List<AthleteEvent> athleteEvents) {
 		this.athleteEvents = athleteEvents;
 	}
-
-
 
 	public League getLeague() {
 		return league;

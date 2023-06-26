@@ -22,6 +22,27 @@ public class TeamId implements Serializable {
 		super();
 	}
 
+	
+	public int getUserId() {
+		return userId;
+	}
+
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
+
+	public int getLeagueId() {
+		return leagueId;
+	}
+
+
+
+	public void setLeagueId(int leagueId) {
+		this.leagueId = leagueId;
+	}
+
+
+
 	public TeamId(int userId, int leagueId) {
 		super();
 		this.userId = userId;

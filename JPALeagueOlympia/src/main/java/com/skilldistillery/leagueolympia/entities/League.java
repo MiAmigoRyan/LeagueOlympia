@@ -28,21 +28,17 @@ public class League {
 	private int id;
 	
 	@JsonIgnoreProperties({"sportEventComments", "leagueComments", "teams", "athleteComments", "leagues", "id", 
-		"password", "enabled", "role", "photo", "aboutMe", "firstName", "lastName", "createdDate", "updatedDate"})
+		"password", "enabled", "role", "photoUrl", "aboutMe", "firstName", "lastName", "createdDate", "updatedDate"})
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	private User comissioner;
 	
-	@JsonIgnore
-//	@JsonIgnoreProperties({"league"})
 	@OneToMany(mappedBy = "league")
 	private List<LeagueComment> comments;
 
-	@JsonIgnore
 	@ManyToMany(mappedBy = "leagues")
 	private List<SportEvent> sportEvents;
 
-	@JsonIgnore
 	@ManyToMany(mappedBy = "boughtInLeagues")
 	private List<User> usersBoughtIn;
 
@@ -55,13 +51,14 @@ public class League {
 
 	@Column(name = "photo")
 	private String photoUrl;
-
+	
 	@Column(name = "bets_enabled")
 	private boolean betEnabled;
 
 	@Column(name = "buy_in")
 	private double buyIn;
 
+	
 	@Column(name = "side_wager")
 	private String sideWager;
 
