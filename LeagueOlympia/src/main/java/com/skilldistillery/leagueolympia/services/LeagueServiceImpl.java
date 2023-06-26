@@ -58,7 +58,7 @@ public class LeagueServiceImpl implements LeagueService {
 	@Override
 	public boolean delete(String username, int leagueId) {
 		boolean deleted = false;
-		League toDelete = leagueRepo.findById(leagueId);
+		League toDelete = leagueRepo.queryById(leagueId);
 		if(toDelete.getId()==leagueId) {
 			leagueRepo.delete(toDelete);
 			deleted = true;
