@@ -44,8 +44,26 @@ public class LeagueServiceImpl implements LeagueService {
 		League managedLeague = leagueRepo.queryById(leagueId);
 		if(managedLeague.getId()==leagueId) {
 			managedLeague.setLeagueName(league.getLeagueName());
+			managedLeague.setComissioner(league.getComissioner());
+			managedLeague.setBetEnabled(league.isBetEnabled());
+			managedLeague.setEnabled(league.isEnabled());
+			managedLeague.setPhotoUrl(league.getPhotoUrl());
+			managedLeague.setSideWager(league.getSideWager());
+			managedLeague.setBuyIn(league.getBuyIn());
 			return leagueRepo.saveAndFlush(managedLeague);
 		}
 		return null;
+	}
+	
+	@Override
+	public boolean delete(String username, int leagueId) {
+		boolean deleted = false;
+		League toDelete = leagueRepo.queryById(leagueId);
+		if(toDelete.getId()==leagueId) {
+			leagueRepo.delete(toDelete);
+			deleted = true;
+		}
+		return deleted;
+		
 	}
 }

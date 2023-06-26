@@ -22,6 +22,7 @@ public class AthleteController {
 	@Autowired
 	private AthleteService athleteService;
 	
+
 	@GetMapping("athletes")
 	public List<Athlete> index(
 			HttpServletRequest req,

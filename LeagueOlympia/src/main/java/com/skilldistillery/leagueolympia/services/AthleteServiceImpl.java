@@ -1,5 +1,6 @@
 package com.skilldistillery.leagueolympia.services;
 
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,4 @@ public class AthleteServiceImpl implements AthleteService{
 	public List<Athlete> index() {
 		return athleteRepo.findAll();
 	}
-
-
 }

@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -92,8 +93,18 @@ public class LeagueController {
 			managedLeague = null;
 		}
 		return managedLeague;
-		
-		
 	}
 	
+	@DeleteMapping("leauges/{leagueId}")
+	public void delete(HttpServletRequest req,
+			HttpServletResponse res,
+			@PathVariable int leagueId,
+			Principal principal) {
+		if(leagueService.delete(principal.getName(),leagueId)){
+			res.setStatus(200);
+		}else {
+			res.setStatus(400);
+		}
+	}
+
 }
