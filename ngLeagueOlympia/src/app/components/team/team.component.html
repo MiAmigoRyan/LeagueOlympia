@@ -1,6 +1,6 @@
 <br>
 <div *ngIf="!selectedTeam">
-  <div *ngFor="let team of teams">
+  <div *ngFor="let team of selectedUser!.teams">
     <img src="{{team!.photoURL}}" alt="Team Picture" width="10%" height="10%"/><br><br>
     <p>
       Team: {{team!.teamName}}
@@ -8,11 +8,21 @@
       <br>League: {{team!.league!.leagueName}}
       <br>Description: {{team!.description}}
     </p>
+    <button class="btn btn-success me-1" (click)="selectedTeam = team">Update Team</button><br><br>
   </div>
 </div>
 
 
 <div *ngIf="selectedTeam">
+  <img src="{{selectedTeam.photoURL}}" alt="Team Picture" width="10%" height="10%"/><br><br>
+  <p>
+    Team: {{selectedTeam!.teamName}}
+    <br>User: {{selectedTeam!.user!.username}}
+    <br>League: {{selectedTeam!.league!.leagueName}}
+    <br>Description: {{selectedTeam!.description}}
+  </p>
+  <hr>
+  <h3>Update Team</h3>
   <div class="col-md-6">
     <form class="row g-3">
       <div class="col-md-6">
@@ -28,8 +38,16 @@
         <input class="form-control" type="text" name="description" [(ngModel)]="selectedTeam.description"/>
       </div>
       <div class="col-12">
+        <div *ngFor="let event of athleteEvents">
+          <label>{{event.sportEvent!.sport!.name}}</label>
+          <div class="dropdown">
+            <button class="btn btn-outline-success dropdown-toggle me-1" (click)="null">Athletes</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-12">
         <button class="btn btn-success me-1" (click)="selectedTeam = null">Cancel</button>
-        <button class="btn btn-success me-1" (click)="makeTeam(selectedTeam)">Save</button>
+        <button class="btn btn-success me-1" (click)="updateTeam(selectedTeam)">Save</button>
       </div>
     </form>
   </div>
