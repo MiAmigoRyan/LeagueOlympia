@@ -8,4 +8,5 @@ public interface SportEventService {
 
 	public List<SportEvent> index();
 	public List<SportEvent> index(String username);
+	List<SportEvent> findByLeague(Integer leagueId);
 }

@@ -12,16 +12,21 @@ import com.skilldistillery.leagueolympia.repositories.SportEventRepository;
 public class SportEventServiceImpl implements SportEventService {
 
 	@Autowired
-	private SportEventRepository leagueRepo;
+	private SportEventRepository sportEventRepo;
 	
-//	@Autowired
-//	private UserRepository userRepo;
+
 	
 	@Override
 	public List<SportEvent> index() {
-		return leagueRepo.findAll();	
+		return sportEventRepo.findAll();	
+	}
+	
+	@Override
+	public List<SportEvent> findByLeague(Integer leagueId){
+		return sportEventRepo.findByLeagues_Id(leagueId);
 	}
 
+	
 	@Override
 	public List<SportEvent> index(String username) {
 		// TODO Auto-generated method stub

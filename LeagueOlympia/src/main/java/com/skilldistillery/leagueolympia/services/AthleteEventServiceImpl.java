@@ -20,4 +20,11 @@ public class AthleteEventServiceImpl implements AthleteEventService{
 	public List<AthleteEvent> index() {
 		return athleteEventRepo.findAll();
 	}
+
+
+	@Override
+	public List<AthleteEvent> findByEvent(Integer sportEventId) {
+		return athleteEventRepo.findBySportEvent_Id(sportEventId)
+		;
+	}
 }

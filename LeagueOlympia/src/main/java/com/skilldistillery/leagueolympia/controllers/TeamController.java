@@ -15,9 +15,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.skilldistillery.leagueolympia.entities.League;
+import com.skilldistillery.leagueolympia.entities.AthleteEvent;
 import com.skilldistillery.leagueolympia.entities.Team;
+import com.skilldistillery.leagueolympia.services.AthleteEventService;
 import com.skilldistillery.leagueolympia.services.LeagueService;
+import com.skilldistillery.leagueolympia.services.SportEventService;
 import com.skilldistillery.leagueolympia.services.TeamService;
 
 @RestController
@@ -29,6 +31,10 @@ public class TeamController {
 	private LeagueService leagueService;
 	@Autowired
 	private TeamService teamService;
+	@Autowired
+	private SportEventService sportEventService;
+	@Autowired
+	private AthleteEventService athleteEventService;
 	
 	@GetMapping("teams")
 	public List<Team> index(HttpServletRequest req, HttpServletResponse res) {
@@ -79,4 +85,19 @@ public class TeamController {
 		return newTeam;
 		
 	}
+//@PostMapping("teams/{leagueId}/sportEvents/{sportEventId}/athletes/{athleteId}")
+
+	//list athletes by league and port even
+	@GetMapping("sportEvents/{sportEventId}/athleteEvents")
+	public List<AthleteEvent> athletesBySportEventInLeague(HttpServletRequest req,
+			HttpServletResponse res,
+			@PathVariable ("sportEventId") Integer sportEventId
+			){
+		
+		//List<SportEvent> sportEvents = sportEventService.findByLeague(leagueId);
+		return athleteEventService.findByEvent(sportEventId);
+	
+	}
+	
+//	@GetMapping("leagues/{leagueId}/sportEvents")
 }

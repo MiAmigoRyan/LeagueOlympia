@@ -7,6 +7,7 @@ import com.skilldistillery.leagueolympia.entities.AthleteEvent;
 public interface AthleteEventService {
 	
 	public List<AthleteEvent> index();
+	public List<AthleteEvent> findByEvent(Integer sportEventId);
 	
 }
 	

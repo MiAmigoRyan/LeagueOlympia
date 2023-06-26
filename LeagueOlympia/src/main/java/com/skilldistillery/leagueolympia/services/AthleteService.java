@@ -8,5 +8,6 @@ public interface AthleteService {
 	
 	public List<Athlete> index();
 	
+	
 }
 	
