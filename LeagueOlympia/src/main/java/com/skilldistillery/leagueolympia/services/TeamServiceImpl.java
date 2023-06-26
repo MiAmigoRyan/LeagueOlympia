@@ -54,11 +54,10 @@ public class TeamServiceImpl implements TeamService {
 		Team managedTeam = teamRepo.findByUser_UsernameAndLeagueId(username, leagueId);
 		if(managedTeam != null) {
 			managedTeam.setAthleteEvents(team.getAthleteEvents());
-			managedTeam.setDescription(team.getDescription());
+			managedTeam.setDescription(team.getDescription()); 
 			managedTeam.setPhotoURL(team.getPhotoURL());
 			managedTeam.setTeamName(team.getTeamName());
 			managedTeam.setEnabled(team.isEnabled());
-			managedTeam.setLeague(team.getLeague());
 			
 			return teamRepo.saveAndFlush(managedTeam);
 		}else {

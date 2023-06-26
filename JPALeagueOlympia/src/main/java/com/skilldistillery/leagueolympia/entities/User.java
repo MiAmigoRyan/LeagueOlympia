@@ -44,7 +44,6 @@ public class User {
 	@OneToMany(mappedBy= "user")
 	private List<LeagueComment> leagueComments;
 	
-	@JsonIgnoreProperties({"user"})
 	@OneToMany(mappedBy="user")
 	private List<Team> teams;
 	

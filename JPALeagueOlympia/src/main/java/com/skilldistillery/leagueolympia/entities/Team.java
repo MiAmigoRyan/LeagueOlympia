@@ -38,6 +38,7 @@ public class Team {
 			})
 	private List<AthleteEvent> athleteEvents;
 	
+	@JsonIgnoreProperties({"teams"})
 	@ManyToOne
 	@JoinColumn(name="user_id")
 	@MapsId(value="userId")

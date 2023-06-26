@@ -1,12 +1,12 @@
 <br>
 <div *ngIf="!selectedTeam">
-  <div *ngFor="let team of selectedUser!.teams">
-    <img src="{{team!.photoURL}}" alt="Team Picture" width="10%" height="10%"/><br><br>
+  <div *ngFor="let team of selectedUser?.teams">
+    <img src="{{team?.photoURL}}" alt="Team Picture" width="10%" height="10%"/><br><br>
     <p>
-      Team: {{team!.teamName}}
-      <br>User: {{team!.user!.username}}
-      <br>League: {{team!.league!.leagueName}}
-      <br>Description: {{team!.description}}
+      Team: {{team?.teamName}}
+      <br>User: {{team?.user?.username}}
+      <br>League: {{team?.league?.leagueName}}
+      <br>Description: {{team?.description}}
     </p>
     <button class="btn btn-success me-1" (click)="selectedTeam = team">Update Team</button><br><br>
   </div>
@@ -16,10 +16,10 @@
 <div *ngIf="selectedTeam">
   <img src="{{selectedTeam.photoURL}}" alt="Team Picture" width="10%" height="10%"/><br><br>
   <p>
-    Team: {{selectedTeam!.teamName}}
-    <br>User: {{selectedTeam!.user!.username}}
-    <br>League: {{selectedTeam!.league!.leagueName}}
-    <br>Description: {{selectedTeam!.description}}
+    Team: {{selectedTeam?.teamName}}
+    <br>User: {{selectedTeam?.user?.username}}
+    <br>League: {{selectedTeam?.league?.leagueName}}
+    <br>Description: {{selectedTeam?.description}}
   </p>
   <hr>
   <h3>Update Team</h3>
