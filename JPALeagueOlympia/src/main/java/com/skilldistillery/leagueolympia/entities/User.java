@@ -31,7 +31,7 @@ public class User {
 	private String role;
 	private String photo;
 	
-	@JsonIgnoreProperties({"comissioner", "usersBoughtIn", "comments"})
+	@JsonIgnoreProperties({"comissioner", "usersBoughtIn", "comments", "boughtInLeagues"})
 	@OneToMany(mappedBy="comissioner")
 	private List<League> leagues;
 	

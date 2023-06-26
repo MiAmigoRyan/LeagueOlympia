@@ -42,7 +42,7 @@ public class Team {
 	@MapsId(value="userId")
 	private User user;
 	
-	@JsonIgnoreProperties({"teams"})
+	@JsonIgnoreProperties({"teams", "comments", "usersBoughtIn"})
 	@ManyToOne
 	@JoinColumn(name="league_id")
 	@MapsId(value="leagueId")
