@@ -26,6 +26,40 @@ public class AthleteController {
 	@Autowired
 	private AthleteService athleteService;
 	
+
+	@GetMapping("athletes")
+	public List<Athlete> index(
+			HttpServletRequest req,
+			HttpServletResponse res){
+		List<Athlete> athletes = athleteService.index();
+		if(athletes == null) {
+			res.setStatus(400);
+		}
+		return athletes;
+	}
+	
+//	@PutMapping("athletes/{athleteId}")
+//	public User update(HttpServletRequest req,
+//			HttpServletResponse res,
+//			@PathVariable("athleteId") Integer athleteId,
+//			@RequestBody Athlete newAthlete,
+//			Principal principal) {
+//		try {
+//			 = athleteService.update(principal.getName(), *** );
+//			if( == null) {
+//				res.setStatus(400);
+//			} else {
+//				res.setStatus(200);
+//				
+//			}
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//			res.setStatus(400);
+//			newAthlete = null;
+//		}
+//		return newAthlete; 
+//	}
+	
 	
 	
 }
