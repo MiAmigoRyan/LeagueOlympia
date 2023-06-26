@@ -182,20 +182,13 @@ public class SportEvent {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("SportEvent [id=");
-		builder.append(id);
-		builder.append(", venue=");
-		builder.append(venue);
-		builder.append(", locationLatitude=");
-		builder.append(locationLatitude);
-		builder.append(", locationLongitude=");
-		builder.append(locationLongitude);
-		builder.append(", completed=");
-		builder.append(completed);
-		builder.append(", eventCompletionDate=");
-		builder.append(eventCompletionDate);
-		builder.append("]");
+		builder.append("SportEvent [id=").append(id).append(", venue=").append(venue).append(", olympiad=")
+				.append(olympiad).append(", locationLatitude=").append(locationLatitude).append(", locationLongitude=")
+				.append(locationLongitude).append(", sport=").append(sport).append(", completed=").append(completed)
+				.append(", eventCompletionDate=").append(eventCompletionDate).append("]");
 		return builder.toString();
 	}
+
+
 	
 }

@@ -1,6 +1,7 @@
 package com.skilldistillery.leagueolympia.entities;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -173,16 +174,32 @@ public class Team {
 		return Objects.equals(id, other.id);
 	}
 
+
+
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("Team [id=").append(id).append(", teamName=").append(teamName).append(", photoURL=")
-				.append(photoURL).append(", description=").append(description).append(", createdAt=").append(createdAt)
-				.append(", updatedAt=").append(updatedAt).append(", enabled=").append(enabled).append("]");
+		builder.append("Team [id=").append(id).append(", user=").append(user).append(", league=").append(league)
+				.append(", teamName=").append(teamName).append(", photoURL=").append(photoURL).append(", description=")
+				.append(description).append(", createdAt=").append(createdAt).append(", updatedAt=").append(updatedAt)
+				.append(", enabled=").append(enabled).append("]");
 		return builder.toString();
 	}
 
-	
+	public void addAthleteEvent(AthleteEvent athleteEvent) {
+		if(athleteEvents == null) athleteEvents  = new ArrayList<>();
+		
+		if(!athleteEvents.contains(athleteEvent)){
+			athleteEvents.add(athleteEvent);
+			athleteEvent.addTeam(this);
+		}
+	}
+	public void removeAthleteEvent(AthleteEvent athleteEvent) {
+		if(athleteEvents != null && athleteEvents.contains(athleteEvent)) {
+			athleteEvents.remove(athleteEvent);
+			athleteEvent.removeTeam(this);
+		}
+	}
 	
 
 }
