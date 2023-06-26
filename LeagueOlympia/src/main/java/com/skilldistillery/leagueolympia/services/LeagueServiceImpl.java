@@ -41,7 +41,7 @@ public class LeagueServiceImpl implements LeagueService {
 	
 	@Override
 	public League update(int leagueId, League league) {
-		League managedLeague = leagueRepo.findById(leagueId);
+		League managedLeague = leagueRepo.queryById(leagueId);
 		if(managedLeague.getId()==leagueId) {
 			managedLeague.setLeagueName(league.getLeagueName());
 			managedLeague.setComissioner(league.getComissioner());

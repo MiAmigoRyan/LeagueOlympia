@@ -8,6 +8,6 @@ public interface TeamService {
 
 	public List<Team> index();
 	public List<Team> index(String username);
-	public Team create(String username, Team team);
+	public Team create(String username, Team team, Integer leagueId);
 
 }

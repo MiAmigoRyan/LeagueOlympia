@@ -53,14 +53,17 @@ public class TeamController {
 }
 	
  	
+
 	@PostMapping("teams")
+
 	public Team create(HttpServletRequest req,
 			HttpServletResponse res,
 			@RequestBody Team newTeam,
+			@PathVariable("leagueId") Integer leagueId,
 			Principal principal) {
 		
 		try {
-			newTeam = teamService.create(principal.getName(), newTeam);
+			newTeam = teamService.create(principal.getName(), newTeam, leagueId);
 			if(newTeam == null) {
 				res.setStatus(404);
 			}else {

@@ -1,2 +1,16 @@
-<p>league-list works!</p>
-<h1 *ngFor="let league of leagues">{{league.leagueName}}</h1>
+<br>
+<div *ngIf="!selected">
+  <div (click)="displayLeague(league)" *ngFor="let league of leagues">
+    <h1>{{league.leagueName | uppercase}}</h1> <span>Commissioner: {{league.comissioner!.username}}</span><br><br>
+  </div>
+</div>
+
+<div *ngIf="selected">
+  <img src="{{selected.photoUrl}}" alt="league picture" width="40%" height="40%"/><br><br>
+  <h1>{{selected.leagueName | uppercase}}</h1>
+  <h3>Buy In: {{selected.buyIn | currency}}</h3>
+  <button class="btn btn-success me-1" (click)="selected = null">View All Leagues</button>
+  <button class="btn btn-success me-1" (click)="createTeam(selected.id)">Join League</button>
+  <p>
+  </p>
+</div>
