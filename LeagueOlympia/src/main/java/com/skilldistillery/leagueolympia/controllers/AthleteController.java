@@ -27,16 +27,16 @@ public class AthleteController {
 	private AthleteService athleteService;
 	
 
-	@GetMapping("athletes")
-	public List<Athlete> index(
-			HttpServletRequest req,
-			HttpServletResponse res){
-		List<Athlete> athletes = athleteService.index();
-		if(athletes == null) {
-			res.setStatus(400);
-		}
-		return athletes;
-	}
+//	@GetMapping("athletes")
+//	public List<Athlete> index(
+//			HttpServletRequest req,
+//			HttpServletResponse res){
+//		List<Athlete> athletes = athleteService.index();
+//		if(athletes == null) {
+//			res.setStatus(400);
+//		}
+//		return athletes;
+//	}
 	
 //	@PutMapping("athletes/{athleteId}")
 //	public User update(HttpServletRequest req,

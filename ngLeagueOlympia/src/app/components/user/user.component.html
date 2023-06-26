@@ -5,15 +5,16 @@
   <p>{{editUser.username}}</p>
   <p>{{editUser.firstName}} {{editUser.lastName}}</p>
   <p>{{editUser.aboutMe}}</p>
-  <p>{{editUser.leagues[0]!.leagueName}}</p>
-  <p>{{editUser.leagues[1]!.leagueName}}</p>
 
+  <p *ngFor="let team of editUser.teams">{{team.teamName}} <br>
+    {{team.league}}<br>
+    {{team.athleteEvents}}
+  </p>
+  <p *ngFor="let league of editUser.leagues">{{league.leagueName}}</p>
 </div>
 
-
-
+<hr>
 <div *ngIf="editUser">
-  <hr>
   <div class="col-md-6">
     <form class="row g-3">
       <div class="col-md-6">
