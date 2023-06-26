@@ -28,7 +28,7 @@ public class TeamServiceImpl implements TeamService {
 		User user = userRepo.findByUsername(username);
 		if (user != null) {
 			newTeam.setUser(user);
-			System.out.println("*****************"+username+":"+newTeam+"*****************");
+			
 			return teamRepo.saveAndFlush(newTeam);
 		}
 		return null;
