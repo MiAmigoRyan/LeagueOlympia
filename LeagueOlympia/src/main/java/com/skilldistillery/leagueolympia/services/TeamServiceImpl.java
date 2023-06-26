@@ -36,6 +36,7 @@ public class TeamServiceImpl implements TeamService {
 		if (user != null && league != null) {			
 			newTeam.setId(new TeamId(user.getId(), league.getId()));
 			newTeam.setUser(user);
+			newTeam.setLeague(league);
 			return teamRepo.saveAndFlush(newTeam);
 		}
 		return null;

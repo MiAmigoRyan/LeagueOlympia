@@ -40,7 +40,9 @@ public class AthleteEvent {
 	
 	
 	@Column(name="finish_result")
-	private int finishResult;
+	private Integer finishResult;
+	
+	
 	private String remarks;
 	private boolean enabled;
 	
@@ -79,11 +81,11 @@ public class AthleteEvent {
 	}
 
 
-	public int getFinishResult() {
+	public Integer getFinishResult() {
 		return finishResult;
 	}
 	
-	public void setFinishResult(int place) {
+	public void setFinishResult(Integer place) {
 		this.finishResult = place;
 	}
 	
