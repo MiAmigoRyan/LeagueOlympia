@@ -53,10 +53,9 @@ public class TeamController {
 }
 	
  	
-	@PostMapping("teams/{username}")
+	@PostMapping("teams")
 	public Team create(HttpServletRequest req,
 			HttpServletResponse res,
-			//@PathVariable("username") String username,
 			@RequestBody Team newTeam,
 			Principal principal) {
 		

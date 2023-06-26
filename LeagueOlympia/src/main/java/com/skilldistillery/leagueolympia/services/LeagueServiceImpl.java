@@ -54,4 +54,16 @@ public class LeagueServiceImpl implements LeagueService {
 		}
 		return null;
 	}
+	
+	@Override
+	public boolean delete(String username, int leagueId) {
+		boolean deleted = false;
+		League toDelete = leagueRepo.findById(leagueId);
+		if(toDelete.getId()==leagueId) {
+			leagueRepo.delete(toDelete);
+			deleted = true;
+		}
+		return deleted;
+		
+	}
 }

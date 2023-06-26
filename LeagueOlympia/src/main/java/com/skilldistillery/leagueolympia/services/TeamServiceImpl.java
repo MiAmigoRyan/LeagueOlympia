@@ -16,7 +16,7 @@ public class TeamServiceImpl implements TeamService {
 	@Autowired
 	private TeamRepository teamRepo;
 	@Autowired
-	UserRepository userRepo;
+	private UserRepository userRepo;
 
 	@Override
 	public List<Team> index() {
@@ -28,7 +28,6 @@ public class TeamServiceImpl implements TeamService {
 		User user = userRepo.findByUsername(username);
 		if (user != null) {
 			newTeam.setUser(user);
-			System.out.println("*****************"+username+":"+newTeam+"*****************");
 			return teamRepo.saveAndFlush(newTeam);
 		}
 		return null;

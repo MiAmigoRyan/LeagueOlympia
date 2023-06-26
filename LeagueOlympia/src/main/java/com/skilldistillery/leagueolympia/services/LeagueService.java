@@ -9,5 +9,6 @@ public interface LeagueService {
 	public List<League> index();
 	public List<League> index(String username);
 	public League create(String username, League league);
-	League update(int leagueId, League league);
+	public League update(int leagueId, League league);
+	public boolean delete(String username, int leagueId);
 }
