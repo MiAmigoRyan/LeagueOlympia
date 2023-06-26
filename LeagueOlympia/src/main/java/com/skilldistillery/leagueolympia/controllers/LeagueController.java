@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -69,6 +70,30 @@ public class LeagueController {
 			newLeague = null; 
 		}
 		return newLeague;
+	}
+	
+	@PutMapping("leagues/{leagueId}")
+	public League update(HttpServletRequest req,
+			HttpServletResponse res,
+			@PathVariable("leagueId")Integer leagueId,
+			@RequestBody League managedLeague,
+			Principal principal) {
+		
+		try {
+			managedLeague = leagueService.update(leagueId, managedLeague);
+			if(managedLeague==null) {
+				res.setStatus(400);
+			} else {
+				res.setStatus(200);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			res.setStatus(400);
+			managedLeague = null;
+		}
+		return managedLeague;
+		
 		
 	}
+	
 }

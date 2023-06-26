@@ -38,5 +38,14 @@ public class LeagueServiceImpl implements LeagueService {
 		}
 		return null;
 	}
-
+	
+	@Override
+	public League update(int leagueId, League league) {
+		League managedLeague = leagueRepo.findById(leagueId);
+		if(managedLeague.getId()==leagueId) {
+			managedLeague.setLeagueName(league.getLeagueName());
+			return leagueRepo.saveAndFlush(managedLeague);
+		}
+		return null;
+	}
 }
