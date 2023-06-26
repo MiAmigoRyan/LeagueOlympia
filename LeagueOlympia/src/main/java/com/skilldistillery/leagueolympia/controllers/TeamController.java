@@ -53,7 +53,9 @@ public class TeamController {
 }
 	
  	
-	@PostMapping("teams/{leagueId}")
+
+	@PostMapping("teams")
+
 	public Team create(HttpServletRequest req,
 			HttpServletResponse res,
 			@RequestBody Team newTeam,
