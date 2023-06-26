@@ -44,6 +44,12 @@ public class LeagueServiceImpl implements LeagueService {
 		League managedLeague = leagueRepo.findById(leagueId);
 		if(managedLeague.getId()==leagueId) {
 			managedLeague.setLeagueName(league.getLeagueName());
+			managedLeague.setComissioner(league.getComissioner());
+			managedLeague.setBetEnabled(league.isBetEnabled());
+			managedLeague.setEnabled(league.isEnabled());
+			managedLeague.setPhotoUrl(league.getPhotoUrl());
+			managedLeague.setSideWager(league.getSideWager());
+			managedLeague.setBuyIn(league.getBuyIn());
 			return leagueRepo.saveAndFlush(managedLeague);
 		}
 		return null;
