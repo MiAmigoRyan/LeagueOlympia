@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.leagueolympia.entities.Athlete;
-import com.skilldistillery.leagueolympia.entities.Team;
 import com.skilldistillery.leagueolympia.repositories.AthleteRepository;
 import com.skilldistillery.leagueolympia.repositories.TeamRepository;
 
