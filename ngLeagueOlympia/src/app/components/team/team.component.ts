@@ -1,6 +1,7 @@
 import { AthleteEvent } from './../../models/athlete-event';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+
 import { Team } from 'src/app/models/team';
 import { User } from 'src/app/models/user';
 import { AthleteEventService } from 'src/app/services/athlete-event.service';
@@ -58,13 +59,15 @@ export class TeamComponent implements OnInit{
   }
 
   updateTeam(team: Team, goToDetails: boolean = true): void {
+      // console.log(selectedUser.username);
       this.teamService.update(team).subscribe({
         next: (updatedTeam) => {
           if (goToDetails){
             this.selectedTeam = updatedTeam;
-            this.reload();
           }
-          this.selectedTeam = null;
+          else {
+            this.selectedTeam = null;
+          }
           this.reload();
         },
         error: (updateError) => {
