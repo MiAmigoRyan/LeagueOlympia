@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.skilldistillery.leagueolympia.entities.Athlete;
 import com.skilldistillery.leagueolympia.entities.AthleteEvent;
 import com.skilldistillery.leagueolympia.services.AthleteEventService;
 

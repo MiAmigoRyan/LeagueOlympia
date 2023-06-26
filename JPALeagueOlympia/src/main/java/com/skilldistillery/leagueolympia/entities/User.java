@@ -245,33 +245,18 @@ public class User {
 		return id == other.id;
 	}
 
+
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("User [id=");
-		builder.append(id);
-		builder.append(", username=");
-		builder.append(username);
-		builder.append(", password=");
-		builder.append(password);
-		builder.append(", enabled=");
-		builder.append(enabled);
-		builder.append(", role=");
-		builder.append(role);
-		builder.append(", photo=");
-		builder.append(photo);
-		builder.append(", aboutMe=");
-		builder.append(aboutMe);
-		builder.append(", firstName=");
-		builder.append(firstName);
-		builder.append(", lastName=");
-		builder.append(lastName);
-		builder.append(", createdDate=");
-		builder.append(createdDate);
-		builder.append(", updatedDate=");
-		builder.append(updatedDate);
-		builder.append("]");
+		builder.append("User [id=").append(id).append(", username=").append(username).append(", password=")
+				.append(password).append(", enabled=").append(enabled).append(", role=").append(role).append(", photo=")
+				.append(photo).append(", aboutMe=").append(aboutMe).append(", firstName=").append(firstName)
+				.append(", lastName=").append(lastName).append(", createdDate=").append(createdDate)
+				.append(", updatedDate=").append(updatedDate).append("]");
 		return builder.toString();
 	}
+
+
 
 }

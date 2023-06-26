@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.skilldistillery.leagueolympia.entities.Athlete;
 import com.skilldistillery.leagueolympia.entities.AthleteEvent;
 import com.skilldistillery.leagueolympia.entities.Team;
 import com.skilldistillery.leagueolympia.services.AthleteEventService;
@@ -85,8 +86,28 @@ public class TeamController {
 		return newTeam;
 		
 	}
-//@PostMapping("teams/{leagueId}/sportEvents/{sportEventId}/athletes/{athleteId}")
-
+	@PostMapping("teams/{leagueId}/sportEvents/{sportEventId}/athletes/{athleteId}")
+	public Team addAthlete(
+			HttpServletRequest req,
+			HttpServletResponse res,
+			@PathVariable("leagueId") Integer leagueId,
+			@PathVariable ("sportEventId") Integer sportEventId,
+			@PathVariable("athleteId") Integer athleteId,
+			Principal principal
+			){
+		Team managedTeam = null;
+		try {
+			managedTeam = teamService.addAthlete(athleteId, leagueId, sportEventId, principal.getName()) ;
+			if(managedTeam == null) {
+				res.setStatus(404);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			res.setStatus(400);
+		}
+		return managedTeam;
+	}
+	
 	//list athletes by league and port even
 	@GetMapping("sportEvents/{sportEventId}/athleteEvents")
 	public List<AthleteEvent> athletesBySportEventInLeague(HttpServletRequest req,

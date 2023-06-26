@@ -153,15 +153,18 @@ public class Athlete {
 	}
 
 
+
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("Athlete [id=").append(id).append(", country=").append(country).append(", athleteEvents=")
-				.append(athleteEvents).append(", fname=").append(fname).append(", lname=").append(lname)
-				.append(", photoURL=").append(photoURL).append(", dateOfBirth=").append(dateOfBirth)
-				.append(", socialMediaURL=").append(socialMediaURL).append("]");
+		builder.append("Athlete [id=").append(id).append(", country=").append(country).append(", fname=").append(fname)
+				.append(", lname=").append(lname).append(", photoURL=").append(photoURL).append(", dateOfBirth=")
+				.append(dateOfBirth).append(", socialMediaURL=").append(socialMediaURL).append("]");
 		return builder.toString();
 	}
+
+
+
 	
 	
 }

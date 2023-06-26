@@ -1,5 +1,6 @@
 package com.skilldistillery.leagueolympia.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -143,8 +144,19 @@ public class AthleteEvent {
 		return builder.toString();
 	}
 
-
-
+	public void addTeam(Team team) {
+		if(teams == null) teams = new ArrayList <>();
+		if(!teams.contains(team)) {
+			teams.add(team);
+			team.addAthleteEvent(this);
+		}
+	}
+	public void removeTeam(Team team) {
+		if(teams != null && teams.contains(team)) {
+			teams.remove(team);
+			team.removeAthleteEvent(this);
+		}
+	}
 
 	
 }
