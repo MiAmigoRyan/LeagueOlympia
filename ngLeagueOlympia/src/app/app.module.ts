@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
@@ -21,6 +20,7 @@ import { AboutComponent } from './components/about/about.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { UserComponent } from './components/user/user.component';
 import { TeamComponent } from './components/team/team.component';
+import { AthleteComponent } from './components/athlete/athlete.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +36,8 @@ import { TeamComponent } from './components/team/team.component';
     AboutComponent,
     ContactComponent,
     UserComponent,
-    TeamComponent
+    TeamComponent,
+    AthleteComponent
   ],
   imports: [
     BrowserModule,

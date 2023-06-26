@@ -38,11 +38,13 @@
         <input class="form-control" type="text" name="description" [(ngModel)]="selectedTeam.description"/>
       </div>
       <div class="col-12">
-        <div *ngFor="let event of athleteEvents">
-          <label>{{event.sportEvent!.sport!.name}}</label>
-          <div class="dropdown">
-            <button class="btn btn-outline-success dropdown-toggle me-1" (click)="null">Athletes</button>
-          </div>
+        <div class="dropdown">
+          <button class="btn btn-outline-success dropdown-toggle me-1" (click)="null">Events</button>
+          <ul *ngFor="let event of athleteEvents">
+              <li>
+                {{event.sportEvent!.sport!.name}}
+              </li>
+            </ul>
         </div>
       </div>
       <div class="col-12">
