@@ -10,6 +10,7 @@
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup" [ngbCollapse]='isCollapsed'>
         <div class="navbar-nav align-items-center">
           <a class="nav-link" [routerLink]="['/users/profile']" *ngIf="loggedIn()">Profile</a>
+          <a class="nav-link" [routerLink]="['/leagues']" >Leagues</a>
           <a class="nav-link" [routerLink]="['/about']">About</a>
           <a class="nav-link" [routerLink]="['/contact']">Contact</a>
           <a class="nav-link" [routerLink]="['/register']" *ngIf="!loggedIn()">Sign-Up</a>

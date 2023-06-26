@@ -1,7 +1,9 @@
+import { TeamService } from 'src/app/services/team.service';
 import { ActivatedRoute, Route, Router } from '@angular/router';
 import { LeagueService } from '../../services/league.service';
 import { Component, OnInit } from '@angular/core';
 import { League } from 'src/app/models/league';
+import { Team } from 'src/app/models/team';
 
 
 @Component({
@@ -13,9 +15,11 @@ export class LeagueListComponent implements OnInit {
   title: string = 'ngLeague';
   leagues: League[] = [];
   selected: League | null = null;
+  newTeam: Team = new Team();
 
   constructor(
     private leagueService: LeagueService,
+    private teamService: TeamService,
     private router: Router,
     private route: ActivatedRoute
   ) { }
@@ -41,6 +45,20 @@ export class LeagueListComponent implements OnInit {
 
   displayAllLeagues() {
     this.selected = null;
+  }
+
+  createTeam(leagueId: number) {
+    this.teamService.create(leagueId).subscribe({
+      next: (createdTeam) => {
+        this.newTeam = new Team();
+        this.router.navigateByUrl('/teams/' + createdTeam.league!.id);
+      },
+      error: (createError) => {
+        console.error('LeagueListComponent.createTeam(): error creating team');
+        console.error(createError);
+      }
+    });
+
   }
 
 }

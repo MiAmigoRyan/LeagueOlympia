@@ -18,10 +18,11 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
   { path: 'leagues', component: LeagueListComponent },
+  { path: 'leagues/:id', component: LeagueListComponent },
   { path: 'users', component: UserComponent },
   { path: 'users/:username', component: UserComponent },
   { path: 'teams', component: TeamComponent },
-  { path: 'teams/:id', component: TeamComponent },
+  { path: 'teams/:leagueId', component: TeamComponent },
   { path: '**', component: NotFoundComponent }
 ];
 
