@@ -9,4 +9,5 @@ public interface LeagueService {
 	public List<League> index();
 	public List<League> index(String username);
 	public League create(String username, League league);
+	League update(int leagueId, League league);
 }
