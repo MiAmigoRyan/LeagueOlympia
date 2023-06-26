@@ -6,6 +6,6 @@ import com.skilldistillery.leagueolympia.entities.League;
 
 public interface LeagueRepository extends JpaRepository<League , Integer> {
 	
-	League findById(int leagueId);
+	League queryById(int leagueId);
 	
 }

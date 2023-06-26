@@ -1,21 +1,39 @@
 <br>
-<div *ngFor="let team of teams">
-  <img src="{{team!.photoURL}}" alt="Team Picture" width="10%" height="10%"/><br><br>
-  <p>
-    Team: {{team!.teamName}}
-    <br>User: {{team!.user!.username}}
-    <br>League: {{team!.league!.leagueName}}
-    <br>Description: {{team!.description}}
-  </p>
+<div *ngIf="!selectedTeam">
+  <div *ngFor="let team of teams">
+    <img src="{{team!.photoURL}}" alt="Team Picture" width="10%" height="10%"/><br><br>
+    <p>
+      Team: {{team!.teamName}}
+      <br>User: {{team!.user!.username}}
+      <br>League: {{team!.league!.leagueName}}
+      <br>Description: {{team!.description}}
+    </p>
+  </div>
 </div>
-  <!-- <br>
-  <p>{{selectedTeam!.user}}</p>
-  <p>{{selectedTeam!.league}}</p>
-  <p>{{selectedTeam!.teamName}}</p>
-  <p>{{selectedTeam!.description}}</p>
-  <p>{{selectedTeam!.athleteEvents}}</p>
-  <img src="{{selectedTeam!.photoURL}}" alt="Team Picture" width="10%" height="10%"/><br><br>
-  <p>{{editUser.leagues[0]!.leagueName}}</p> -->
+
+
+<div *ngIf="selectedTeam">
+  <div class="col-md-6">
+    <form class="row g-3">
+      <div class="col-md-6">
+        <label class="form-label">Team Name: </label>
+        <input class="form-control" type="text" name="teamName" [(ngModel)]="selectedTeam.teamName"/>
+      </div>
+      <div class="col-md-12">
+        <label class="form-label">Photo URL: </label>
+        <input class="form-control" type="text" name="photoURL" [(ngModel)]="selectedTeam.photoURL"/>
+      </div>
+      <div class="col-md-12">
+        <label class="form-label">Description: </label>
+        <input class="form-control" type="text" name="description" [(ngModel)]="selectedTeam.description"/>
+      </div>
+      <div class="col-12">
+        <button class="btn btn-success me-1" (click)="selectedTeam = null">Cancel</button>
+        <button class="btn btn-success me-1" (click)="makeTeam(selectedTeam)">Save</button>
+      </div>
+    </form>
+  </div>
+</div>
 
 
 

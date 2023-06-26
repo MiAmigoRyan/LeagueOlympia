@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Team } from 'src/app/models/team';
 import { User } from 'src/app/models/user';
 import { AuthService } from 'src/app/services/auth.service';
+import { LeagueService } from 'src/app/services/league.service';
 import { TeamService } from 'src/app/services/team.service';
 import { UserService } from 'src/app/services/user.service';
 
@@ -19,6 +20,7 @@ export class TeamComponent {
   constructor(
     private userService: UserService,
     private teamService: TeamService,
+    private leagueService: LeagueService,
     private route: ActivatedRoute,
     private router: Router,
     private auth: AuthService
@@ -48,6 +50,14 @@ export class TeamComponent {
         console.error(someError);
       }
     });
+  }
+
+  // showTeam() {
+  //   this.selectedTeam =
+  // }
+
+  makeTeam(newTeam: Team) {
+
   }
 
 

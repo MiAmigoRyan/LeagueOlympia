@@ -10,6 +10,7 @@ import { AuthService } from './auth.service';
 })
 export class TeamService {
   private url = environment.baseUrl + 'api/teams';
+  newTeam: Team = new Team();
 
   constructor(
     private http: HttpClient,
@@ -46,5 +47,16 @@ export class TeamService {
       },
     };
     return options;
+  }
+
+  public create(leagueId: number): Observable<Team> {
+    return this.http.post<Team>(this.url + '/' + leagueId, {}, this.getHttpOptions()).pipe(
+      catchError((err: any) => {
+        console.error('Error POSTing new team');
+        return throwError(
+          () => new Error('TeamService.create(): error creating team: ' + err)
+        );
+      })
+    );
   }
 }
