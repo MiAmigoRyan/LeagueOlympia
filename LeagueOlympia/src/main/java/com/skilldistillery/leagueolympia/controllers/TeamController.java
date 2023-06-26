@@ -11,11 +11,11 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.skilldistillery.leagueolympia.entities.Athlete;
 import com.skilldistillery.leagueolympia.entities.AthleteEvent;
 import com.skilldistillery.leagueolympia.entities.Team;
 import com.skilldistillery.leagueolympia.services.AthleteEventService;
@@ -59,8 +59,6 @@ public class TeamController {
 	return usersTeams;
 }
 	
- 	
-
 	@PostMapping("teams/{leagueId}")
 	public Team create(HttpServletRequest req,
 			HttpServletResponse res,
@@ -107,7 +105,6 @@ public class TeamController {
 		}
 		return managedTeam;
 	}
-	
 	//list athletes by league and port even
 	@GetMapping("sportEvents/{sportEventId}/athleteEvents")
 	public List<AthleteEvent> athletesBySportEventInLeague(HttpServletRequest req,
@@ -120,5 +117,29 @@ public class TeamController {
 	
 	}
 	
-//	@GetMapping("leagues/{leagueId}/sportEvents")
+	@PutMapping("teams/{leagueId}")
+	public Team update(
+			HttpServletRequest req,
+			HttpServletResponse res,
+			@PathVariable ("leagueId") Integer leagueId,
+			@RequestBody Team team,
+			Principal principal){
+		
+		try {
+			team = teamService.update(team, leagueId, principal.getName());
+			if(team == null) {
+				res.setStatus(404);
+			}else {
+				res.setStatus(200);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			res.setStatus(400);
+			team = null;
+		}
+		
+		return team;
+		
+	}
+	
 }

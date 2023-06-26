@@ -48,6 +48,24 @@ public class TeamServiceImpl implements TeamService {
 		}
 		return null;
 	}
+	
+	@Override
+	public Team update(Team team,  Integer leagueId,String username) {
+		Team managedTeam = teamRepo.findByUser_UsernameAndLeagueId(username, leagueId);
+		if(managedTeam != null) {
+			managedTeam.setAthleteEvents(team.getAthleteEvents());
+			managedTeam.setDescription(team.getDescription());
+			managedTeam.setPhotoURL(team.getPhotoURL());
+			managedTeam.setTeamName(team.getTeamName());
+			managedTeam.setEnabled(team.isEnabled());
+			managedTeam.setLeague(team.getLeague());
+			
+			return teamRepo.saveAndFlush(managedTeam);
+		}else {
+			return null;
+		}
+		
+	}
 
 
 	@Override
@@ -69,9 +87,6 @@ public class TeamServiceImpl implements TeamService {
 		//athlevnt from athEv by athleteID
 		AthleteEvent event = athleteEventRepo.findByAthlete_IdAndSportEvent_Id(athleteId, sportEventId);
 		//add athleve to team
-		System.out.println("***************************"+team+"***************************");
-		System.out.println("***************************"+username+ "::"+leagueId+"***************************");
-		System.out.println("***************************"+event+"***************************");
 		if(team !=null && event != null) {
 			//add and remove from team entity
 			team.addAthleteEvent(event);
