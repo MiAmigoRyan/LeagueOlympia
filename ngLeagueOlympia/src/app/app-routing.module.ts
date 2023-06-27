@@ -9,6 +9,7 @@ import { ContactComponent } from './components/contact/contact.component';
 import { HomeComponent } from './components/home/home.component';
 import { UserComponent } from './components/user/user.component';
 import { TeamComponent } from './components/team/team.component';
+import { AthleteComponent } from './components/athlete/athlete.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
@@ -23,6 +24,8 @@ const routes: Routes = [
   { path: 'users/:username', component: UserComponent },
   { path: 'teams', component: TeamComponent },
   { path: 'teams/:leagueId', component: TeamComponent },
+  { path: 'athletes', component: AthleteComponent },
+  { path: 'athletes/:athleteId', component: AthleteComponent },
   { path: '**', component: NotFoundComponent }
 ];
 

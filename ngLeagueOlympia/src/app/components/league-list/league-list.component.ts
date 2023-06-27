@@ -4,6 +4,7 @@ import { LeagueService } from '../../services/league.service';
 import { Component, OnInit } from '@angular/core';
 import { League } from 'src/app/models/league';
 import { Team } from 'src/app/models/team';
+import { SportEvent } from 'src/app/models/sport-event';
 
 
 @Component({
@@ -16,6 +17,7 @@ export class LeagueListComponent implements OnInit {
   leagues: League[] = [];
   selected: League | null = null;
   newTeam: Team = new Team();
+  teams: Team[] = [];
 
   constructor(
     private leagueService: LeagueService,
@@ -41,6 +43,12 @@ export class LeagueListComponent implements OnInit {
 
   displayLeague(league: League) {
     this.selected = league;
+    console.log(league.sportEvents);
+    // this.showSports(this.sportEvents = league.sportEvents);
+  }
+
+  showSports(sport: SportEvent) {
+    return sport.leagues;
   }
 
   displayAllLeagues() {
