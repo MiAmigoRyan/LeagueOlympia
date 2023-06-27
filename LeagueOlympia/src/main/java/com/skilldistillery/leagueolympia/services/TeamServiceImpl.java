@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import com.skilldistillery.leagueolympia.entities.AthleteEvent;
 import com.skilldistillery.leagueolympia.entities.AthleteEventId;
 import com.skilldistillery.leagueolympia.entities.League;
-import com.skilldistillery.leagueolympia.entities.SportEvent;
 import com.skilldistillery.leagueolympia.entities.Team;
 import com.skilldistillery.leagueolympia.entities.TeamId;
 import com.skilldistillery.leagueolympia.entities.User;
@@ -45,6 +44,7 @@ public class TeamServiceImpl implements TeamService {
 			newTeam.setId(new TeamId(user.getId(), league.getId()));
 			newTeam.setUser(user);
 			newTeam.setLeague(league);
+			leagueRepo.addBoughtInUser(user.getId(), league.getId());
 			return teamRepo.saveAndFlush(newTeam);
 		}
 		return null;
