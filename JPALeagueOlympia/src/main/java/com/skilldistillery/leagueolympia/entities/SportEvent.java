@@ -17,6 +17,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "sport_event")
@@ -58,7 +59,7 @@ public class SportEvent {
 	@Column(name = "location_longitude")
 	private String locationLongitude;
 
-	@JsonIgnore
+	@JsonIgnoreProperties("sportevents")
 	@ManyToOne
 	@JoinColumn(name = "sport_id")
 	private Sport sport;

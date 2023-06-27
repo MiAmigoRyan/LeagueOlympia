@@ -20,8 +20,9 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let sportEvent of sportEvents">
+        <tr *ngFor="let sportEvent of selected.sportEvents">
           <td>{{sportEvent.venue}}</td>
+          <td>{{sportEvent.sport?.name}}</td>
         </tr>
       </tbody>
     </table>
