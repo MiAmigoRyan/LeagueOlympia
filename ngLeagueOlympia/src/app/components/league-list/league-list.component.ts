@@ -18,6 +18,7 @@ export class LeagueListComponent implements OnInit {
   selected: League | null = null;
   newTeam: Team = new Team();
   teams: Team[] = [];
+  newLeague: League = new League();
 
   constructor(
     private leagueService: LeagueService,
@@ -66,7 +67,23 @@ export class LeagueListComponent implements OnInit {
         console.error(createError);
       }
     });
-
   }
+
+  startLeague(){
+    this.router.navigateByUrl('/createLeague');
+  }
+
+  deleteLeague(id: number): void {
+    this.leagueService.destroy(id).subscribe({
+      next: () => {
+        this.reload();
+      },
+      error: (errorDelete) => {
+        console.error('LeagueListComponent.deleteLeague(): error deleting');
+        console.error(errorDelete);
+      }
+    });
+  }
+
 
 }

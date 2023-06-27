@@ -21,6 +21,8 @@ import { ContactComponent } from './components/contact/contact.component';
 import { UserComponent } from './components/user/user.component';
 import { TeamComponent } from './components/team/team.component';
 import { AthleteComponent } from './components/athlete/athlete.component';
+import { LeagueComponent } from './components/league/league.component';
+// import { OlympiadPipe } from './pipes/olympiad.pipe';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,9 @@ import { AthleteComponent } from './components/athlete/athlete.component';
     ContactComponent,
     UserComponent,
     TeamComponent,
-    AthleteComponent
+    AthleteComponent,
+    LeagueComponent,
+    // OlympiadPipe,
   ],
   imports: [
     BrowserModule,

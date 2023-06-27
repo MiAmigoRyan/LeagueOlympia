@@ -10,6 +10,7 @@ import { HomeComponent } from './components/home/home.component';
 import { UserComponent } from './components/user/user.component';
 import { TeamComponent } from './components/team/team.component';
 import { AthleteComponent } from './components/athlete/athlete.component';
+import { LeagueComponent } from './components/league/league.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
@@ -20,6 +21,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'leagues', component: LeagueListComponent },
   { path: 'leagues/:id', component: LeagueListComponent },
+  { path: 'createLeague', component: LeagueComponent },
   { path: 'users', component: UserComponent },
   { path: 'users/:username', component: UserComponent },
   { path: 'teams', component: TeamComponent },

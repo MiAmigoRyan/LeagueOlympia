@@ -14,6 +14,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @Entity
 public class Athlete {
 	
@@ -29,7 +30,7 @@ public class Athlete {
 	@JoinColumn(name="country_id")
 	private Country country;
 	
-	@JsonIgnore
+	@JsonIgnoreProperties("athlete")
 	@OneToMany(mappedBy="athlete")
 	private List<AthleteEvent> athleteEvents; 
 	
