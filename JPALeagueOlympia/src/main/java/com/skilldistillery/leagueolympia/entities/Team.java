@@ -21,92 +21,64 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 public class Team {
-	
+
 	@EmbeddedId
 	private TeamId id;
-	
 
- @ManyToMany
-	@JoinTable(
-			name="team_has_athlete_event",
-			joinColumns = {
-						@JoinColumn(name="team_user_id",
-								referencedColumnName = "user_id"),
-						@JoinColumn(name="team_league_id",
-								referencedColumnName = "league_id")
-						},
-			inverseJoinColumns = {
-						@JoinColumn(name="athlete_event_athlete_id", 
-									referencedColumnName = "athlete_id"),
-						@JoinColumn(name="athlete_event_sport_id", 
-									referencedColumnName = "sport_event_id")
+	@ManyToMany
+	@JoinTable(name = "team_has_athlete_event", 
+		joinColumns = {
+			@JoinColumn(name = "team_user_id", 
+					referencedColumnName = "user_id"),
+			@JoinColumn(name = "team_league_id", 
+					referencedColumnName = "league_id")
+			}, 
+		inverseJoinColumns = {
+			@JoinColumn(name = "athlete_event_athlete_id", 
+					referencedColumnName = "athlete_id"),
+			@JoinColumn(name = "athlete_event_sport_id", 
+					referencedColumnName = "sport_event_id") 
 			})
-		private List<AthleteEvent> athleteEvents;
-	
-	@JsonIgnoreProperties({"teams"})
+	private List<AthleteEvent> athleteEvents;
+
+	@JsonIgnoreProperties({ "teams" })
 	@ManyToOne
-	@JoinColumn(name="user_id")
-	@MapsId(value="userId")
+	@JoinColumn(name = "user_id")
+	@MapsId(value = "userId")
 	private User user;
-
-
 
 	@Column(name = "name")
 	private String teamName;
-	
+
 	@Column(name = "photo")
 	private String photoURL;
-	
+
 	private String description;
-	
+
 	@Column(name = "created_date")
-	 @CreationTimestamp
-	 private LocalDateTime createdAt;
+	@CreationTimestamp
+	private LocalDateTime createdAt;
 
-	 @Column(name = "updated_date")
-	 @UpdateTimestamp
-	 private LocalDateTime updatedAt;
-	
-	 private boolean enabled;
-	 
-	 @ManyToMany
-	@JoinTable(
-			name="team_has_athlete_event",
-			joinColumns = {
-						@JoinColumn(name="team_user_id",
-								referencedColumnName = "user_id"),
-						@JoinColumn(name="team_league_id",
-								referencedColumnName = "league_id")
-						},
-			inverseJoinColumns = {
-						@JoinColumn(name="athlete_event_athlete_id", 
-									referencedColumnName = "athlete_id"),
-						@JoinColumn(name="athlete_event_sport_id", 
-									referencedColumnName = "sport_event_id")
-			})
-		private List<AthleteEvent> athleteEvents;
-		
-		@ManyToOne
-		@JoinColumn(name="user_id")
-		@MapsId(value="userId")
-		private User user;
-	 
-		@JsonIgnoreProperties({"teams", "comments", "usersBoughtIn"})
-		@ManyToOne
-		@JoinColumn(name="league_id")
-		@MapsId(value="leagueId")
-		private League league;
+	@Column(name = "updated_date")
+	@UpdateTimestamp
+	private LocalDateTime updatedAt;
 
-		public Team() {
+	private boolean enabled;
+
+	@JsonIgnoreProperties({ "teams", "comments", "usersBoughtIn" })
+	@ManyToOne
+	@JoinColumn(name = "league_id")
+	@MapsId(value = "leagueId")
+	private League league;
+
+	public Team() {
 		super();
-		id= new TeamId();
+		id = new TeamId();
 	}
-		
+
 	public List<AthleteEvent> getAthleteEvents() {
 		return athleteEvents;
 	}
-
-
 
 	public void setAthleteEvents(List<AthleteEvent> athleteEvents) {
 		this.athleteEvents = athleteEvents;
@@ -115,25 +87,23 @@ public class Team {
 	public League getLeague() {
 		return league;
 	}
-	
-	
+
 	public void setLeague(League league) {
 		this.league = league;
 	}
-	
-	
+
 	public User getUser() {
 		return user;
 	}
-	
-	
+
 	public void setUser(User user) {
 		this.user = user;
 	}
+
 	public TeamId getId() {
 		return id;
 	}
-	
+
 	public void setId(TeamId id) {
 		this.id = id;
 	}
@@ -203,8 +173,6 @@ public class Team {
 		return Objects.equals(id, other.id);
 	}
 
-
-
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
@@ -216,19 +184,20 @@ public class Team {
 	}
 
 	public void addAthleteEvent(AthleteEvent athleteEvent) {
-		if(athleteEvents == null) athleteEvents  = new ArrayList<>();
-		
-		if(!athleteEvents.contains(athleteEvent)){
+		if (athleteEvents == null)
+			athleteEvents = new ArrayList<>();
+
+		if (!athleteEvents.contains(athleteEvent)) {
 			athleteEvents.add(athleteEvent);
 			athleteEvent.addTeam(this);
 		}
 	}
+
 	public void removeAthleteEvent(AthleteEvent athleteEvent) {
-		if(athleteEvents != null && athleteEvents.contains(athleteEvent)) {
+		if (athleteEvents != null && athleteEvents.contains(athleteEvent)) {
 			athleteEvents.remove(athleteEvent);
 			athleteEvent.removeTeam(this);
 		}
 	}
-	
 
 }

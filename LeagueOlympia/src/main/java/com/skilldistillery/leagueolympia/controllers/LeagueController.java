@@ -95,7 +95,7 @@ public class LeagueController {
 		return managedLeague;
 	}
 	
-	@DeleteMapping("leauges/{leagueId}")
+	@DeleteMapping("leagues/{leagueId}")
 	public void delete(HttpServletRequest req,
 			HttpServletResponse res,
 			@PathVariable int leagueId,
