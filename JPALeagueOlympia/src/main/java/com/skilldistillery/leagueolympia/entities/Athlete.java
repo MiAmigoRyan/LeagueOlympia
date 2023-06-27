@@ -22,6 +22,12 @@ public class Athlete {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
+	@Column(name = "first_name")
+	private String fname;
+	
+	@Column(name = "last_name")
+	private String lname;
+	
 	@JsonIgnore
 	@OneToMany (mappedBy= "athlete")
 	private List<AthleteComment> athleteComments;
@@ -33,12 +39,6 @@ public class Athlete {
 	@JsonIgnoreProperties("athlete")
 	@OneToMany(mappedBy="athlete")
 	private List<AthleteEvent> athleteEvents; 
-	
-	@Column(name = "first_name")
-	private String fname;
-	
-	@Column(name = "last_name")
-	private String lname;
 	
 	@Column(name ="photo")
 	private String photoURL;

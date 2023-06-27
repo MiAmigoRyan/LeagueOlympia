@@ -12,7 +12,9 @@ import com.skilldistillery.leagueolympia.entities.TeamId;
 public interface AthleteEventRepository  extends JpaRepository <AthleteEvent, Integer>{
 
 	public List<AthleteEvent> findBySportEvent_Id(Integer sportEventId);
+	
 	public AthleteEvent findByAthleteIdAndSportEvent_Id(Integer athleteEventId, Integer sportEventId);
+	
 	public AthleteEvent findByAthleteEventIdAndTeams_Id(AthleteEventId athleteEventId, TeamId teamId);
 	
 }
