@@ -18,7 +18,6 @@ export class LeagueListComponent implements OnInit {
   selected: League | null = null;
   newTeam: Team = new Team();
   teams: Team[] = [];
-  sportEvents: SportEvent[] = [];
 
   constructor(
     private leagueService: LeagueService,
