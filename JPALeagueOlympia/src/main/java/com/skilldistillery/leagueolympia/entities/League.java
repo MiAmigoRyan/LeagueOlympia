@@ -1,6 +1,7 @@
 package com.skilldistillery.leagueolympia.entities;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -17,7 +18,6 @@ import javax.persistence.OneToMany;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
@@ -42,7 +42,7 @@ public class League {
 	@ManyToMany(mappedBy = "boughtInLeagues")
 	private List<User> usersBoughtIn;
 
-	@JsonIgnore
+	@JsonIgnoreProperties({"league", "user"})
 	@OneToMany(mappedBy = "league")
 	private List<Team> teams;
 
@@ -218,4 +218,19 @@ public class League {
 		return builder.toString();
 	}
 
+	public void addBoughtInUser(User user) {
+		if(usersBoughtIn == null) usersBoughtIn = new ArrayList<>();
+		
+		if(!usersBoughtIn.contains(user)){
+			usersBoughtIn.add(user);
+			user.addLeague(this);
+		}
+	}
+	public void removeBoughtInUser(User user) {
+		if(usersBoughtIn != null && usersBoughtIn.contains(user)) {
+			usersBoughtIn.remove(user);
+			user.removeLeague(this);
+		}
+	}
+	
 }

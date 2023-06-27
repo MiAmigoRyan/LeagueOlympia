@@ -1,6 +1,7 @@
 package com.skilldistillery.leagueolympia.entities;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -256,6 +257,21 @@ public class User {
 		return builder.toString();
 	}
 
+	
+
+	public void addLeague(League league) {
+		if(leagues == null) leagues = new ArrayList<>();
+		if(!leagues.contains(league)){
+			leagues.add(league);
+			league.addBoughtInUser(this);
+		}
+	}
+	public void removeLeague(League league) {
+		if(leagues != null && leagues.contains(league)) {
+			leagues.remove(league);
+			league.removeBoughtInUser(this);
+		}
+	}
 
 
 }
