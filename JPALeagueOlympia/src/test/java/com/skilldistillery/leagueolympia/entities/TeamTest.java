@@ -1,6 +1,7 @@
 package com.skilldistillery.leagueolympia.entities;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -56,7 +57,9 @@ class TeamTest {
 	@Test
 	void test_Team_to_AthleteEvent_MTM() {
 		assertNotNull(team);
-		//assertTrue(team.getAthleteEvents());
+		assertNotNull(team.getAthleteEvents());
+		
+		assertTrue(team.getAthleteEvents().size()>0);
 	
 }
 }
