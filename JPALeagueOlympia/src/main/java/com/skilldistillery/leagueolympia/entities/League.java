@@ -21,7 +21,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
-public class League {
+public class League { 
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
