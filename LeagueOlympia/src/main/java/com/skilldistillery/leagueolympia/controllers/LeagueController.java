@@ -49,10 +49,10 @@ public class LeagueController {
 	}
 	return usersLeagues;
 }
-	@PostMapping("leagues/{username}")
+	@PostMapping("leagues")
 	public League create(HttpServletRequest req,
 			HttpServletResponse res,
-			@PathVariable("username") String username, @RequestBody League newLeague,
+			@RequestBody League newLeague,
 			Principal principal) {
 		
 		try {
@@ -62,7 +62,6 @@ public class LeagueController {
 			}else {
 				res.setStatus(200);
 				StringBuffer url = req.getRequestURL();
-				url.append("/").append(newLeague.getId());
 				res.setHeader("Location", url.toString());
 			}
 		} catch (Exception e) {
