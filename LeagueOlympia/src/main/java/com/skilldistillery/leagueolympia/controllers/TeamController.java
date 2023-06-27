@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.skilldistillery.leagueolympia.entities.AthleteEvent;
 import com.skilldistillery.leagueolympia.entities.Team;
+import com.skilldistillery.leagueolympia.entities.TeamId;
 import com.skilldistillery.leagueolympia.services.AthleteEventService;
 import com.skilldistillery.leagueolympia.services.LeagueService;
 import com.skilldistillery.leagueolympia.services.SportEventService;
@@ -38,19 +40,22 @@ public class TeamController {
 	private AthleteEventService athleteEventService;
 	
 	@GetMapping("teams")
-	public List<Team> index(HttpServletRequest req, HttpServletResponse res) {
-		List<Team> teams = teamService.index();
+	public List<Team> index(HttpServletRequest req,
+			HttpServletResponse res,
+			Principal principal) {
+		List<Team> teams = teamService.index(principal.getName());
 		if (teams == null) {
 			res.setStatus(404);
 		}
 		return teams;
 	}
 	
-	@GetMapping("teams/{username}")
+	@GetMapping("teams/{leagueId}")
 	public List<Team> index(
 			HttpServletRequest req,
 			HttpServletResponse res,
-			@PathVariable("username") String username ,
+			//FIX ME
+			@PathVariable("leagueId") Integer leagueId,
 			Principal principal){
 	List<Team> usersTeams = teamService.index();
 	if(usersTeams == null) {
@@ -141,5 +146,50 @@ public class TeamController {
 		return team;
 		
 	}
+	
+	@DeleteMapping("teams/users/{userId}/leauges/{leagueId}")
+	public Team removeAthleteEventFromTeam(
+			HttpServletRequest req,
+			HttpServletResponse res,
+			@PathVariable("userId") Integer userId,
+			@PathVariable("leagueId") Integer leagueId,
+			@RequestBody AthleteEvent athleteEvent,
+			Principal principal) {
+		TeamId tid = new TeamId(userId, leagueId);
+		Team updatedTeam = teamService.removeAthleteEventFromTeam(principal.getName(),
+				tid,
+				athleteEvent.getAthleteEventId());
+		if(updatedTeam.getAthleteEvents().contains(athleteEvent)) {
+			res.setStatus(204);
+		} else {
+			res.setStatus(404);
+		}
+		
+		return null;
+	}
+	
+//	@DeleteMapping("teams/{leagueId}")
+//	public Team removeTeam(
+//			HttpServletRequest req,
+//			HttpServletResponse res,
+//			@PathVariable ("leagueId") Integer leagueId,
+//			Principal principal) {
+//		Team teamRemoved = null;
+//		try {
+//		 teamRemoved = teamService.removeTeam(principal.getName(), leagueId);
+//			if(teamRemoved == null) {
+//				res.setStatus(404);
+//			} else {
+//				res.setStatus(200);
+//			}
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//			res.setStatus(400);
+//			teamRemoved = null;
+//		}
+//		
+//		return teamRemoved;
+//	}
 	
 }

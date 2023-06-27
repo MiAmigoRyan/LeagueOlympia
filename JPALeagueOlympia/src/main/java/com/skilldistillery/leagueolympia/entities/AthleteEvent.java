@@ -38,12 +38,9 @@ public class AthleteEvent {
 	@MapsId(value="athleteId")
 	private Athlete athlete;
 	
-	
-	
 	@Column(name="finish_result")
 	private Integer finishResult;
-	
-	
+
 	private String remarks;
 	private boolean enabled;
 	
