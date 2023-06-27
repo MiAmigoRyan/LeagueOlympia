@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.leagueolympia.entities.AthleteEvent;
+import com.skilldistillery.leagueolympia.entities.AthleteEventId;
 import com.skilldistillery.leagueolympia.entities.League;
 import com.skilldistillery.leagueolympia.entities.SportEvent;
 import com.skilldistillery.leagueolympia.entities.Team;
@@ -57,7 +58,6 @@ public class TeamServiceImpl implements TeamService {
 			managedTeam.setDescription(team.getDescription());
 			managedTeam.setPhotoURL(team.getPhotoURL());
 			managedTeam.setTeamName(team.getTeamName());
-			managedTeam.setEnabled(team.isEnabled());
 			managedTeam.setLeague(team.getLeague());
 			
 			return teamRepo.saveAndFlush(managedTeam);
@@ -66,12 +66,23 @@ public class TeamServiceImpl implements TeamService {
 		}
 		
 	}
+	
 
+//	@Override
+//	public Team removeTeam(String username, Integer leagueId) {
+//		Team teamRemoved = teamRepo.findByUser_UsernameAndLeagueId(username, leagueId);
+//		if(teamRemoved!=null) {
+//			teamRemoved.setEnabled(!teamRemoved.isEnabled());		
+//		}
+//		return teamRemoved;
+//	}
 
 	@Override
 	public List<Team> index(String username) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		List<Team> usersTeams = teamRepo.findByUser_Username(username);
+		
+		return usersTeams;
 	}
 	
 	@Override
@@ -85,7 +96,7 @@ public class TeamServiceImpl implements TeamService {
 		//get team from team repo.
 		Team team = teamRepo.findByUser_UsernameAndLeagueId(username, leagueId);
 		//athlevnt from athEv by athleteID
-		AthleteEvent event = athleteEventRepo.findByAthlete_IdAndSportEvent_Id(athleteId, sportEventId);
+		AthleteEvent event = athleteEventRepo.findByAthleteIdAndSportEvent_Id(athleteId, sportEventId);
 		//add athleve to team
 		if(team !=null && event != null) {
 			//add and remove from team entity
@@ -95,5 +106,22 @@ public class TeamServiceImpl implements TeamService {
 		
 		return null;
 	}
+
+	@Override
+	public Team removeAthleteEventFromTeam(
+			String username, 
+			TeamId teamId, 
+			AthleteEventId athleteEventId) {
+		
+		Team team = teamRepo.findByUser_UsernameAndId(username, teamId);
+		AthleteEvent athleteEvent = athleteEventRepo.findByAthleteEventIdAndTeams_Id
+				(athleteEventId, team.getId());
+		
+		team.removeAthleteEvent(athleteEvent);
+		athleteEvent.removeTeam(team);
+		
+		return teamRepo.saveAndFlush(team);
+	}
+
 
 }

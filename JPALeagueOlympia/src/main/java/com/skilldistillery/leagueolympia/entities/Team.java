@@ -25,29 +25,7 @@ public class Team {
 	@EmbeddedId
 	private TeamId id;
 	
-	@ManyToMany
-	@JoinTable(
-			name="team_has_athlete_event",
-			joinColumns = {
-					@JoinColumn(name="team_user_id"),
-					@JoinColumn(name="team_league_id")
-					},
-			inverseJoinColumns = {
-					@JoinColumn(name="athlete_event_athlete_id"),
-					@JoinColumn(name="athlete_event_sport_id")
-			})
-	private List<AthleteEvent> athleteEvents;
 	
-	@ManyToOne
-	@JoinColumn(name="user_id")
-	@MapsId(value="userId")
-	private User user;
-	
-	@JsonIgnoreProperties({"teams", "comments", "usersBoughtIn"})
-	@ManyToOne
-	@JoinColumn(name="league_id")
-	@MapsId(value="leagueId")
-	private League league;
 
 
 	@Column(name = "name")
@@ -68,7 +46,35 @@ public class Team {
 	
 	 private boolean enabled;
 	 
-	public Team() {
+	 @ManyToMany
+	@JoinTable(
+			name="team_has_athlete_event",
+			joinColumns = {
+						@JoinColumn(name="team_user_id",
+								referencedColumnName = "user_id"),
+						@JoinColumn(name="team_league_id",
+								referencedColumnName = "league_id")
+						},
+			inverseJoinColumns = {
+						@JoinColumn(name="athlete_event_athlete_id", 
+									referencedColumnName = "athlete_id"),
+						@JoinColumn(name="athlete_event_sport_id", 
+									referencedColumnName = "sport_event_id")
+			})
+		private List<AthleteEvent> athleteEvents;
+		
+		@ManyToOne
+		@JoinColumn(name="user_id")
+		@MapsId(value="userId")
+		private User user;
+	 
+		@JsonIgnoreProperties({"teams", "comments", "usersBoughtIn"})
+		@ManyToOne
+		@JoinColumn(name="league_id")
+		@MapsId(value="leagueId")
+		private League league;
+
+		public Team() {
 		super();
 		id= new TeamId();
 	}

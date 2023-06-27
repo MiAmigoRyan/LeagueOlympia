@@ -21,6 +21,11 @@ public class TeamId implements Serializable {
 	public TeamId() {
 		super();
 	}
+	public TeamId(int userId, int leagueId) {
+		super();
+		this.userId = userId;
+		this.leagueId = leagueId;
+	}
 
 	
 	public int getUserId() {
@@ -43,11 +48,6 @@ public class TeamId implements Serializable {
 
 
 
-	public TeamId(int userId, int leagueId) {
-		super();
-		this.userId = userId;
-		this.leagueId = leagueId;
-	}
 
 	@Override
 	public int hashCode() {
