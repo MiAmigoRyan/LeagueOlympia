@@ -61,6 +61,7 @@ export class LeagueListComponent implements OnInit {
       next: (createdTeam) => {
         this.newTeam = new Team();
         this.router.navigateByUrl('/teams/' + createdTeam.league!.id);
+        this.reload();
       },
       error: (createError) => {
         console.error('LeagueListComponent.createTeam(): error creating team');
