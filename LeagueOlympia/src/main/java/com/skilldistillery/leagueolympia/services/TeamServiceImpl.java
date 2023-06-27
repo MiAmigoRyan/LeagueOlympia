@@ -58,10 +58,8 @@ public class TeamServiceImpl implements TeamService {
 			managedTeam.setDescription(team.getDescription()); 
 			managedTeam.setPhotoURL(team.getPhotoURL());
 			managedTeam.setTeamName(team.getTeamName());
-			managedTeam.setLeague(team.getLeague());
-			
 			return teamRepo.saveAndFlush(managedTeam);
-		}else {
+		}else { 
 			return null;
 		}
 		
