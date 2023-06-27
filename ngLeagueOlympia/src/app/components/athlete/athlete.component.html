@@ -13,9 +13,7 @@
       <tr *ngFor="let athlete of athletes" (click)="displayAthlete(athlete)">
         <td>{{athlete.country.name}}</td>
         <td>{{athlete.fname}} {{athlete.lname}}</td>
-        <td *ngFor="let event of athleteEvents">
-          {{event.sportEvent?.sport?.name}},
-        </td>
+        <td>{{athlete.athleteEvents[0].sportEvent?.sport?.name}}</td>
       </tr>
     </tbody>
   </table>
@@ -26,7 +24,10 @@
   <h1>{{selected.fname}} {{selected.lname}}
     <a href="{{selected.socialMediaURL}}" target="_blank"><i class="bi bi-person-circle"></i></a></h1>
   <h5>DOB: {{selected.dateOfBirth}}</h5>
+
+  <!-- CHECK ENTITY FOR JSON RELATIONSHIP -->
   <h3>{{selected.country}}</h3>
+
   <ul *ngFor="let event of selected.athleteEvents">
     <li>{{event.sportEvent?.sport?.name}}</li>
   </ul>

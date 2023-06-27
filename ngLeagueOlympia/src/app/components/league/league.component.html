@@ -1,0 +1,27 @@
+<div class="col-md-6">
+  <form class="row g-3">
+    <div class="col-md-6">
+      <label class="form-label">League Name: </label>
+      <input class="form-control" type="text" name="leagueName" [(ngModel)]="newLeague.leagueName"/>
+    </div>
+    <div class="col-md-12">
+      <label class="form-label">Photo URL: </label>
+      <input class="form-control" type="text" name="photoUrl" [(ngModel)]="newLeague.photoUrl"/>
+    </div>
+    <div class="col-md-12">
+      <label class="form-check-label">Bets Enabled: </label>
+      <div class="form-check form-switch">
+        <input class="form-check-input" type="checkbox" name="betEnabled" [(ngModel)]="newLeague.betEnabled"/>
+      </div>
+    </div>
+    <div class="col-md-12">
+      <label class="form-label">Buy In: </label>
+      <input class="form-control" type="text" name="buyIn" [(ngModel)]="newLeague.buyIn"/>
+    </div>
+    <div class="col-md-12" *ngFor="let sport of newLeague.sportEvents">
+      <label class="form-label">Sport Events: </label>
+      <input class="form-control" type="text" name="sportEvents" [(ngModel)]="newLeague.sportEvents"/>
+    </div>
+    <button class="btn btn-success me-1" (click)="createALeague(newLeague)">Save</button>
+  </form>
+  </div>

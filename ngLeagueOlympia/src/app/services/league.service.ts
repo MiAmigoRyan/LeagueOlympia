@@ -1,3 +1,4 @@
+import { User } from 'src/app/models/user';
 import { AuthService } from './auth.service';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -37,6 +38,27 @@ export class LeagueService {
     );
   }
 
+  public create(newLeague: League): Observable<League> {
+    return this.http.post<League>(this.url, newLeague, this.getHttpOptions()).pipe(
+      catchError((err: any) => {
+        console.error('Error POSTing new League');
+        return throwError(
+          () => new Error('LeagueService.create(): error creating League: ' + err)
+        );
+      })
+    );
+  }
+
+  public destroy(id: number): Observable<void> {
+    return this.http.delete<void>(this.url + '/' + id, this.getHttpOptions()).pipe(
+      catchError((err: any) => {
+        console.error('Error DELETEing League');
+        return throwError(
+          () => new Error('LeagueService.destroy(): error deleting League: ' + err)
+        );
+      })
+    );
+  }
 
 
 }

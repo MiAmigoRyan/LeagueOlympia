@@ -1,7 +1,6 @@
 <br>
-
-<!-- create league if logged in -->
 <div *ngIf="!selected">
+  <button class="btn btn-success me-1" (click)="startLeague()">Create League</button><br><br>
   <div (click)="displayLeague(league)" *ngFor="let league of leagues">
     <h1>{{league.leagueName | uppercase}}</h1> <span>Commissioner: {{league.comissioner?.username}}</span><br><br>
   </div>
@@ -11,11 +10,19 @@
   <img src="{{selected.photoUrl}}" alt="league picture" width="40%" height="40%"/><br><br>
   <h1>{{selected.leagueName | uppercase}}</h1>
   <h3>Buy In: {{selected.buyIn | currency}}</h3>
+  <ul *ngFor="let user of selected.usersBoughtIn">
+    <li>{{user.firstName}} {{user.lastName}}</li>
+    <ul>
+      <li *ngFor="let team of user.teams">{{team.teamName}}</li>
+      <li *ngFor="let athlete of user.teams">{{athlete.athleteEvents}}</li>
+    </ul>
+  </ul>
 
   <div id="teamList">
     <table class="table-striped table table-hover">
       <thead>
         <tr>
+          <td>Venue</td>
           <td>Sport</td>
         </tr>
       </thead>
@@ -27,9 +34,8 @@
       </tbody>
     </table>
   </div>
-  <!-- display teams in league -->
+
   <button class="btn btn-success me-1" (click)="selected = null">View All Leagues</button>
   <button class="btn btn-success me-1" (click)="createTeam(selected.id)">Join League</button>
-  <p>
-  </p>
+  <!-- <button class="btn btn-danger me-1" (click)="deleteLeague(selected.id)">Delete League</button> -->
 </div>
