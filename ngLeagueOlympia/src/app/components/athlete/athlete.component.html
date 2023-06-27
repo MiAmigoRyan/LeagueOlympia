@@ -14,7 +14,7 @@
         <td>{{athlete.country.name}}</td>
         <td>{{athlete.fname}} {{athlete.lname}}</td>
         <td *ngFor="let event of athleteEvents">
-          {{event.sportEvent!.sport!.name}},
+          {{event.sportEvent?.sport?.name}},
         </td>
       </tr>
     </tbody>
@@ -27,8 +27,8 @@
     <a href="{{selected.socialMediaURL}}" target="_blank"><i class="bi bi-person-circle"></i></a></h1>
   <h5>DOB: {{selected.dateOfBirth}}</h5>
   <h3>{{selected.country}}</h3>
-  <ul *ngFor="let event of athleteEvents">
-    <li>{{event.sportEvent!.sport!.name}}</li>
+  <ul *ngFor="let event of selected.athleteEvents">
+    <li>{{event.sportEvent?.sport?.name}}</li>
   </ul>
   <button class="btn btn-success me-1" (click)="selected = null">View All Athletes</button>
 </div>
