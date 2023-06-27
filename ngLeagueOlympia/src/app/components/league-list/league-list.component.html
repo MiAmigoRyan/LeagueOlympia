@@ -1,7 +1,9 @@
 <br>
+
+<!-- create league if logged in -->
 <div *ngIf="!selected">
   <div (click)="displayLeague(league)" *ngFor="let league of leagues">
-    <h1>{{league.leagueName | uppercase}}</h1> <span>Commissioner: {{league.comissioner!.username}}</span><br><br>
+    <h1>{{league.leagueName | uppercase}}</h1> <span>Commissioner: {{league.comissioner?.username}}</span><br><br>
   </div>
 </div>
 
@@ -9,6 +11,22 @@
   <img src="{{selected.photoUrl}}" alt="league picture" width="40%" height="40%"/><br><br>
   <h1>{{selected.leagueName | uppercase}}</h1>
   <h3>Buy In: {{selected.buyIn | currency}}</h3>
+
+  <div id="teamList">
+    <table class="table-striped table table-hover">
+      <thead>
+        <tr>
+          <td>Sport</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let sportEvent of sportEvents">
+          <td>{{sportEvent.venue}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <!-- display teams in league -->
   <button class="btn btn-success me-1" (click)="selected = null">View All Leagues</button>
   <button class="btn btn-success me-1" (click)="createTeam(selected.id)">Join League</button>
   <p>
