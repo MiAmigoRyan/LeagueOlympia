@@ -34,4 +34,6 @@ public class AthleteEventController {
 		return athleteEvents;	}
 	
 	
+
+	//@GetMapping() path to retrive athelte events by olympiad
 }
