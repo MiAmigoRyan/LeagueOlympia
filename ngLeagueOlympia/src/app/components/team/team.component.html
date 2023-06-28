@@ -1,7 +1,7 @@
 <br>
 <div *ngIf="!selectedTeam">
   <div *ngFor="let team of selectedUser?.teams">
-    <img src="{{team?.photoURL}}" alt="Team Picture" width="10%" height="10%"/><br><br>
+    <img src="{{team?.photoURL}}" alt="Team Picture" width="10%" height="10%" /><br><br>
     <p>
       Team: {{team?.teamName}}
       <br>User: {{team?.user?.username}}
@@ -14,7 +14,7 @@
 
 
 <div *ngIf="selectedTeam">
-  <img src="{{selectedTeam.photoURL}}" alt="Team Picture" width="10%" height="10%"/><br><br>
+  <img src="{{selectedTeam.photoURL}}" alt="Team Picture" width="10%" height="10%" /><br><br>
   <p>
     Team: {{selectedTeam.teamName}}
     <br>User: {{selectedTeam.user?.username}}
@@ -27,37 +27,41 @@
     <form class="row g-3">
       <div class="col-md-6">
         <label class="form-label">Team Name: </label>
-        <input class="form-control" type="text" name="teamName" [(ngModel)]="selectedTeam.teamName"/>
+        <input class="form-control" type="text" name="teamName" [(ngModel)]="selectedTeam.teamName" />
       </div>
       <div class="col-md-12">
         <label class="form-label">Photo URL: </label>
-        <input class="form-control" type="text" name="photoURL" [(ngModel)]="selectedTeam.photoURL"/>
+        <input class="form-control" type="text" name="photoURL" [(ngModel)]="selectedTeam.photoURL" />
       </div>
       <div class="col-md-12">
         <label class="form-label">Description: </label>
-        <input class="form-control" type="text" name="description" [(ngModel)]="selectedTeam.description"/>
+        <input class="form-control" type="text" name="description" [(ngModel)]="selectedTeam.description" />
       </div>
 
-      <div class="row g-3">
-        <div class="col-md-6">
-        <ul *ngFor="let event of athleteEvents">
-          <li>
-            {{event.sportEvent!.sport!.name}}
-          </li>
-        </ul>
-      </div>
-      <div class="col-md-6">
-        <div class="btn-group">
-          <button type="button" class="btn btn-outline-success dropdown-toggle me-1"
-          data-bs-toggle="dropdown" aria-expanded="false">Select an Athlete</button>
-          <ul class="dropdown-menu" *ngFor="let event of athleteEvents">
-            <li class="dropdown-item">
-              {{event.athlete?.fname}} {{event.athlete?.lname}}
-            </li>
-          </ul>
-        </div>
-        </div>
-      </div>
+      <table class="table table-light table-striped table-hover">
+        <thead class="table-success">
+          <tr>
+            <th>Athlete Events</th>
+            <th>Athlete</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let event of selectedTeam.league?.sportEvents">
+            <td>{{event.sport?.name}}</td>
+            <td>
+              <div ngbDropdown class="dropdown">
+                <button ngbDropdownToggle type="button" class="btn btn-outline-success me-1"
+                id="dropdownMenuButton1" aria-expanded="false">Select Athlete</button>
+                <ul ngbDropdownMenu aria-labelledby="dropdownMenuButton1">
+                  <li (click)="selectAthlete(athleteEvent.athlete?.id)" ngbDropdownItem *ngFor="let athleteEvent of event.athleteEvents">
+                    {{athleteEvent.athlete?.fname}} {{athleteEvent.athlete?.lname}} {{athleteEvent.sportEvent?.sport?.name}}</li>
+                </ul>
+              </div>
+            </td>
+            </tr>
+          </tbody>
+        </table>
+        <!-- <td><button class="btn btn-danger" (click)="deleteTodo(todo.id)"><strong>X</strong></button></td> -->
 
       <div class="col-12">
         <button class="btn btn-success me-1" (click)="selectedTeam = null">Cancel</button>
@@ -65,7 +69,5 @@
       </div>
     </form>
   </div>
+  <br><br><br>
 </div>
-
-
-
