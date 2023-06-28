@@ -2,18 +2,13 @@
 <div *ngIf="editUser">
   <br>
   <img src="{{editUser.photo}}" alt="profile picture" width="10%" height="10%"/><br><br>
-  <p>{{editUser.username}}</p>
-  <p>{{editUser.firstName}} {{editUser.lastName}}</p>
-  <p>{{editUser.aboutMe}}</p>
-
-  <p *ngFor="let team of editUser.teams">Team Name:  {{team.teamName}} <br>
-    League: {{team.league?.leagueName}}<br>
-   Events: {{team.athleteEvents}}>
-
-  </p>
+  <p>Username: {{editUser.username}}</p>
+  <p>Name: {{editUser.firstName}} {{editUser.lastName}}</p>
+  <p>About Me: {{editUser.aboutMe}}</p>
 </div>
 
 <hr>
+<h3>Update User Information:</h3>
 <div *ngIf="editUser">
   <div class="col-md-6">
     <form class="row g-3">

@@ -23,13 +23,13 @@
   <img src="{{selected.photoURL}}" alt="athlete picture" width="20%" height="20%"/><br><br>
   <h1>{{selected.fname}} {{selected.lname}}
     <a href="{{selected.socialMediaURL}}" target="_blank"><i class="bi bi-person-circle"></i></a></h1>
-  <h5>DOB: {{selected.dateOfBirth}}</h5>
+  <h5>DOB: {{selected.dateOfBirth | date: "longDate"}}</h5>
 
   <!-- CHECK ENTITY FOR JSON RELATIONSHIP -->
-  <h3>{{selected.country}}</h3>
+   <h5>Country: {{selected.country.name}}</h5>
+  <div style="list-style: none;" *ngFor="let event of selected.athleteEvents">
 
-  <ul *ngFor="let event of selected.athleteEvents">
-    <li>{{event.sportEvent?.sport?.name}}</li>
-  </ul>
+   <h5>Event: {{event.sportEvent?.sport?.name}}</h5>
+  </div>
   <button class="btn btn-success me-1" (click)="selected = null">View All Athletes</button>
 </div>
