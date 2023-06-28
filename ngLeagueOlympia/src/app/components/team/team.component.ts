@@ -20,7 +20,6 @@ import { UserService } from 'src/app/services/user.service';
 export class TeamComponent implements OnInit{
   selectedUser: User | null = null;
   selectedTeam: Team | null = null;
-  selectedAthlete: Athlete | null = null;
   teams: Team[] = [];
   athleteEvents: AthleteEvent[] = [];
 
@@ -96,10 +95,6 @@ export class TeamComponent implements OnInit{
       updateRoster(team: Team){
         this.reloadRoster();
 
-      }
-
-      selectAthlete(athlete: Athlete | null) {
-        this.selectedAthlete = athlete;
       }
 
       reloadRoster() {
