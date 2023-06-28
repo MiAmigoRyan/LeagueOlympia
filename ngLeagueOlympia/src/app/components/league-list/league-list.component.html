@@ -10,16 +10,20 @@
   <img src="{{selected.photoUrl}}" alt="league picture" width="40%" height="40%"/><br><br>
   <h1>{{selected.leagueName | uppercase}}</h1>
   <h3>Buy In: {{selected.buyIn | currency}}</h3>
-  <ul *ngFor="let user of selected.usersBoughtIn">
-    <li>{{user.firstName}} {{user.lastName}}</li>
-    <ul>
+
+  <ul *ngFor="let member of selected.usersBoughtIn">
+    <li>{{member.firstName}} {{member.lastName}}</li>
+    <ul *ngIf="getLeagueTeam(member, selected.id)">
+      <li>{{getLeagueTeam(member, selected.id)?.teamName}}</li>
+    </ul>
+  </ul>
+    <!-- <ul>
       <li *ngFor="let team of selected.teams">
         <div *ngFor="let athleteEvent of team.athleteEvents">
         {{athleteEvent.athlete?.fname}} {{athleteEvent.athlete?.lname}} {{athleteEvent.sportEvent?.sport?.name}} {{athleteEvent.finishResult}}</div>
         {{team.teamName}}</li>
       <li *ngFor="let athlete of user.teams">{{athlete.athleteEvents}}</li>
-    </ul>
-  </ul>
+    </ul> -->
 
   <div id="teamList">
     <table class="table-striped table table-hover">

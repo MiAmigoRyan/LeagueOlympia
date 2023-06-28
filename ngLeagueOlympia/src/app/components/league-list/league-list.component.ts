@@ -5,6 +5,7 @@ import { Component, OnInit } from '@angular/core';
 import { League } from 'src/app/models/league';
 import { Team } from 'src/app/models/team';
 import { SportEvent } from 'src/app/models/sport-event';
+import { User } from 'src/app/models/user';
 
 
 @Component({
@@ -84,6 +85,11 @@ export class LeagueListComponent implements OnInit {
         console.error(errorDelete);
       }
     });
+  }
+
+  getLeagueTeam(user: User, leagueId: number): Team | undefined {
+    let foundTeam = user.teams.find(t => {return t.id.leagueId == leagueId})
+    return foundTeam;
   }
 
 
