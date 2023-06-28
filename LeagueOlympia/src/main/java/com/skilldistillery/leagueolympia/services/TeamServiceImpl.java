@@ -12,6 +12,7 @@ import com.skilldistillery.leagueolympia.entities.Team;
 import com.skilldistillery.leagueolympia.entities.TeamId;
 import com.skilldistillery.leagueolympia.entities.User;
 import com.skilldistillery.leagueolympia.repositories.AthleteEventRepository;
+import com.skilldistillery.leagueolympia.repositories.AthleteRepository;
 import com.skilldistillery.leagueolympia.repositories.LeagueRepository;
 import com.skilldistillery.leagueolympia.repositories.SportEventRepository;
 import com.skilldistillery.leagueolympia.repositories.TeamRepository;
@@ -30,6 +31,7 @@ public class TeamServiceImpl implements TeamService {
 	private SportEventRepository sportEventRepo;
 	@Autowired
 	private AthleteEventRepository athleteEventRepo;
+	
 
 	@Override
 	public List<Team> index() {
@@ -99,6 +101,32 @@ public class TeamServiceImpl implements TeamService {
 		if(team !=null && event != null) {
 			//add and remove from team entity
 			team.addAthleteEvent(event);
+		return teamRepo.saveAndFlush(team);
+		}
+		
+		return null;
+	}
+	
+	@Override
+	public Team replaceAthlete(
+			Integer athleteId, 
+			Integer leagueId, 
+			Integer sportEventId,
+			String username,
+			Integer previousAthleteId
+			) {
+				
+		Team team = teamRepo.findByUser_UsernameAndLeagueId(username, leagueId);
+		
+		AthleteEvent newAthlete = athleteEventRepo.findByAthleteIdAndSportEvent_Id(athleteId, sportEventId);
+		AthleteEvent previousAthlete = athleteEventRepo.findByAthleteIdAndSportEvent_Id(previousAthleteId, sportEventId);
+		
+		if(team !=null && newAthlete != null && previousAthlete != null ) {
+			team.addAthleteEvent(newAthlete);
+			newAthlete.addTeam(team);
+			
+			team.removeAthleteEvent(previousAthlete);
+			previousAthlete.removeTeam(team);
 		return teamRepo.saveAndFlush(team);
 		}
 		

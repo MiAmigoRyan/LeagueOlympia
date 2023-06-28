@@ -110,6 +110,28 @@ public class TeamController {
 		}
 		return managedTeam;
 	}
+	@PostMapping("teams/{leagueId}/sportEvents/{sportEventId}/athletes/{athleteId}/athletes/{previousAthleteId}")
+	public Team replaceAthlete(
+			HttpServletRequest req,
+			HttpServletResponse res,
+			@PathVariable("leagueId") Integer leagueId,
+			@PathVariable ("sportEventId") Integer sportEventId,
+			@PathVariable("athleteId") Integer athleteId,
+			@PathVariable ("previousAthleteId") Integer previousAthleteId,
+			Principal principal
+			){
+		Team managedTeam = null;
+		try {
+			managedTeam = teamService.replaceAthlete(athleteId, leagueId, sportEventId, principal.getName(),previousAthleteId) ;
+			if(managedTeam == null) {
+				res.setStatus(404);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			res.setStatus(400);
+		}
+		return managedTeam;
+	}
 	//list athletes by league and port even
 	@GetMapping("sportEvents/{sportEventId}/athleteEvents")
 	public List<AthleteEvent> athletesBySportEventInLeague(HttpServletRequest req,
