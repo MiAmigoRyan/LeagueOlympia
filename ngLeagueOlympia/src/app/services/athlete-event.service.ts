@@ -9,7 +9,7 @@ import { AuthService } from './auth.service';
   providedIn: 'root'
 })
 export class AthleteEventService {
-  // private url = environment.baseUrl + 'api/teams';
+  // private url = environment.baseUrl + 'api/athletes';
 
   // constructor(
   //   private http: HttpClient,

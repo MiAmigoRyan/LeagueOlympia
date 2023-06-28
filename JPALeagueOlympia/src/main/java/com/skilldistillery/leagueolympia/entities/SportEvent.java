@@ -49,7 +49,7 @@ public class SportEvent {
 			)
 	private List<League> leagues;
 	
-	@JsonIgnore
+	@JsonIgnoreProperties({"sportEvent"})
 	@OneToMany(mappedBy="sportEvent")
 	private List<AthleteEvent> athleteEvents;
 	
