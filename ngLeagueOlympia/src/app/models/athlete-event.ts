@@ -4,8 +4,8 @@ import { SportEvent } from './sport-event';
 export class AthleteEvent {
   athleteEventId: number;
   teams: Team[];
-  sportEvent: SportEvent | null;
-  athlete: Athlete | null;
+  sportEvent: SportEvent;
+  athlete: Athlete;
   finishResult: number;
   remarks: string;
   enabled: boolean;
@@ -13,8 +13,8 @@ export class AthleteEvent {
   constructor(
     athleteEventId: number = 0,
     teams: Team[] = [],
-    sportEvent: SportEvent | null = null,
-    athlete: Athlete | null = null,
+    sportEvent: SportEvent = new SportEvent(),
+    athlete: Athlete = new Athlete(),
     finishResult: number = 0,
     remarks: string = '',
     enabled: boolean = false
