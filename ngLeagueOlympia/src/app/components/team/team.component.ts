@@ -38,7 +38,6 @@ export class TeamComponent implements OnInit{
       this.auth.getLoggedInUser().subscribe({
         next: (user) => {
           this.selectedUser = user;
-          // this.findAthleteEvents();
           this.reload();
         },
         error: (err) => {
@@ -48,23 +47,47 @@ export class TeamComponent implements OnInit{
       });
     }
 
-    selectAthlete(athleteId: number|undefined) {
-      console.log(athleteId);
-    }
+    addAthleteToTeam(leagueId: number | undefined, sportEventId: number | undefined, athleteId: number | undefined, team: Team) {
+      console.log("LeagueID: " + leagueId);
+      console.log("SportEventID: " + sportEventId);
+      console.log("AthleteID: " + athleteId);
+      if(typeof leagueId === 'number' && typeof sportEventId === 'number' && typeof athleteId === 'number')
+        this.teamService.updateTeamRoster(leagueId, sportEventId, athleteId, team).subscribe({
+          next: (updatedTeam) => {
+          },
+          error: (updateError) => {
+            console.error('TeamComponenet.updateTeamRoster(): error on update');
+            console.error(updateError);
 
-  // this is not working!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-  // findAthleteEvents() {
-    //   let sportEvents: SportEvent [] = [];
-    //   let arrayIds = sportEvents.forEach((event: SportEvent) => {
-      //     event.id;
-      //   });
+          }
+        });
+      }
 
-      //   for (let id of arrayIds) {
-        //     this.athleteService.show(id).subscribe((event: SportEvent) => {
-          //       sportEvents.push(event);
-          //     });
-          //   }
-          // }
+      updateRoster(team: Team){
+        this.reloadRoster(team.id);
+
+      }
+
+      selectAthlete(athlete: Athlete | null) {
+        this.selectedAthlete = athlete;
+      }
+
+      reloadRoster(id: number) {
+        this.teamService.index().subscribe({
+          next: (teamList) => {
+            this.teams = teamList;
+            for (let team of teamList) {
+              if (team.id === id){
+                this.selectedTeam = team;
+              }
+            }
+          },
+          error: (someError) => {
+            console.error('TodoListComponent.reload(): error getting todo list');
+            console.error(someError);
+          }
+        });
+      }
 
   reload():void {
     this.teamService.index().subscribe({

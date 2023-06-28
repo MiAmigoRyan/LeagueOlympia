@@ -39,6 +39,16 @@ export class TeamService {
     );
   }
 
+  public updateTeamRoster(leagueId: number, sportEventId: number, athleteId: number, team: Team): Observable<Team> {
+    return this.http.post<Team>(this.url + '/' + leagueId + '/sportEvents/' + sportEventId + '/athletes/' + athleteId, team, this.getHttpOptions()).pipe(
+      catchError((err: any) => {
+        return throwError(
+          () => new Error('TeamService.updateTeam(): error updating team: ' + err)
+        );
+      })
+    );
+  }
+
   getHttpOptions() {
     let options = {
       headers: {
