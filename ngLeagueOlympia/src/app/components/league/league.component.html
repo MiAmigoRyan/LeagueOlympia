@@ -18,10 +18,31 @@
       <label class="form-label">Buy In: </label>
       <input class="form-control" type="text" name="buyIn" [(ngModel)]="newLeague.buyIn"/>
     </div>
-    <div class="col-md-12" *ngFor="let sport of newLeague.sportEvents">
-      <label class="form-label">Sport Events: </label>
-      <input class="form-control" type="text" name="sportEvents" [(ngModel)]="newLeague.sportEvents"/>
+
+
+    <div class="col-md-12">
+      <div ngbDropdown class="dropdown">
+        <button ngbDropdownToggle type="button" class="btn btn-outline-success me-1"
+        id="dropdownMenuButton1" aria-expanded="false">Sport Event: </button>
+        <ul ngbDropdownMenu aria-labelledby="dropdownMenuButton1">
+          <li (click)="selectSportEvent( sportEvent.id)" ngbDropdownItem *ngFor="let sportEvent of newLeague.sportEvents">
+            {{sportEvent.sport?.name}}</li>
+          </ul>
+        </div>
+      </div>
+
+
+    <!-- <div class="col-md-12" *ngFor="let sportEvent of newLeague.sportEvents; let i = index">
+      <label class="form-label">Sport Event {{i + 1}}: </label>
+      <input class="form-control" type="text" name="sportEvents" [(ngModel)]="sportEvent"/>
+      <select class="form-select" [(ngModel)]="newLeague.sportEventsDropdown[i].name" name="sportDropdown">
+        <option *ngFor="let sport of sportEvent.sport" [value]="sport.name">{{ sport.name }}</option>
+      </select>
+    </div> -->
+
+    <div class="col-md-12">
+    <!-- <button class="btn btn-success me-1" (click)="addSportInput()">Add a Sport</button> -->
+    <button class="btn btn-success me-1" (click)="createALeague(newLeague)">Create League</button>
     </div>
-    <button class="btn btn-success me-1" (click)="createALeague(newLeague)">Save</button>
   </form>
   </div>

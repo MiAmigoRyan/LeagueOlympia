@@ -23,6 +23,16 @@ export class LeagueComponent implements OnInit{
 
   }
 
+  // addSportInput(){
+  //   this.newLeague.sportEvents.push('');
+  //   this.newLeague.sportEventsDropdown.push({name: ''});
+  // }
+
+  selectSportEvent(sportEventId: number | undefined) {
+      console.log(sportEventId);
+  }
+
+
   createALeague(newLeague: League){
       let username: string;
       if(this.newLeague) {
@@ -38,5 +48,4 @@ export class LeagueComponent implements OnInit{
       });
     }
   }
-
 }
