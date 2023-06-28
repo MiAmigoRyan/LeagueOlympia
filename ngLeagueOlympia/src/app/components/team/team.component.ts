@@ -47,24 +47,54 @@ export class TeamComponent implements OnInit{
       });
     }
 
-    addAthleteToTeam(leagueId: number | undefined, sportEventId: number | undefined, athleteId: number | undefined, team: Team) {
+    addAthleteToTeam(leagueId: number, sportEventId: number, newAthleteId: number) {
       console.log("LeagueID: " + leagueId);
       console.log("SportEventID: " + sportEventId);
-      console.log("AthleteID: " + athleteId);
-      if(typeof leagueId === 'number' && typeof sportEventId === 'number' && typeof athleteId === 'number')
-        this.teamService.updateTeamRoster(leagueId, sportEventId, athleteId, team).subscribe({
-          next: (updatedTeam) => {
-          },
-          error: (updateError) => {
-            console.error('TeamComponenet.updateTeamRoster(): error on update');
-            console.error(updateError);
+      console.log("AthleteID: " + newAthleteId);
 
+      if(typeof leagueId === 'number' && typeof sportEventId === 'number' && typeof newAthleteId === 'number'){
+        if (this.selectedTeam){
+          for (let existingAthleteEvent of this.selectedTeam.athleteEvents){
+            if (existingAthleteEvent.sportEvent?.id === sportEventId) {
+              console.log("found existing athlete");
+              this.swapAthletes(leagueId, sportEventId, newAthleteId, existingAthleteEvent.athlete.id);
+              return;
+            }
           }
-        });
+          this.addNewAthleteToTeam(leagueId, sportEventId, newAthleteId);
+        }
+
       }
+    }
+
+    addNewAthleteToTeam(leagueId: number, sportEventId: number, newAthleteId: number){
+      this.teamService.updateTeamRoster(leagueId, sportEventId, newAthleteId).subscribe({
+        next: (updatedTeam) => {
+          this.reloadRoster();
+        },
+        error: (updateError) => {
+          console.error('TeamComponenet.updateTeamRoster(): error on update');
+          console.error(updateError);
+
+        }
+      });
+    }
+
+    swapAthletes(leagueId: number, sportEventId: number, newAthleteId: number, oldAthleteId: number){
+      this.teamService.swapAthletes(leagueId, sportEventId, newAthleteId, oldAthleteId).subscribe({
+        next: (updatedTeam) => {
+          this.reloadRoster();
+        },
+        error: (updateError) => {
+          console.error('TeamComponenet.updateTeamRoster(): error on update');
+          console.error(updateError);
+
+        }
+      });
+    }
 
       updateRoster(team: Team){
-        this.reloadRoster(team.id);
+        this.reloadRoster();
 
       }
 
@@ -72,12 +102,15 @@ export class TeamComponent implements OnInit{
         this.selectedAthlete = athlete;
       }
 
-      reloadRoster(id: number) {
+      reloadRoster() {
         this.teamService.index().subscribe({
           next: (teamList) => {
             this.teams = teamList;
+            console.log(this.selectedTeam);
             for (let team of teamList) {
-              if (team.id === id){
+              console.log(team.id);
+              if (team.id.userId === this.selectedTeam?.id.userId && team.id.leagueId === this.selectedTeam.id.leagueId) {
+                console.log("selectedTeam found again");
                 this.selectedTeam = team;
               }
             }

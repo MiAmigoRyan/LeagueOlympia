@@ -18,7 +18,7 @@
   <img src="{{selectedTeam.photoURL}}" alt="Team Picture" width="10%" height="10%" /><br><br>
   <p>
     Team: {{selectedTeam.teamName}}
-    <br>Athletes: <span *ngFor="let athleteEvent of selectedTeam.athleteEvents">{{athleteEvent.athlete?.fname}} {{athleteEvent.athlete?.lname}}, </span>
+    <br>Athletes: <span *ngFor="let athleteEvent of selectedTeam.athleteEvents">{{athleteEvent.athlete.fname}} {{athleteEvent.athlete.lname}}, </span>
     <br>User: {{selectedTeam.user?.username}}
     <br>League: {{selectedTeam.league?.leagueName}}
     <br>League: {{selectedTeam.league?.id}}
@@ -43,8 +43,9 @@
             <button ngbDropdownToggle type="button" class="btn btn-outline-success me-1"
             id="dropdownMenuButton1" aria-expanded="false"> {{selectedAthlete ? selectedAthlete.fname + ' ' + selectedAthlete.lname : 'Select Athlete'}} </button>
             <ul ngbDropdownMenu aria-labelledby="dropdownMenuButton1">
-              <li [value]="athleteEvent.athlete" (click)="addAthleteToTeam(selectedTeam.league?.id, event.sport?.id, athleteEvent.athlete?.id, selectedTeam)" ngbDropdownItem *ngFor="let athleteEvent of event.athleteEvents">
-                {{athleteEvent.athlete?.fname}} {{athleteEvent.athlete?.lname}}</li>
+              <li [value]="athleteEvent.athlete" (click)="addAthleteToTeam(selectedTeam.league!.id, event.id, athleteEvent.athlete.id)" ngbDropdownItem *ngFor="let athleteEvent of event.athleteEvents">
+                {{athleteEvent.athlete.fname}} {{athleteEvent.athlete.lname}}</li>
+                <!-- (click)="addAthleteToTeam(selectedTeam.league?.id, event.sport?.id, athleteEvent.athlete?.id, selectedTeam)" -->
               </ul>
             </div>
           </td>
@@ -53,7 +54,7 @@
     </table>
     <div class="col-12">
       <button class="btn btn-success me-1" (click)="selectedTeam = null">Back</button>
-      <button class="btn btn-success me-1" (click)="updateRoster(selectedTeam)">Update Roster</button>
+      <!-- <button class="btn btn-success me-1" (click)="updateRoster(selectedTeam)">Update Roster</button> -->
     </div>
     </form>
 </div>

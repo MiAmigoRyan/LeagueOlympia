@@ -1,9 +1,10 @@
 import { AthleteEvent } from "./athlete-event";
 import { League } from "./league";
+import { TeamId } from "./team-id";
 import { User } from "./user";
 
 export class Team {
-  id: number;
+  id: TeamId;
   athleteEvents: AthleteEvent[];
   user: User | null;
   league: League | null;
@@ -15,7 +16,7 @@ export class Team {
   enabled: boolean;
 
   constructor(
-    id: number = 0,
+    id: TeamId = new TeamId(),
     athleteEvents: AthleteEvent[] = [],
     user: User | null = null,
     league: League | null = null,

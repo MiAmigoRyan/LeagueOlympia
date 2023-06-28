@@ -39,15 +39,27 @@ export class TeamService {
     );
   }
 
-  public updateTeamRoster(leagueId: number, sportEventId: number, athleteId: number, team: Team): Observable<Team> {
-    return this.http.post<Team>(this.url + '/' + leagueId + '/sportEvents/' + sportEventId + '/athletes/' + athleteId, team, this.getHttpOptions()).pipe(
+  public updateTeamRoster(leagueId: number, sportEventId: number, athleteId: number): Observable<Team> {
+    return this.http.post<Team>(this.url + '/' + leagueId + '/sportEvents/' + sportEventId + '/athletes/' + athleteId, null, this.getHttpOptions()).pipe(
       catchError((err: any) => {
         return throwError(
-          () => new Error('TeamService.updateTeam(): error updating team: ' + err)
+          () => new Error('TeamService.updateTeamRoster(): error updating team: ' + err)
         );
       })
     );
   }
+
+  public swapAthletes(leagueId: number, sportEventId: number, newAthleteId: number, oldAthleteId: number): Observable<Team> {
+    return this.http.post<Team>(this.url + '/' + leagueId + '/sportEvents/' + sportEventId + '/athletes/' + newAthleteId
+    + '/athletes/' + oldAthleteId, null, this.getHttpOptions()).pipe(
+      catchError((err: any) => {
+        return throwError(
+          () => new Error('TeamService.swapAthletes(): error updating team: ' + err)
+        );
+      })
+    );
+  }
+
 
   getHttpOptions() {
     let options = {

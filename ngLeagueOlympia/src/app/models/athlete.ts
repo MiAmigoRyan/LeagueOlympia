@@ -16,7 +16,7 @@ export class Athlete {
   constructor(
     id: number = 0,
     athleteComments: AthleteComment[] = [],
-    country: Country,
+    country: Country = new Country(),
     athleteEvents: AthleteEvent[] = [],
     fname: string = '',
     lname: string = '',
