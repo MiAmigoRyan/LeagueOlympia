@@ -22,6 +22,7 @@ import { UserComponent } from './components/user/user.component';
 import { TeamComponent } from './components/team/team.component';
 import { AthleteComponent } from './components/athlete/athlete.component';
 import { LeagueComponent } from './components/league/league.component';
+import { RankTeamsPipe } from './pipes/rank-teams.pipe';
 // import { OlympiadPipe } from './pipes/olympiad.pipe';
 
 @NgModule({
@@ -41,6 +42,7 @@ import { LeagueComponent } from './components/league/league.component';
     TeamComponent,
     AthleteComponent,
     LeagueComponent,
+    RankTeamsPipe,
     // OlympiadPipe,
   ],
   imports: [
@@ -50,7 +52,7 @@ import { LeagueComponent } from './components/league/league.component';
     HttpClientModule,
     NgbModule
   ],
-  providers: [LeagueService, AuthService, SportEventService],
+  providers: [LeagueService, AuthService, SportEventService, RankTeamsPipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

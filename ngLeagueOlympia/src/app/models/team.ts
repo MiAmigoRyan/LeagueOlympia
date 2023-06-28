@@ -14,6 +14,7 @@ export class Team {
   createdAt: string | null;
   updatedAt: string | null;
   enabled: boolean;
+  athleteResultSum: number;
 
   constructor(
     id: TeamId = new TeamId(),
@@ -25,7 +26,8 @@ export class Team {
     description: string = '',
     createdAt: string = '',
     updatedAt: string = '',
-    enabled: boolean = false
+    enabled: boolean = false,
+    athleteResultSum: number = 0
   ) {
     this.id = id;
     this.athleteEvents = athleteEvents,
@@ -37,5 +39,6 @@ export class Team {
     this.createdAt = createdAt;
     this.updatedAt = updatedAt;
     this.enabled = enabled;
+    this.athleteResultSum = athleteResultSum;
   }
 }

@@ -42,7 +42,7 @@ public class League {
 	@ManyToMany(mappedBy = "boughtInLeagues")
 	private List<User> usersBoughtIn;
 
-	@JsonIgnoreProperties({"league", "user"})
+	@JsonIgnoreProperties({"league"})
 	@OneToMany(mappedBy = "league")
 	private List<Team> teams;
 

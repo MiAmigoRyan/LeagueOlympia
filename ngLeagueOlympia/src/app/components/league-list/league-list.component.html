@@ -7,23 +7,27 @@
 </div>
 
 <div *ngIf="selected">
+  <h2>Winner! <em>{{win(selected.teams)?.teamName}}</em></h2>
+  <h2>Winner! <em>{{(selected.teams | rankTeams) [0].teamName}}</em></h2>
+  <div id="scoreboard">
+
+    <h2>Scoreboard: </h2>
+    <ol>
+      <li *ngFor="let winner of selected.teams | rankTeams">{{winner.teamName}} {{winner.user?.firstName}} {{winner.user?.lastName}} {{winner.athleteResultSum}}</li>
+    </ol>
+  </div>
+
   <img src="{{selected.photoUrl}}" alt="league picture" width="40%" height="40%"/><br><br>
   <h1>{{selected.leagueName | uppercase}}</h1>
   <h3>Buy In: {{selected.buyIn | currency}}</h3>
-
-  <ul *ngFor="let member of selected.usersBoughtIn">
-    <li>{{member.firstName}} {{member.lastName}}</li>
-    <ul *ngIf="getLeagueTeam(member, selected.id)">
-      <li>{{getLeagueTeam(member, selected.id)?.teamName}}</li>
+  <ul *ngFor="let team of selected.teams">
+    <p>{{log(team)}}</p>
+    <li>{{team.user?.firstName}} {{team.user?.lastName}}</li>
+    <ul *ngIf="team">
+      <li>{{team.teamName}}</li>
+      <li>Team Score: {{calculateTotalScore(team)}}</li>
     </ul>
   </ul>
-    <!-- <ul>
-      <li *ngFor="let team of selected.teams">
-        <div *ngFor="let athleteEvent of team.athleteEvents">
-        {{athleteEvent.athlete?.fname}} {{athleteEvent.athlete?.lname}} {{athleteEvent.sportEvent?.sport?.name}} {{athleteEvent.finishResult}}</div>
-        {{team.teamName}}</li>
-      <li *ngFor="let athlete of user.teams">{{athlete.athleteEvents}}</li>
-    </ul> -->
 
   <div id="teamList">
     <table class="table-striped table table-hover">
@@ -46,3 +50,4 @@
   <button class="btn btn-success me-1" (click)="createTeam(selected.id)">Join League</button>
   <!-- <button class="btn btn-danger me-1" (click)="deleteLeague(selected.id)">Delete League</button> -->
 </div>
+<br><br><br>
