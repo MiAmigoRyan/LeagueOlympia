@@ -1,3 +1,5 @@
+import { SportEvent } from 'src/app/models/sport-event';
+import { AthleteEvent } from './../models/athlete-event';
 import { Athlete } from 'src/app/models/athlete';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -40,6 +42,21 @@ export class AthleteService {
     };
     return options;
   }
+
+  public show(sportEventId: number): Observable<SportEvent> {
+    return this.http.get<SportEvent>(this.url + '/' + sportEventId, this.getHttpOptions()).pipe(
+      catchError((err: any) => {
+        console.error('Error GETing athletes related to an event');
+        return throwError(
+          () =>
+            new Error(
+              'AthleteService.index(): error retrieving athletes related to an event: ' + err
+            )
+        );
+      })
+    );
+  }
+
 
 
 }
