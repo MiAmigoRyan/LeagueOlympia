@@ -9,8 +9,9 @@ export class Athlete {
   fname: string;
   lname: string;
   photoURL: string;
-  dateOfBirth: string | null;
+  dateOfBirth: Date | null;
   socialMediaURL: string;
+
 
   constructor(
     id: number = 0,
@@ -20,7 +21,7 @@ export class Athlete {
     fname: string = '',
     lname: string = '',
     photoURL: string = '',
-    dateOfBirth: string = '',
+    dateOfBirth: Date | null = null,
     socialMediaURL = ''
   ) {
     this.id = id;
