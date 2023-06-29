@@ -4,6 +4,9 @@
 
 body {
   background-image: url("src/assets/munich-g891043b63_1280.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
   position: relative;
 }
 
