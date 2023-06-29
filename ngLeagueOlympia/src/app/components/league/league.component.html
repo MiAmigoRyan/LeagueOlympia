@@ -24,8 +24,12 @@
       </div>
     </div>
 
-    <!-- <span *ngFor="let sportEvent of league.sportEvents; index as i">{{sportEvent.sport?.name}}{{i ===
-      league.sportEvents.length - 1 ? '' : ', '}}</span> -->
+
+    <ng-container *ngFor="let sportEvent of allSportEvents">
+        {{sportEvent.sport?.name}}
+      </ng-container>
+
+
 
     <div class="col-md-12">
       <div ngbDropdown class="dropdown">
@@ -33,20 +37,12 @@
         aria-expanded="false">Sport Event</button>
         <ul ngbDropdownMenu aria-labelledby="dropdownMenuButton1">
           <li (click)="selectSportEvent(sportEvent.id)"
-          ngbDropdownItem [value]="sportEvent" *ngFor="let sportEvent of newLeague.sportEvents">
+          ngbDropdownItem [value]="sportEvent" *ngFor="let sportEvent of allSportEvents">
           {{sportEvent.sport?.name}}</li>
         </ul>
       </div>
     </div>
 
-
-    <!-- <div class="col-md-12" *ngFor="let sportEvent of newLeague.sportEvents; let i = index">
-      <label class="form-label">Sport Event {{i + 1}}: </label>
-      <input class="form-control" type="text" name="sportEvents" [(ngModel)]="sportEvent"/>
-      <select class="form-select" [(ngModel)]="newLeague.sportEventsDropdown[i].name" name="sportDropdown">
-        <option *ngFor="let sport of sportEvent.sport" [value]="sport.name">{{ sport.name }}</option>
-      </select>
-    </div> -->
 
     <div class="col-md-12">
       <!-- <button class="btn btn-success me-1" (click)="addSportInput()">Add a Sport</button> -->

@@ -79,5 +79,3 @@ public class LeagueServiceImpl implements LeagueService {
 		// TODO Auto-generated method stub
 		return false;
 	}
-	
-}
