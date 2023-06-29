@@ -60,5 +60,34 @@ export class LeagueService {
     );
   }
 
+  public update(league: League): Observable<League> {
+    return this.http.put<League>(this.url + '/' + league.id, league, this.getHttpOptions()).pipe(
+      catchError((err: any) => {
+        return throwError(
+          () => new Error('LeagueService.updateLeague(): error updating league: ' + err)
+        );
+      })
+    );
+  }
+
+  public updateLeagueSportEvents(leagueId: number, sportEventId: number): Observable<League> {
+    return this.http.post<League>(this.url + '/' + leagueId + '/sportEvent/' + sportEventId, null, this.getHttpOptions()).pipe(
+      catchError((err: any) => {
+        return throwError(
+          () => new Error('TeamService.updateTeamRoster(): error updating team: ' + err)
+        );
+      })
+    );
+  }
+
+  // public swapSportEvents(leagueId: number, newSportEventId: number, oldSportEventId: number): Observable<League> {
+  //   return this.http.post<League>(this.url + '/' + leagueId + '/sportEvent/' + sportEventId + '/athletes/' + newAthleteId + '/athletes/' + oldAthleteId, null, this.getHttpOptions()).pipe(
+  //     catchError((err: any) => {
+  //       return throwError(
+  //         () => new Error('TeamService.swapAthletes(): error updating team: ' + err)
+  //       );
+  //     })
+  //   );
+  // }
 
 }
