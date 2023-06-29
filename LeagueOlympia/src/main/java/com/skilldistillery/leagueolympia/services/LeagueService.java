@@ -13,3 +13,4 @@ public interface LeagueService {
 	public boolean delete(String username, int leagueId);
 //public League remove user from league
 	public League addSportEvent(Integer sportEventId, Integer leagueId);
+}
