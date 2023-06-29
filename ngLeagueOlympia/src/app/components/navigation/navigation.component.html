@@ -1,7 +1,9 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-success">
   <div class="container-fluid">
-    <div class="d-flex justify-content-between align-items-center">
-      <a class="navbar-brand" [routerLink]="['/home']">League Olympia</a>
+    <div class="d-flex justify-content-between align-items-left">
+      <a class="navbar-brand" [routerLink]="['/home']">
+        <img src="assets/leagueolympia.png" style="width:100px">
+      </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
         aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation"
         (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed">
