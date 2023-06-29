@@ -56,7 +56,7 @@ public class TeamServiceImpl implements TeamService {
 	public Team update(Team team,  Integer leagueId,String username) {
 		Team managedTeam = teamRepo.findByUser_UsernameAndLeagueId(username, leagueId);
 		if(managedTeam != null) {
-			managedTeam.setAthleteEvents(team.getAthleteEvents());
+//			managedTeam.setAthleteEvents(team.getAthleteEvents());
 			managedTeam.setDescription(team.getDescription()); 
 			managedTeam.setPhotoURL(team.getPhotoURL());
 			managedTeam.setTeamName(team.getTeamName());
@@ -89,7 +89,7 @@ public class TeamServiceImpl implements TeamService {
 		//athlevnt from athEv by athleteID
 		AthleteEvent event = athleteEventRepo.findByAthleteIdAndSportEvent_Id(athleteId, sportEventId);
 		//add athleve to team
-		if(team !=null && event != null) {
+		if(team !=null && event != null) { 
 			//add and remove from team entity
 			team.addAthleteEvent(event);
 		return teamRepo.saveAndFlush(team);

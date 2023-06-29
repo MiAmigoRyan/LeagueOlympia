@@ -1,7 +1,40 @@
 <br>
-<div class="col-md-8">
+<div *ngIf="!selected" class="col-md-8">
   <h3>League Set-Up</h3>
   <p>Create your own League Olympia and compete to reach the top of Mount Olympus</p>
+  <br>
+  <form class="row g-3">
+    <div class="col-md-12">
+      <label class="form-label">League Name: </label>
+      <input class="form-control" type="text" name="leagueName" [(ngModel)]="newLeague.leagueName" />
+    </div>
+    <div class="col-md-12">
+      <label class="form-label">League Logo URL: </label>
+      <input class="form-control" type="text" name="photoUrl" [(ngModel)]="newLeague.photoUrl" />
+    </div>
+    <div class="col-md-12">
+      <div class="d-flex">
+        <label class="form-check-label" style="margin-right: 50px;">Bets Enabled: </label>
+        <div class="form-check form-switch">
+          <input class="form-check-input" style="margin-right: 50px;" type="checkbox" name="betEnabled"
+            [(ngModel)]="newLeague.betEnabled" />
+        </div>
+        <label class="form-label" style="margin-right: 50px;">Buy In: </label>
+        <input class="form-control" type="number" name="buyIn" [(ngModel)]="newLeague.buyIn" />
+      </div>
+    </div>
+
+    <div class="col-md-12">
+      <!-- <button class="btn btn-success me-1" (click)="addSportInput()">Add a Sport</button> -->
+      <button class="btn btn-success me-1" (click)="createALeague(newLeague)">Create League</button>
+    </div>
+  </form>
+</div>
+
+
+<div *ngIf="selected" class="col-md-8">
+  <h3>League Set-Up</h3>
+  <p>Set-up your League Olympia and compete to reach the top of Mount Olympus</p>
   <br>
   <form class="row g-3">
     <div class="col-md-12">
@@ -36,7 +69,7 @@
         <button ngbDropdownToggle type="button" class="btn btn-outline-success me-1" id="dropdownMenuButton1"
         aria-expanded="false">Sport Event</button>
         <ul ngbDropdownMenu aria-labelledby="dropdownMenuButton1">
-          <li (click)="selectSportEvent(sportEvent.id)"
+          <li (click)="addSportEvent(selected.id, sportEvent.id)"
           ngbDropdownItem [value]="sportEvent" *ngFor="let sportEvent of allSportEvents">
           {{sportEvent.sport?.name}}</li>
         </ul>
@@ -46,7 +79,7 @@
 
     <div class="col-md-12">
       <!-- <button class="btn btn-success me-1" (click)="addSportInput()">Add a Sport</button> -->
-      <button class="btn btn-success me-1" (click)="createALeague(newLeague)">Create League</button>
+      <button class="btn btn-success me-1" (click)="updateLeague(newLeague)">Update League</button>
     </div>
   </form>
 </div>

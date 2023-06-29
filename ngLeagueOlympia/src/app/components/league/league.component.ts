@@ -14,6 +14,7 @@ import { LeagueService } from 'src/app/services/league.service';
 export class LeagueComponent implements OnInit {
   newLeague: League = new League();
   allSportEvents: SportEvent[] = [];
+  selected: League | null = null;
 
   constructor(
     private leagueService: LeagueService,
@@ -38,9 +39,9 @@ export class LeagueComponent implements OnInit {
     });
   }
 
-  selectSportEvent(sportEventId: number | undefined) {
-    console.log(sportEventId);
-  }
+  // selectSportEvent(sportEventId: number | undefined) {
+  //   console.log(sportEventId);
+  // }
 
   createALeague(newLeague: League) {
     console.log(newLeague.sportEvents);
@@ -51,6 +52,7 @@ export class LeagueComponent implements OnInit {
           this.newLeague = new League();
           // this.router.navigateByUrl('/leagues/' + username);
           this.listEvents();
+          this.selected = createdLeague;
         },
         error: (createError) => {
           console.error(
@@ -65,7 +67,7 @@ export class LeagueComponent implements OnInit {
   updateLeague(league: League): void {
     this.leagueService.update(league).subscribe({
       next: (updatedLeague) => {
-        this.newLeague = updatedLeague;
+        this.selected = updatedLeague;
       },
       error: (updateError) => {
         console.error('LeagueComponenet.updateLeague(): error on update');
@@ -74,26 +76,25 @@ export class LeagueComponent implements OnInit {
     });
   }
 
-  addSportEvent(leagueId: number, newSportEventId: number) {
-    console.log("LeagueID: " + leagueId);
-    console.log("SportEventID: " + newSportEventId);
+  // addSportEvent(leagueId: number, newSportEventId: number) {
+  //   console.log("LeagueID: " + leagueId);
+  //   console.log("SportEventID: " + newSportEventId);
+  //   if(typeof leagueId === 'number' && typeof newSportEventId === 'number'){
+  //     if (this.newLeague){
+  //       for (let existingSportEvent of this.newLeague.sportEvents){
+  //         if (existingSportEvent.id === newSportEventId) {
+  //           console.log("found existing sportEvent");
+  //           // this.swapSportEvent(leagueId, newSportEventId, existingSportEvent.id);
+  //           return;
+  //         }
+  //       }
+  //       this.addNewSportEvent(leagueId, newSportEventId);
+  //     }
 
-    if(typeof leagueId === 'number' && typeof newSportEventId === 'number'){
-      if (this.newLeague){
-        for (let existingSportEvent of this.newLeague.sportEvents){
-          if (existingSportEvent.id === newSportEventId) {
-            console.log("found existing sportEvent");
-            // this.swapSportEvent(leagueId, newSportEventId, existingSportEvent.id);
-            return;
-          }
-        }
-        this.addNewSportEvent(leagueId, newSportEventId);
-      }
+  //   }
+  // }
 
-    }
-  }
-
-  addNewSportEvent(leagueId: number, newSportEventId: number){
+  addSportEvent(leagueId: number, newSportEventId: number){
     this.leagueService.updateLeagueSportEvents(leagueId, newSportEventId).subscribe({
       next: (updatedTeam) => {
         this.listEvents();
