@@ -28,7 +28,7 @@ public class User {
 	private int id;
 	private String username;
 	private String password;
-	private boolean enabled;
+	private boolean enabled; 
 	private String role;
 	private String photo;
 	
@@ -51,7 +51,7 @@ public class User {
 	@OneToMany(mappedBy="user")
 	private List<AthleteComment> athleteComments;
 	
-	@JsonIgnore
+	@JsonIgnoreProperties({"comissioner", "usersBoughtIn", "comments"})
 	@ManyToMany
 	@JoinTable(
 			name = "user_has_bought_in",

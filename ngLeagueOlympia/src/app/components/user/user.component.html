@@ -1,25 +1,27 @@
 
-<div *ngIf="editUser">
+<div *ngIf="editUser && !updateProfile">
   <br>
   <img src="{{editUser.photo}}" alt="profile picture" width="10%" height="10%"/><br><br>
   <p>Username: {{editUser.username}}</p>
   <p>Name: {{editUser.firstName}} {{editUser.lastName}}</p>
   <p>About Me: {{editUser.aboutMe}}</p>
+  <button class="btn btn-success me-1" (click)="updateProfile = true">Update Profile</button>
 </div>
+<br>
 
-<hr>
-<h3>Update User Information:</h3>
-<div *ngIf="editUser">
+
+<div *ngIf="editUser && updateProfile">
+  <h3>Update User Information:</h3>
   <div class="col-md-6">
     <form class="row g-3">
       <div class="col-md-6">
         <label class="form-label">Username: </label>
         <input class="form-control" type="text" name="username" [(ngModel)]="editUser.username"/>
       </div>
-      <div class="col-md-12">
+      <!-- <div class="col-md-12">
         <label class="form-label">Password: </label>
         <input class="form-control" type="text" name="password" [(ngModel)]="editUser.password"/>
-      </div>
+      </div> -->
       <div class="col-md-12">
         <label class="form-label">First Name: </label>
         <input class="form-control" type="text" name="firstName" [(ngModel)]="editUser.firstName"/>
@@ -37,8 +39,9 @@
         <input class="form-control" type="text" name="photo" [(ngModel)]="editUser.photo"/>
       </div>
       <div class="col-12">
-        <button class="btn btn-success me-1" (click)="editUser = null">Cancel</button>
+        <button class="btn btn-success me-1" (click)="ngOnInit()">Cancel</button>
         <button class="btn btn-success me-1" (click)="updateUser()">Save</button>
       </div>
     </form>
   </div>
+<br><br><br>

@@ -1,3 +1,4 @@
+import { AuthService } from 'src/app/services/auth.service';
 import { AthleteEventService } from 'src/app/services/athlete-event.service';
 import { TeamService } from 'src/app/services/team.service';
 import { ActivatedRoute, Route, Router } from '@angular/router';
@@ -24,11 +25,13 @@ export class LeagueListComponent implements OnInit {
   newLeague: League = new League();
   athleteEvents: AthleteEvent[] = [];
   score: number = 0;
+  loggedInUser: User | null = null;
 
   constructor(
     private leagueService: LeagueService,
     private teamService: TeamService,
     private athleteEventService: AthleteEventService,
+    private auth: AuthService,
     private router: Router,
     private route: ActivatedRoute
   ) { }
@@ -46,6 +49,16 @@ export class LeagueListComponent implements OnInit {
   }
 
   reload():void {
+    this.auth.getLoggedInUser().subscribe({
+      next: (user) => {
+        this.loggedInUser = user;
+      },
+      error: (err) => {
+        console.error('LeagueListComponenet: error on init');
+        console.error(err);
+      },
+    });
+
     this.leagueService.index().subscribe({
       next: (leagueList) => {
         this.leagues = leagueList;
@@ -54,6 +67,16 @@ export class LeagueListComponent implements OnInit {
       console.error(err);
     }
   });
+  }
+
+  userHasBoughtIn (leagueId: number ): boolean {
+  if (this.loggedInUser?.boughtInLeagues)
+    for (const league of this.loggedInUser.boughtInLeagues) {
+      if (league.id == leagueId) {
+        return true;
+      }
+    }
+    return false;
   }
 
   displayLeague(league: League) {
@@ -73,8 +96,9 @@ export class LeagueListComponent implements OnInit {
     this.teamService.create(leagueId).subscribe({
       next: (createdTeam) => {
         this.newTeam = new Team();
-        this.router.navigateByUrl('/teams/' + createdTeam.league!.id);
         this.reload();
+        this.router.navigateByUrl('/leagues');
+        this.selected = null;
       },
       error: (createError) => {
         console.error('LeagueListComponent.createTeam(): error creating team');
@@ -125,6 +149,9 @@ export class LeagueListComponent implements OnInit {
   //   console.log('Winner' + winner);
   //   return winner;
   // }
+
+
+
 
 
 }
