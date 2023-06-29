@@ -6,8 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.leagueolympia.entities.League;
+import com.skilldistillery.leagueolympia.entities.SportEvent;
 import com.skilldistillery.leagueolympia.entities.User;
 import com.skilldistillery.leagueolympia.repositories.LeagueRepository;
+import com.skilldistillery.leagueolympia.repositories.SportEventRepository;
 import com.skilldistillery.leagueolympia.repositories.UserRepository;
 
 @Service
@@ -16,8 +18,10 @@ public class LeagueServiceImpl implements LeagueService {
 	@Autowired
 	private LeagueRepository leagueRepo;
 	@Autowired
-	UserRepository userRepo;
-
+	private UserRepository userRepo;
+	@Autowired 
+	private SportEventRepository sportEventRepo;
+	
 	@Override
 	public List<League> index() {
 		return leagueRepo.findAll();
@@ -55,6 +59,20 @@ public class LeagueServiceImpl implements LeagueService {
 		}
 		return null;
 	}
+	
+	@Override
+	public League addSportEvent(
+			Integer sportEventId,
+			Integer leagueId) {
+		League league = leagueRepo.queryById(leagueId);
+		SportEvent event = sportEventRepo.queryById(sportEventId);
+		
+		if(league !=null && event !=null) {
+			league.addSportEvent(event);
+			return leagueRepo.saveAndFlush(league);
+		}
+		return null;
+	}
 
 	@Override
 	public boolean delete(String username, int leagueId) {
@@ -62,15 +80,4 @@ public class LeagueServiceImpl implements LeagueService {
 		return false;
 	}
 	
-//	@Override
-//	public boolean delete(String username, int leagueId) {
-//		boolean deleted = false;
-//		League toDelete = leagueRepo.queryById(leagueId);
-//		if(toDelete.getId()==leagueId) {
-//			leagueRepo.delete(toDelete);
-//			deleted = true;
-//		}
-//		return deleted;
-//		
-//	}
 }

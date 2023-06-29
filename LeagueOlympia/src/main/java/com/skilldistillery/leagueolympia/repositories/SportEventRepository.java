@@ -9,5 +9,6 @@ import com.skilldistillery.leagueolympia.entities.SportEvent;
 public interface SportEventRepository extends JpaRepository<SportEvent , Integer> {
 	
 	public List<SportEvent> findByLeagues_Id(Integer leagueId);
+	public SportEvent queryById(Integer sportEventId);
 	
 }
