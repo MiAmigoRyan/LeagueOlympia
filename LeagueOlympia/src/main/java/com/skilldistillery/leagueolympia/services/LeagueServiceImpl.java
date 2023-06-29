@@ -50,6 +50,7 @@ public class LeagueServiceImpl implements LeagueService {
 			managedLeague.setPhotoUrl(league.getPhotoUrl());
 			managedLeague.setSideWager(league.getSideWager());
 			managedLeague.setBuyIn(league.getBuyIn());
+			managedLeague.setSportEvents(league.getSportEvents());
 			return leagueRepo.saveAndFlush(managedLeague);
 		}
 		return null;

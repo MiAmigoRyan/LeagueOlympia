@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { EmailService } from 'src/app/services/email.service';
 
 @Component({
@@ -14,8 +14,15 @@ export class ContactComponent {
     email:"",
     message:""
   };
-
+  FormData!: FormGroup;
   constructor(private builder: FormBuilder, private contact: EmailService){}
+
+  ngOnInit(){
+    this.FormData = this.builder.group({
+      // EmailAddress: new FormControl('', [Validators.compose([Validators.required, Validators.email])]),
+      Body: new FormControl('', [Validators.required])
+      })
+      }
 
 
   confirmationMsg(){
