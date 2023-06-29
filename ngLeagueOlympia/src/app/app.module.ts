@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { LeagueListComponent } from './components/league-list/league-list.component';
 import { SportEventListComponent } from './components/sport-event-list/sport-event-list.component';
@@ -23,7 +23,7 @@ import { TeamComponent } from './components/team/team.component';
 import { AthleteComponent } from './components/athlete/athlete.component';
 import { LeagueComponent } from './components/league/league.component';
 import { RankTeamsPipe } from './pipes/rank-teams.pipe';
-// import { OlympiadPipe } from './pipes/olympiad.pipe';
+
 
 @NgModule({
   declarations: [
@@ -50,7 +50,8 @@ import { RankTeamsPipe } from './pipes/rank-teams.pipe';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    NgbModule
+    NgbModule,
+    ReactiveFormsModule
   ],
   providers: [LeagueService, AuthService, SportEventService, RankTeamsPipe],
   bootstrap: [AppComponent]
