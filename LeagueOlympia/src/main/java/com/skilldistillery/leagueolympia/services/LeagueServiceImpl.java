@@ -78,5 +78,5 @@ public class LeagueServiceImpl implements LeagueService {
 	public boolean delete(String username, int leagueId) {
 		// TODO Auto-generated method stub
 		return false;
-	}
-}
+	}}
+

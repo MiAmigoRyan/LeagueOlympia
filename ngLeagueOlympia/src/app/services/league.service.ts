@@ -74,7 +74,7 @@ export class LeagueService {
     return this.http.post<League>(this.url + '/' + leagueId + '/sportEvent/' + sportEventId, null, this.getHttpOptions()).pipe(
       catchError((err: any) => {
         return throwError(
-          () => new Error('TeamService.updateTeamRoster(): error updating team: ' + err)
+          () => new Error('LeagueService.updateLeagueRoster(): error updating team: ' + err)
         );
       })
     );
