@@ -1,5 +1,5 @@
 <br>
-<div *ngIf="!selected" class="col-md-8">
+<div *ngIf="!selected" class="col-md-4">
   <h3>League Set-Up</h3>
   <p>Create your own League Olympia and compete to reach the top of Mount Olympus</p>
   <br>
@@ -13,7 +13,6 @@
       <input class="form-control" type="text" name="photoUrl" [(ngModel)]="newLeague.photoUrl" />
     </div>
     <div class="col-md-12">
-      <div class="d-flex">
         <label class="form-check-label" style="margin-right: 50px;">Bets Enabled: </label>
         <div class="form-check form-switch">
           <input class="form-check-input" style="margin-right: 50px;" type="checkbox" name="betEnabled"
@@ -21,7 +20,6 @@
         </div>
         <label class="form-label" style="margin-right: 50px;">Buy In: </label>
         <input class="form-control" type="number" name="buyIn" [(ngModel)]="newLeague.buyIn" />
-      </div>
     </div>
 
     <div class="col-md-12">
@@ -32,7 +30,7 @@
 </div>
 
 
-<div *ngIf="selected" class="col-md-8">
+<div *ngIf="selected" class="col-md-4">
   <h3>League Set-Up</h3>
   <p>Set-up your League Olympia and compete to reach the top of Mount Olympus</p>
   <br>
@@ -46,7 +44,6 @@
       <input class="form-control" type="text" name="photoUrl" [(ngModel)]="newLeague.photoUrl" />
     </div>
     <div class="col-md-12">
-      <div class="d-flex">
         <label class="form-check-label" style="margin-right: 50px;">Bets Enabled: </label>
         <div class="form-check form-switch">
           <input class="form-check-input" style="margin-right: 50px;" type="checkbox" name="betEnabled"
@@ -55,12 +52,11 @@
         <label class="form-label" style="margin-right: 50px;">Buy In: </label>
         <input class="form-control" type="number" name="buyIn" [(ngModel)]="newLeague.buyIn" />
       </div>
-    </div>
 
 
-    <ng-container *ngFor="let sportEvent of allSportEvents">
+    <!-- <ng-container *ngFor="let sportEvent of allSportEvents">
         {{sportEvent.sport?.name}}
-      </ng-container>
+      </ng-container> -->
 
 
 
@@ -83,3 +79,4 @@
     </div>
   </form>
 </div>
+<br>

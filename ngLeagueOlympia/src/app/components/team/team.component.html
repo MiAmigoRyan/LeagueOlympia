@@ -3,7 +3,7 @@
   <h3>{{selectedUser?.username | uppercase}} Teams:</h3><br>
   <div *ngFor="let team of teams">
     <img src="{{team?.photoURL}}" alt="Team Picture" width="20%" height="20%" /><br><br>
-    <p>
+    <p style="background-color: rgba(255, 255, 255, 0.5); border: 5px; border-radius: 10px; padding: 5px;">
       <strong>League:</strong> {{team?.league?.leagueName | uppercase}}
       <br><strong>Team:</strong> {{team?.teamName}}
       <br><strong>Athletes:</strong> <span *ngFor="let athleteEvent of team.athleteEvents; index as i">
@@ -19,9 +19,9 @@
 
   <div *ngIf="selectedTeam && !updateForm">
     <h3>Team: {{selectedTeam.teamName}}</h3><br>
-    <img src="{{selectedTeam.photoURL}}" alt="Team Picture" width="20%" height="20%" /><br>
-    <p>
-      <br><strong>League:</strong> {{selectedTeam.league?.leagueName | uppercase}}
+    <img src="{{selectedTeam.photoURL}}" alt="Team Picture" width="20%" height="20%" /><br><br>
+    <p style="background-color: rgba(255, 255, 255, 0.5); border: 5px; border-radius: 10px; padding: 5px;">
+      <strong>League:</strong> {{selectedTeam.league?.leagueName | uppercase}}
       <br><strong>Description:</strong> {{selectedTeam.description}}
       <br><strong>Last Updated:</strong> {{selectedTeam.updatedAt | date}}
       <br><strong>Buy In:</strong> {{selectedTeam.league?.buyIn | currency}}
@@ -32,7 +32,7 @@
     </div>
     <hr>
 
-    <div class="col-md-11">
+    <div class="col-md-12" style="justify-content: center;">
       <form class="row g-3">
         <table class="table table-light table-striped table-hover">
           <thead class="table-success">
@@ -72,9 +72,9 @@
 
     <div *ngIf="selectedTeam && updateForm">
       <h3>Team: {{selectedTeam.teamName}}</h3><br>
-      <img src="{{selectedTeam.photoURL}}" alt="Team Picture" width="20%" height="20%" /><br>
-      <p>
-        <br><strong>League:</strong> {{selectedTeam.league?.leagueName | uppercase}}
+      <img src="{{selectedTeam.photoURL}}" alt="Team Picture" width="20%" height="20%" /><br><br>
+      <p style="background-color: rgba(255, 255, 255, 0.5); border: 5px; border-radius: 10px; padding: 5px;">
+        <strong>League:</strong> {{selectedTeam.league?.leagueName | uppercase}}
         <br><strong>Description:</strong> {{selectedTeam.description}}
         <br><strong>Last Updated:</strong> {{selectedTeam.updatedAt | date}}
         <br><strong>Buy In:</strong> {{selectedTeam.league?.buyIn | currency}}

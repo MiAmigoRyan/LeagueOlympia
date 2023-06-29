@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -6,5 +7,17 @@ import { Component } from '@angular/core';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
+
+  constructor (
+    private auth: AuthService,
+  ){}
+
+  loggedIn(): boolean {
+    if (this.auth.checkLogin()) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 
 }
