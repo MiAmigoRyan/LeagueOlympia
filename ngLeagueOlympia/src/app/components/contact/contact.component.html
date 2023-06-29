@@ -7,10 +7,11 @@
 <div class="container">
   <h1>Contact Form</h1>
   <div>
-    <h2>Angular Email Form</h2>
+    <!-- <div>
     <div>
-    <div>
-    <form [formGroup]="FormData" (ngSubmit)="onSubmit(FormData.value)"><div>
+    <form [formGroup]="FormData" (ngSubmit)="onSubmit(FormData.value)">
+
+      <div>
     <label for="EmailAddress">Email</label>
     <input type="email" name="EmailAddress" placeholder="Enter email" formControlName="Email">
     </div>
@@ -23,9 +24,9 @@
     </form>
     </div>
     </div>
-    </div>
+    </div> -->
 
-<form action="mailto:arment.ryan@gmail.com" method="POST" encType="input/text"> -->
+<form action="mailto:arment.ryan@gmail.com" method="POST" encType="input/text">
 
 <div>
   <label for="name">Your Name:</label>
@@ -39,6 +40,7 @@
   <label for="message">Message:</label>
   <textarea class="form-control" id="message" name="message" rows="5"[(ngModel)]= "formData.message" required></textarea>
 </div>
+<br>
 <button type="submit" class="btn btn-primary">Send Email</button>
 </form>
 
