@@ -1,6 +1,7 @@
 package com.skilldistillery.leagueolympia.entities;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -190,6 +191,19 @@ public class SportEvent {
 		return builder.toString();
 	}
 
-
+	public void addLeague(League league) {
+		if(leagues == null) leagues  = new ArrayList<>();
+		
+		if(!leagues.contains(league)){
+			leagues.add(league);
+			league.addSportEvent(this);
+		}
+	}
+	public void removeLeague(League league) {
+		if(leagues != null && leagues.contains(league)) {
+			leagues.remove(league);
+			league.removeSportEvent(this);
+		}
+	}
 	
 }

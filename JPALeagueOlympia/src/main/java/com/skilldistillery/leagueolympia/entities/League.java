@@ -233,4 +233,19 @@ public class League {
 		}
 	}
 	
+	public void addSportEvent(SportEvent sportEvent) {
+		if(sportEvents == null) sportEvents  = new ArrayList<>();
+		
+		if(!sportEvents.contains(sportEvent)){
+			sportEvents.add(sportEvent);
+			sportEvent.addLeague(this);
+		}
+	}
+	public void removeSportEvent(SportEvent sportEvent) {
+		if(sportEvents != null && sportEvents.contains(sportEvent)) {
+			sportEvents.remove(sportEvent);
+			sportEvent.removeLeague(this);
+		}
+	}
+	
 }
