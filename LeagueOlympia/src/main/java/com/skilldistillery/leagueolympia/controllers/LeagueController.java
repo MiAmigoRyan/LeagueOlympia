@@ -94,6 +94,27 @@ public class LeagueController {
 		return managedLeague;
 	}
 	
+	@PostMapping("leagues/{leagueId}/sportEvent/{sportEventId}")
+	public League addSportEvent(
+			HttpServletRequest req,
+			HttpServletResponse res,
+			@PathVariable("leagueId") Integer leagueId,
+			@PathVariable("sportEventId") Integer sportEventId,
+			Principal principal) {
+		League managedLeague = null;
+		try {
+			managedLeague = leagueService.addSportEvent(sportEventId, leagueId);
+				if(managedLeague == null) {
+					res.setStatus(404);
+				}
+		} catch (Exception e) {
+			e.printStackTrace();
+			res.setStatus(400);
+		}
+			
+		return null;
+	}
+	
 	@DeleteMapping("leauges/{leagueId}")
 	public void delete(HttpServletRequest req,
 			HttpServletResponse res,
