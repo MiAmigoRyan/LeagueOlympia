@@ -22,6 +22,7 @@ export class TeamComponent implements OnInit{
   selectedTeam: Team | null = null;
   teams: Team[] = [];
   athleteEvents: AthleteEvent[] = [];
+  updateForm = false;
 
   constructor(
     private userService: UserService,
