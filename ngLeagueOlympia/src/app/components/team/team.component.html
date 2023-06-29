@@ -7,95 +7,99 @@
       <strong>League:</strong> {{team?.league?.leagueName | uppercase}}
       <br><strong>Team:</strong> {{team?.teamName}}
       <br><strong>Athletes:</strong> <span *ngFor="let athleteEvent of team.athleteEvents; index as i">
-        {{athleteEvent.athlete.fname + ' '  + athleteEvent.athlete.lname}}{{i === team.athleteEvents.length - 1 ? '' : ', '}}</span>
-        <br><strong>Description:</strong> {{team?.description}}
-        <br><strong>Last Updated:</strong> {{team.updatedAt | date}}
-      </p>
-      <button class="btn btn-success me-1" (click)="selectedTeam = team">Update Team</button><hr><br>
-    </div>
-    <br>
-  </div>
-
-
-  <div *ngIf="selectedTeam && !updateForm">
-    <h3>Team: {{selectedTeam.teamName}}</h3><br>
-    <img src="{{selectedTeam.photoURL}}" alt="Team Picture" width="20%" height="20%" /><br><br>
-    <p style="background-color: rgba(255, 255, 255, 0.5); border: 5px; border-radius: 10px; padding: 5px;">
-      <strong>League:</strong> {{selectedTeam.league?.leagueName | uppercase}}
-      <br><strong>Description:</strong> {{selectedTeam.description}}
-      <br><strong>Last Updated:</strong> {{selectedTeam.updatedAt | date}}
-      <br><strong>Buy In:</strong> {{selectedTeam.league?.buyIn | currency}}
+        {{athleteEvent.athlete.fname + ' ' + athleteEvent.athlete.lname}}{{i === team.athleteEvents.length - 1 ? '' : ',
+        '}}</span>
+      <br><strong>Description:</strong> {{team?.description}}
+      <br><strong>Last Updated:</strong> {{team.updatedAt | date}}
     </p>
-    <div class="col-12">
-      <button class="btn btn-success me-1" (click)="selectedTeam = null">View All Teams</button>
-      <button class="btn btn-success me-1" (click)="updateForm = true">Edit My Team</button>
-    </div>
-    <hr>
+    <button class="btn btn-success me-1" (click)="selectedTeam = team">Update Team</button>
+    <hr><br>
+  </div>
+  <br>
+</div>
 
-    <div class="col-md-12" style="justify-content: center;">
-      <form class="row g-3">
-        <table class="table table-light table-striped table-hover">
-          <thead class="table-success">
-            <tr>
-              <th colspan="2" style="text-align: center;">Athlete Events</th>
-              <th>Athlete</th>
-              <th>Select Athlete</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let event of selectedTeam.league?.sportEvents">
-              <td> <img src="{{event.sport?.pictureUrl}}" alt="Sport Picture" width="120px" height="80px"/></td>
-              <td>{{event.sport?.name}}</td>
-              <td>
-                <ng-container *ngFor="let i of selectedTeam.athleteEvents">
-                  <ng-container *ngIf="i.sportEvent.sport?.id === event.sport?.id">
-                    {{i.athlete.fname}} {{i.athlete.lname}}
-                  </ng-container>
+
+<div *ngIf="selectedTeam && !updateForm">
+  <h3>Team: {{selectedTeam.teamName}}</h3><br>
+  <img src="{{selectedTeam.photoURL}}" alt="Team Picture" width="20%" height="20%" /><br><br>
+  <p style="background-color: rgba(255, 255, 255, 0.5); border: 5px; border-radius: 10px; padding: 5px;">
+    <strong>League:</strong> {{selectedTeam.league?.leagueName | uppercase}}
+    <br><strong>Description:</strong> {{selectedTeam.description}}
+    <br><strong>Last Updated:</strong> {{selectedTeam.updatedAt | date}}
+    <br><strong>Buy In:</strong> {{selectedTeam.league?.buyIn | currency}}
+  </p>
+  <div class="col-12">
+    <button class="btn btn-success me-1" (click)="selectedTeam = null">View All Teams</button>
+    <button class="btn btn-success me-1" (click)="updateForm = true">Edit My Team</button>
+  </div>
+  <hr>
+
+  <div class="col-md-12" style="justify-content: center;">
+    <form class="row g-3">
+      <table class="table table-light table-striped table-hover">
+        <thead class="table-success">
+          <tr>
+            <th colspan="2" style="text-align: center;">Athlete Events</th>
+            <th>Athlete</th>
+            <th>Select Athlete</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let event of selectedTeam.league?.sportEvents">
+            <td> <img src="{{event.sport?.pictureUrl}}" alt="Sport Picture" width="120px" height="80px" /></td>
+            <td>{{event.sport?.name}}</td>
+            <td>
+              <ng-container *ngFor="let i of selectedTeam.athleteEvents">
+                <ng-container *ngIf="i.sportEvent.sport?.id === event.sport?.id">
+                  {{i.athlete.fname}} {{i.athlete.lname}}
                 </ng-container>
-              </td>
-              <td>
-                <div ngbDropdown class="dropdown">
-                  <button ngbDropdownToggle type="button" class="btn btn-outline-success me-1"
-                  id="dropdownMenuButton1" aria-expanded="false">Select Athlete</button>
-                  <ul ngbDropdownMenu aria-labelledby="dropdownMenuButton1">
-                    <li [value]="athleteEvent.athlete" (click)="addAthleteToTeam(selectedTeam.league!.id, event.id, athleteEvent.athlete.id)" ngbDropdownItem *ngFor="let athleteEvent of event.athleteEvents">
-                      {{athleteEvent.athlete.fname}} {{athleteEvent.athlete.lname}}</li>
-                    </ul>
-                  </div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </form>
-      </div>
-    </div>
+              </ng-container>
+            </td>
+            <td>
+              <div ngbDropdown class="dropdown">
+                <button ngbDropdownToggle type="button" class="btn btn-outline-success me-1" id="dropdownMenuButton1"
+                  aria-expanded="false">Select Athlete</button>
+                <ul ngbDropdownMenu aria-labelledby="dropdownMenuButton1">
+                  <li [value]="athleteEvent.athlete"
+                    (click)="addAthleteToTeam(selectedTeam.league!.id, event.id, athleteEvent.athlete.id)"
+                    ngbDropdownItem *ngFor="let athleteEvent of event.athleteEvents">
+                    {{athleteEvent.athlete.fname}} {{athleteEvent.athlete.lname}}</li>
+                </ul>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </form>
+  </div>
+</div>
 
-    <div *ngIf="selectedTeam && updateForm">
-      <h3>Team: {{selectedTeam.teamName}}</h3><br>
-      <img src="{{selectedTeam.photoURL}}" alt="Team Picture" width="20%" height="20%" /><br><br>
-      <p style="background-color: rgba(255, 255, 255, 0.5); border: 5px; border-radius: 10px; padding: 5px;">
-        <strong>League:</strong> {{selectedTeam.league?.leagueName | uppercase}}
-        <br><strong>Description:</strong> {{selectedTeam.description}}
-        <br><strong>Last Updated:</strong> {{selectedTeam.updatedAt | date}}
-        <br><strong>Buy In:</strong> {{selectedTeam.league?.buyIn | currency}}
-      </p>
-      <button class="btn btn-success me-1" (click)="updateForm = false">Edit Roster</button>
-      <hr>
-      <h3>Update Team</h3>
+<div *ngIf="selectedTeam && updateForm">
+  <h3>Team: {{selectedTeam.teamName}}</h3><br>
+  <img src="{{selectedTeam.photoURL}}" alt="Team Picture" width="20%" height="20%" /><br><br>
+  <p style="background-color: rgba(255, 255, 255, 0.5); border: 5px; border-radius: 10px; padding: 5px;">
+    <strong>League:</strong> {{selectedTeam.league?.leagueName | uppercase}}
+    <br><strong>Description:</strong> {{selectedTeam.description}}
+    <br><strong>Last Updated:</strong> {{selectedTeam.updatedAt | date}}
+    <br><strong>Buy In:</strong> {{selectedTeam.league?.buyIn | currency}}
+  </p>
+  <button class="btn btn-success me-1" (click)="updateForm = false">Edit Roster</button>
+  <hr>
+  <h3>Update Team</h3>
+  <div class="col-md-6">
+    <form class="row g-3">
       <div class="col-md-6">
-        <form class="row g-3">
-          <div class="col-md-6">
-            <label class="form-label">Team Name: </label>
-            <input class="form-control" type="text" name="teamName" [(ngModel)]="selectedTeam.teamName" />
-          </div>
-          <div class="col-md-12">
-            <label class="form-label">Photo URL: </label>
-            <input class="form-control" type="text" name="photoURL" [(ngModel)]="selectedTeam.photoURL" />
-          </div>
-          <div class="col-md-12">
-            <label class="form-label">Description: </label>
-            <input class="form-control" type="text" name="description" [(ngModel)]="selectedTeam.description" />
-          </div>
+        <label class="form-label">Team Name: </label>
+        <input class="form-control" type="text" name="teamName" [(ngModel)]="selectedTeam.teamName" />
+      </div>
+      <div class="col-md-12">
+        <label class="form-label">Photo URL: </label>
+        <input class="form-control" type="text" name="photoURL" [(ngModel)]="selectedTeam.photoURL" />
+      </div>
+      <div class="col-md-12">
+        <label class="form-label">Description: </label>
+        <input class="form-control" type="text" name="description" [(ngModel)]="selectedTeam.description" />
+      </div>
 
 
       <div class="col-12">
@@ -105,4 +109,4 @@
     </form>
   </div>
 </div>
-  <br><br><br>
+<br><br><br>

@@ -50,6 +50,7 @@ export class LeagueComponent implements OnInit {
       this.leagueService.create(newLeague).subscribe({
         next: (createdLeague) => {
           this.newLeague = new League();
+          console.log(createdLeague);
           // this.router.navigateByUrl('/leagues/' + username);
           this.listEvents();
           this.selected = createdLeague;
@@ -96,8 +97,9 @@ export class LeagueComponent implements OnInit {
 
   addSportEvent(leagueId: number, newSportEventId: number){
     this.leagueService.updateLeagueSportEvents(leagueId, newSportEventId).subscribe({
-      next: (updatedTeam) => {
-        this.listEvents();
+      next: (updatedLeague) => {
+        this.selected = updatedLeague;
+        console.log(updatedLeague);
       },
       error: (updateError) => {
         console.error('TeamComponenet.updateTeamRoster(): error on update');

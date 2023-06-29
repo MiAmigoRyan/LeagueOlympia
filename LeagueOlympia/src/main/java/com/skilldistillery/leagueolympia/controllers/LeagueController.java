@@ -94,7 +94,7 @@ public class LeagueController {
 		return managedLeague;
 	}
 	
-	@PostMapping("leagues/{leagueId}/sportEvent/{sportEventId}")
+	@PutMapping("leagues/{leagueId}/sportEvent/{sportEventId}")
 	public League addSportEvent(
 			HttpServletRequest req,
 			HttpServletResponse res,
@@ -112,7 +112,7 @@ public class LeagueController {
 			res.setStatus(400);
 		}
 			
-		return null;
+		return managedLeague;
 	}
 	
 	@DeleteMapping("leauges/{leagueId}")

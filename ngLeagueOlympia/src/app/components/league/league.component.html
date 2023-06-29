@@ -13,13 +13,13 @@
       <input class="form-control" type="text" name="photoUrl" [(ngModel)]="newLeague.photoUrl" />
     </div>
     <div class="col-md-12">
-        <label class="form-check-label" style="margin-right: 50px;">Bets Enabled: </label>
-        <div class="form-check form-switch">
-          <input class="form-check-input" style="margin-right: 50px;" type="checkbox" name="betEnabled"
-            [(ngModel)]="newLeague.betEnabled" />
-        </div>
-        <label class="form-label" style="margin-right: 50px;">Buy In: </label>
-        <input class="form-control" type="number" name="buyIn" [(ngModel)]="newLeague.buyIn" />
+      <label class="form-check-label" style="margin-right: 50px;">Bets Enabled: </label>
+      <div class="form-check form-switch">
+        <input class="form-check-input" style="margin-right: 50px;" type="checkbox" name="betEnabled"
+          [(ngModel)]="newLeague.betEnabled" />
+      </div>
+      <label class="form-label" style="margin-right: 50px;">Buy In: </label>
+      <input class="form-control" type="number" name="buyIn" [(ngModel)]="newLeague.buyIn" />
     </div>
 
     <div class="col-md-12">
@@ -30,53 +30,54 @@
 </div>
 
 
-<div *ngIf="selected" class="col-md-4">
+<div *ngIf="selected">
   <h3>League Set-Up</h3>
   <p>Set-up your League Olympia and compete to reach the top of Mount Olympus</p>
-  <br>
-  <form class="row g-3">
-    <div class="col-md-12">
-      <label class="form-label">League Name: </label>
-      <input class="form-control" type="text" name="leagueName" [(ngModel)]="newLeague.leagueName" />
-    </div>
-    <div class="col-md-12">
-      <label class="form-label">League Logo URL: </label>
-      <input class="form-control" type="text" name="photoUrl" [(ngModel)]="newLeague.photoUrl" />
-    </div>
-    <div class="col-md-12">
-        <label class="form-check-label" style="margin-right: 50px;">Bets Enabled: </label>
-        <div class="form-check form-switch">
-          <input class="form-check-input" style="margin-right: 50px;" type="checkbox" name="betEnabled"
-            [(ngModel)]="newLeague.betEnabled" />
-        </div>
-        <label class="form-label" style="margin-right: 50px;">Buy In: </label>
-        <input class="form-control" type="number" name="buyIn" [(ngModel)]="newLeague.buyIn" />
-      </div>
+  <img src="{{selected.photoUrl}}" alt="League Picture" width="240px" height="160px">
+  <h4>League {{selected.id}}: {{selected.leagueName | uppercase}}</h4>
+  <span><strong>Commissioner: </strong>{{selected.comissioner?.username}}</span>
+  <br><span style="margin-right: 60%;"><em>Buy In: {{selected.buyIn | currency}}</em></span><br><br>
 
 
-    <!-- <ng-container *ngFor="let sportEvent of allSportEvents">
-        {{sportEvent.sport?.name}}
-      </ng-container> -->
-
-
-
-    <div class="col-md-12">
-      <div ngbDropdown class="dropdown">
-        <button ngbDropdownToggle type="button" class="btn btn-outline-success me-1" id="dropdownMenuButton1"
-        aria-expanded="false">Sport Event</button>
-        <ul ngbDropdownMenu aria-labelledby="dropdownMenuButton1">
-          <li (click)="addSportEvent(selected.id, sportEvent.id)"
-          ngbDropdownItem [value]="sportEvent" *ngFor="let sportEvent of allSportEvents">
+  <div class="col-md-12">
+    <div ngbDropdown class="dropdown">
+      <button ngbDropdownToggle type="button" class="btn btn-success me-1 mb-2" id="dropdownMenuButton1"
+        aria-expanded="false">Add Sport Event</button>
+      <ul ngbDropdownMenu aria-labelledby="dropdownMenuButton1">
+        <li (click)="addSportEvent(selected.id, sportEvent.id)" ngbDropdownItem [value]="sportEvent"
+          *ngFor="let sportEvent of allSportEvents">
           {{sportEvent.sport?.name}}</li>
-        </ul>
-      </div>
+      </ul><br>
+      <button class="btn btn-success me-1" (click)="selected = null">Save</button>
     </div>
+  </div><br>
+
+  <div class="col-md-12" style="justify-content: center;">
+    <form class="row g-3">
+      <table class="table table-light table-striped table-hover">
+        <thead class="table-success">
+          <tr>
+            <th></th>
+            <th>Sport Events</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let event of selected.sportEvents">
+            <td> <img src="{{event.sport?.pictureUrl}}" alt="Sport Picture" width="120px" height="80px" /></td>
+            <td>
+              <ng-container *ngFor="let i of selected.sportEvents">
+                <ng-container *ngIf="i.sport?.id === event.sport?.id">
+                  {{i.sport?.name}}
+                </ng-container>
+              </ng-container>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </form>
+  </div>
 
 
-    <div class="col-md-12">
-      <!-- <button class="btn btn-success me-1" (click)="addSportInput()">Add a Sport</button> -->
-      <button class="btn btn-success me-1" (click)="updateLeague(newLeague)">Update League</button>
-    </div>
-  </form>
+
 </div>
 <br>

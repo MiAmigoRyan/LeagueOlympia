@@ -71,7 +71,9 @@ export class LeagueService {
   }
 
   public updateLeagueSportEvents(leagueId: number, sportEventId: number): Observable<League> {
-    return this.http.post<League>(this.url + '/' + leagueId + '/sportEvent/' + sportEventId, null, this.getHttpOptions()).pipe(
+    console.log('leagueid ' +leagueId);
+    console.log('sporteventid' + sportEventId);
+    return this.http.put<League>(this.url + '/' + leagueId + '/sportEvent/' + sportEventId, null, this.getHttpOptions()).pipe(
       catchError((err: any) => {
         return throwError(
           () => new Error('LeagueService.updateLeagueRoster(): error updating team: ' + err)
