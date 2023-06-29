@@ -104,25 +104,27 @@ export class LeagueListComponent implements OnInit {
     return foundTeam;
   }
 
-
+  Number(users: User[]): number{
+    return users.length;
+  }
 
   log(team: Team ){
     console.log(team.user);
   }
 
-  win(teams: Team[]): Team | undefined {
-    let lowScore: number = 100000;
-    let winner: Team | undefined;
+  // win(teams: Team[]): Team | undefined {
+  //   let lowScore: number = 100000;
+  //   let winner: Team | undefined;
 
-    teams.forEach(team => {
-      let score = this.calculateTotalScore(team);
-      if (score <= lowScore) { lowScore = score; winner = team }
-      console.log('Score' + score);
-      console.log('lowScore' +lowScore);
-    });
-    console.log('Winner' + winner);
-    return winner;
-  }
+  //   teams.forEach(team => {
+  //     let score = this.calculateTotalScore(team);
+  //     if (score <= lowScore) { lowScore = score; winner = team }
+  //     console.log('Score' + score);
+  //     console.log('lowScore' +lowScore);
+  //   });
+  //   console.log('Winner' + winner);
+  //   return winner;
+  // }
 
 
 }

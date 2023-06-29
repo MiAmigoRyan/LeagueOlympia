@@ -1,11 +1,12 @@
 <br>
 <div *ngIf="!selected">
   <h1 style="text-align: center;">Join a League Olympia</h1>
-  <hr>
   <div style="display: flex; align-items: center; justify-content: center;">
-    <h3 style="margin-right: 1%; display: inline-block;">Click an existing League <em>or</em></h3>
+    <h4 style="margin-right: 1%; display: inline-block;">Click an existing League <em>or</em></h4>
     <button class="btn btn-success me-1" (click)="startLeague()">Create League</button>
-  </div><br>
+  </div>
+  <hr>
+  <br>
 
   <div class="row">
     <div (click)="displayLeague(league)" *ngFor="let league of leagues" class="d-flex">
@@ -14,45 +15,63 @@
       </div>
       <div class="col-md-9">
         <h4>League {{league.id}}: {{league.leagueName | uppercase}}</h4>
-        <span><strong>Events: </strong></span><span
-          *ngFor="let sportEvent of league.sportEvents; index as i">{{sportEvent.sport?.name}}{{i ===
+        <span><strong>Events: </strong></span>
+        <span *ngFor="let sportEvent of league.sportEvents; index as i">{{sportEvent.sport?.name}}{{i ===
           league.sportEvents.length - 1 ? '' : ', '}}</span>
-        <br><span><strong>Commissioner: </strong>{{league.comissioner?.username}}</span>
-        <br><span><em>Buy In: {{league.buyIn | currency}}</em></span>
-        <br>
-        <hr>
+          <br><span><strong>Commissioner: </strong>{{league.comissioner?.username}}</span>
+          <br><span style="margin-right: 60%;"><em>Buy In: {{league.buyIn | currency}}</em></span>
+          <button class="btn btn-success me-1" (click)="createTeam(league.id)">Join League</button>
+          <br>
+          <hr>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-<div *ngIf="selected">
-  <h2>Winner! <em>{{win(selected.teams)?.teamName}}</em></h2>
-  <h2>Winner! <em>{{(selected.teams | rankTeams) [0].teamName}}</em></h2>
-  <div id="scoreboard">
+  <div *ngIf="selected">
+    <div class="row">
+      <div class="col-md-2">
+        <div class="d-flex flex-column">
+          <button class="btn btn-success me-1 mb-2" (click)="selected = null">View All Leagues</button>
+          <button class="btn btn-success me-1" (click)="createTeam(selected.id)">Join League</button>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <h1 style="text-align: center;">{{selected.leagueName | uppercase}}</h1>
+        <h2 style="text-align: center;"><em>League Winner: {{(selected.teams | rankTeams) [0].teamName}}!</em></h2>
+        <h5 style="text-align: center;">Total Pot: {{selected.buyIn * Number(selected.usersBoughtIn) | currency}}</h5>
+        <div style="display: flex; justify-content: center;">
+          <img src="{{selected.photoUrl}}" alt="league picture" width="40%" height="40%" />
+      </div>
+      <div class="col-md-2"></div>
+    </div>
+    </div>
 
-    <h2>Scoreboard: </h2>
-    <ol>
-      <li *ngFor="let winner of selected.teams | rankTeams">{{winner.teamName}} {{winner.user?.firstName}}
-        {{winner.user?.lastName}} {{winner.athleteResultSum}}</li>
-    </ol>
-  </div>
+    <br>
+    <div id="scoreboard">
+      <h2>Scoreboard</h2>
+      <table class="table table-light table-striped table-hover">
+        <thead class="table-success">
+          <tr>
+            <td>Teams</td>
+        <td>Manager</td>
+        <td>Total Score</td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let winner of selected.teams | rankTeams">
+        <td>{{winner.teamName}}</td>
+        <td>{{winner.user?.firstName}} {{winner.user?.lastName}}</td>
+        <td>{{winner.athleteResultSum}}</td>
+      </tr>
+    </tbody>
+  </table>
 
-  <img src="{{selected.photoUrl}}" alt="league picture" width="40%" height="40%" /><br><br>
-  <h1>{{selected.leagueName | uppercase}}</h1>
-  <h3>Buy In: {{selected.buyIn | currency}}</h3>
-  <ul *ngFor="let team of selected.teams">
-    <p>{{log(team)}}</p>
-    <li>{{team.user?.firstName}} {{team.user?.lastName}}</li>
-    <ul *ngIf="team">
-      <li>{{team.teamName}}</li>
-      <li>Team Score: {{calculateTotalScore(team)}}</li>
-    </ul>
-  </ul>
-
+  <br>
+  <h2>Sport Events</h2>
   <div id="teamList">
-    <table class="table-striped table table-hover">
-      <thead>
+    <table class="table table-light table-striped table-hover">
+      <thead class="table-success">
         <tr>
           <td>Venue</td>
           <td>Sport</td>
@@ -67,8 +86,7 @@
     </table>
   </div>
 
+  <br>
   <button class="btn btn-success me-1" (click)="selected = null">View All Leagues</button>
-  <button class="btn btn-success me-1" (click)="createTeam(selected.id)">Join League</button>
-  <!-- <button class="btn btn-danger me-1" (click)="deleteLeague(selected.id)">Delete League</button> -->
 </div>
 <br><br><br>
