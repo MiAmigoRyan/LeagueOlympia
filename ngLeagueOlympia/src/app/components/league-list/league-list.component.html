@@ -1,8 +1,28 @@
 <br>
 <div *ngIf="!selected">
-  <button class="btn btn-success me-1" (click)="startLeague()">Create League</button><br><br>
-  <div (click)="displayLeague(league)" *ngFor="let league of leagues">
-    <h1>{{league.leagueName | uppercase}}</h1> <span>Commissioner: {{league.comissioner?.username}}</span><br><br>
+  <h1 style="text-align: center;">Join a League Olympia</h1>
+  <hr>
+  <div style="display: flex; align-items: center; justify-content: center;">
+    <h3 style="margin-right: 1%; display: inline-block;">Click an existing League <em>or</em></h3>
+    <button class="btn btn-success me-1" (click)="startLeague()">Create League</button>
+  </div><br>
+
+  <div class="row">
+    <div (click)="displayLeague(league)" *ngFor="let league of leagues" class="d-flex">
+      <div class="col-md-3">
+        <img class="" src="{{league.photoUrl}}" alt="league picture" width="180px" height="120px" /><br><br>
+      </div>
+      <div class="col-md-9">
+        <h4>League {{league.id}}: {{league.leagueName | uppercase}}</h4>
+        <span><strong>Events: </strong></span><span
+          *ngFor="let sportEvent of league.sportEvents; index as i">{{sportEvent.sport?.name}}{{i ===
+          league.sportEvents.length - 1 ? '' : ', '}}</span>
+        <br><span><strong>Commissioner: </strong>{{league.comissioner?.username}}</span>
+        <br><span><em>Buy In: {{league.buyIn | currency}}</em></span>
+        <br>
+        <hr>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -13,11 +33,12 @@
 
     <h2>Scoreboard: </h2>
     <ol>
-      <li *ngFor="let winner of selected.teams | rankTeams">{{winner.teamName}} {{winner.user?.firstName}} {{winner.user?.lastName}} {{winner.athleteResultSum}}</li>
+      <li *ngFor="let winner of selected.teams | rankTeams">{{winner.teamName}} {{winner.user?.firstName}}
+        {{winner.user?.lastName}} {{winner.athleteResultSum}}</li>
     </ol>
   </div>
 
-  <img src="{{selected.photoUrl}}" alt="league picture" width="40%" height="40%"/><br><br>
+  <img src="{{selected.photoUrl}}" alt="league picture" width="40%" height="40%" /><br><br>
   <h1>{{selected.leagueName | uppercase}}</h1>
   <h3>Buy In: {{selected.buyIn | currency}}</h3>
   <ul *ngFor="let team of selected.teams">

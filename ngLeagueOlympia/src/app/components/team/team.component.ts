@@ -1,3 +1,4 @@
+import { AthleteComponent } from './../athlete/athlete.component';
 import { AthleteEvent } from './../../models/athlete-event';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
