@@ -68,15 +68,6 @@ public class TeamServiceImpl implements TeamService {
 	}
 	
 
-//	@Override
-//	public Team removeTeam(String username, Integer leagueId) {
-//		Team teamRemoved = teamRepo.findByUser_UsernameAndLeagueId(username, leagueId);
-//		if(teamRemoved!=null) {
-//			teamRemoved.setEnabled(!teamRemoved.isEnabled());		
-//		}
-//		return teamRemoved;
-//	}
-
 	@Override
 	public List<Team> index(String username) {
 		
