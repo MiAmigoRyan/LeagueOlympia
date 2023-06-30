@@ -69,7 +69,7 @@ public class Team {
 	
 	 private boolean enabled;
 	 
-		@JsonIgnoreProperties({"teams", "comments", "usersBoughtIn"})
+		@JsonIgnoreProperties({"teams", "comments", "usersBoughtIn", "comissioner"})
 		@ManyToOne
 		@JoinColumn(name="league_id")
 		@MapsId(value="leagueId")

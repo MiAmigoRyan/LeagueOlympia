@@ -30,6 +30,7 @@ export class TeamService {
   }
 
   public update(team: Team): Observable<Team> {
+    console.log(team);
     return this.http.put<Team>(this.url + '/' + team?.league?.id, team, this.getHttpOptions()).pipe(
       catchError((err: any) => {
         return throwError(
