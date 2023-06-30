@@ -11,7 +11,12 @@ version = '0.0.1-SNAPSHOT'
 java {
 	sourceCompatibility = '1.8'
 }
-
+apply plugin: 'war'
+war {
+  enabled = true
+  archiveFileName = "${archivesBaseName}.war"
+  destinationDirectory = file("../")          // Project workspace directory
+}
 repositories {
 	mavenCentral()
 }
