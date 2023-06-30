@@ -1,6 +1,6 @@
 <br>
 <div *ngIf="!selectedTeam">
-  <h3>{{selectedUser?.username | uppercase}} Teams:</h3><br>
+  <h3>{{selectedUser?.firstName}} {{selectedUser?.lastName}} Teams:</h3><br>
   <div *ngFor="let team of teams">
     <img src="{{team?.photoURL}}" alt="Team Picture" width="20%" height="20%" /><br><br>
     <p style="background-color: rgba(255, 255, 255, 0.5); border: 5px; border-radius: 10px; padding: 5px;">
