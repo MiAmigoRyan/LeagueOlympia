@@ -1,18 +1,26 @@
-# NgLeagueOlympia
+## LeagueOlympia
+Team Members:
+* Ryan Arment (Developer, RepoOwner)
+* Nick Spidell (Developer, DBA)
+* Spencer Williams (Developer, Scrum Leader)
+ ### Overview
+This web application was developed to bring enthuasists of the Olympic games togeteher. Visitors of the site can navigate through a database of olympians. If they choose to create an account they can create their own team of olympic athletes and compete against friends or other users from across the globe! 
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.0.5.
+### How it works
+---
 
-## Development server
+## Technologies and Code Languages
+ANGULAR : frontend development using TypeScript, HTML, & CSS
+SPRING TOOL SUITE : backend and REST API mapping using Java
+MySql : SQL generation and Database design
+Git and GitHub : remote project development
+Trello : Kanban project board
+ZOOM : pair programing, team meetings
+phind.com : AI Language model used for syntax refrence and troubleshooting
+StackOverflow : de-bugging refrence and method/function refrence
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## 
 
 ## Running unit tests
 
