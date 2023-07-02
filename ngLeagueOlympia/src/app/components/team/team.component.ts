@@ -81,8 +81,16 @@ export class TeamComponent implements OnInit{
       });
     }
 
-    swapAthletes(leagueId: number, sportEventId: number, newAthleteId: number, oldAthleteId: number){
-      this.teamService.swapAthletes(leagueId, sportEventId, newAthleteId, oldAthleteId).subscribe({
+    swapAthletes(
+      leagueId: number,
+      sportEventId: number,
+      newAthleteId: number,
+      oldAthleteId: number){
+      this.teamService.swapAthletes(
+        leagueId,
+        sportEventId,
+        newAthleteId,
+        oldAthleteId).subscribe({
         next: (updatedTeam) => {
           this.reloadRoster();
         },
@@ -106,7 +114,8 @@ export class TeamComponent implements OnInit{
             console.log(this.selectedTeam);
             for (let team of teamList) {
               console.log(team.id);
-              if (team.id.userId === this.selectedTeam?.id.userId && team.id.leagueId === this.selectedTeam.id.leagueId) {
+              if (team.id.userId === this.selectedTeam?.id.userId
+                && team.id.leagueId === this.selectedTeam.id.leagueId) {
                 console.log("selectedTeam found again");
                 this.selectedTeam = team;
               }
