@@ -51,7 +51,7 @@ public class User {
 	@OneToMany(mappedBy="user")
 	private List<AthleteComment> athleteComments;
 	
-	@JsonIgnoreProperties({"comissioner", "usersBoughtIn", "comments"})
+	@JsonIgnoreProperties({"comissioner", "usersBoughtIn", "comments","id"})
 	@ManyToMany
 	@JoinTable(
 			name = "user_has_bought_in",

@@ -36,6 +36,7 @@ public class League {
 	@OneToMany(mappedBy = "league")
 	private List<LeagueComment> comments;
 
+	@JsonIgnoreProperties({"leagues"})
 	@ManyToMany(mappedBy = "leagues")
 	private List<SportEvent> sportEvents;
 

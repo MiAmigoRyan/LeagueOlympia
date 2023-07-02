@@ -1,14 +1,21 @@
 <br>
 <div *ngIf="!selectedTeam">
-  <h3>{{selectedUser?.username | uppercase}} Teams:</h3><br>
+  <h3>{{selectedUser?.firstName}} {{selectedUser?.lastName}} Teams:</h3><br>
   <div *ngFor="let team of teams">
     <img src="{{team?.photoURL}}" alt="Team Picture" width="20%" height="20%" /><br><br>
     <p style="background-color: rgba(255, 255, 255, 0.5); border: 5px; border-radius: 10px; padding: 5px;">
       <strong>League:</strong> {{team?.league?.leagueName | uppercase}}
       <br><strong>Team:</strong> {{team?.teamName}}
       <br><strong>Athletes:</strong> <span *ngFor="let athleteEvent of team.athleteEvents; index as i">
+<<<<<<< HEAD
         {{athleteEvent.athlete.fname + ' ' + athleteEvent.athlete.lname}}{{i === team.athleteEvents.length - 1 ? '' : ',
         '}} </span>
+=======
+        {{athleteEvent.athlete.fname + ' ' + athleteEvent.athlete.lname}}
+        {{i === team.athleteEvents.length - 1 ? '' : ',
+        '}}
+      </span>
+>>>>>>> dbeb6ca2cefbf162a503d6ba051f3bd87e3c097f
       <br><strong>Description:</strong> {{team?.description}}
       <br><strong>Last Updated:</strong> {{team.updatedAt | date}}
     </p>

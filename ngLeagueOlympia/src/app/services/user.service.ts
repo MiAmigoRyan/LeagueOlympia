@@ -18,6 +18,8 @@ export class UserService {
 
   public update(user: User): Observable<User> {
     user.teams = [];
+    user.leagues = [];
+    user.boughtInLeagues = [];
     return this.http.put<User>(this.url + '/' + user.username, user, this.getHttpOptions()).pipe(
       catchError((err: any) => {
         return throwError(
