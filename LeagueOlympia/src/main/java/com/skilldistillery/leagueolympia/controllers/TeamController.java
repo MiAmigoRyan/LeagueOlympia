@@ -110,7 +110,10 @@ public class TeamController {
 		}
 		return managedTeam;
 	}
-	@PostMapping("teams/{leagueId}/sportEvents/{sportEventId}/athletes/{athleteId}/athletes/{previousAthleteId}")
+	@PostMapping("teams/{leagueId}/"
+			+ "sportEvents/{sportEventId}/"
+			+ "athletes/{athleteId}/athletes/"
+			+ "{previousAthleteId}")
 	public Team replaceAthlete(
 			HttpServletRequest req,
 			HttpServletResponse res,
@@ -122,7 +125,9 @@ public class TeamController {
 			){
 		Team managedTeam = null;
 		try {
-			managedTeam = teamService.replaceAthlete(athleteId, leagueId, sportEventId, principal.getName(),previousAthleteId) ;
+			managedTeam = teamService.replaceAthlete(
+					athleteId, leagueId, sportEventId, 
+					principal.getName(),previousAthleteId) ;
 			if(managedTeam == null) {
 				res.setStatus(404);
 			}

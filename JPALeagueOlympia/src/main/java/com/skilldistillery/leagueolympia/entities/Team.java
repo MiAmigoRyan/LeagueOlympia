@@ -48,6 +48,7 @@ public class Team {
 	@JoinColumn(name="user_id")
 	@MapsId(value="userId")
 	private User user;
+	
 
 
 
@@ -69,7 +70,7 @@ public class Team {
 	
 	 private boolean enabled;
 	 
-		@JsonIgnoreProperties({"teams", "comments", "usersBoughtIn", "comissioner"})
+		@JsonIgnoreProperties({"teams", "comments", "usersBoughtIn"})
 		@ManyToOne
 		@JoinColumn(name="league_id")
 		@MapsId(value="leagueId")
